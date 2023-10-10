@@ -1,8 +1,6 @@
-<p align="justify">
    Universidad Nacional Autónoma De México
    Facultad De Ciencias, 2024-I
    Ingeniería de Software
-</p>
 
 
 
