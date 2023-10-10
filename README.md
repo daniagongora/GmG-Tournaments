@@ -1,6 +1,6 @@
-<center> # Universidad Nacional Autónoma De México </center>
-<center> # Facultad De Ciencias, 2024-I </center>
-<center> # Ingeniería de Software</center>
+<center> <h1>Universidad Nacional Autónoma De México</h1>  </center>
+<center> <h1>Facultad De Ciencias, 2024-I</h1> </center>
+<center> <h1>Ingeniería de Software</h1>  </center>
 
 # GmG Tournaments
 ---
