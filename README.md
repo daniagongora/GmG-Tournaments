@@ -1,11 +1,12 @@
 <h1 align="center">
   GmG Tournaments
+  <br>
+  Primer Proyecto de Software
 </h1>
 
+<h2>Equipo: Papitas </h2>
 
-# GmG Tournaments
----
-## Desarrolladores
+<h2>Desarrolladores</h2> 
 
 - *Colaboración* - [Dania Paula Góngora Ramírez](https://github.com/daniagongora)
 - *Técnico* - [Mario Letepichía Romero](https://github.com/MarioLetepichia)
