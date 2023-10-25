@@ -35,7 +35,7 @@ def get_Admin():
     response = []
     for Admin in Admins:
         response.append({
-            'nombre':Admin.Nombreadministrador,
+            'nombre':Admin.NombreAdministrador,
             'correo':Admin.Correo
         })
     return json.dumps(response)
