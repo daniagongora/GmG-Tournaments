@@ -24,6 +24,8 @@ y luego
 npm install react-router-dom@5
 Credenciales para probar el inicio de sesion:
 
+REcuerden que para probar el login se prueba en la ruta 
+http://localhost:3000/login
 Participantes: 
 
 1.- correo: dania1012@ciencias.unam.mx, contraseña: ola
