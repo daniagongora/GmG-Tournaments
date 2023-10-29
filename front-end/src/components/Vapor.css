@@ -278,6 +278,7 @@ h6, .h6 {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+  color: rgb(155, 2, 2);
 }
 
 abbr[title] {
@@ -2123,7 +2124,8 @@ progress {
 
 .form-control {
   display: block;
-  width: 100%;
+  width: 20%;
+  margin: auto;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -4000,6 +4002,7 @@ textarea.form-control-lg {
   flex-wrap: inherit;
   align-items: center;
   justify-content: space-between;
+  font-family: 'Nico-Moji';
 }
 .navbar-brand {
   padding-top: var(--bs-navbar-brand-padding-y);
@@ -8137,6 +8140,7 @@ textarea.form-control-lg {
 
 .p-0 {
   padding: 0 !important;
+  color: red;
 }
 
 .p-1 {

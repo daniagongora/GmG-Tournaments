@@ -26,7 +26,7 @@ function Login() {
 
       if (response.ok && responseData.success) {
         // Inicio de sesión exitoso, redirige al usuario a la página de bienvenida
-        history.push('/Bienvenida');
+        history.push('/MiPerfil');
       } else {
         // Muestra el mensaje de error en el formulario
         setMensaje(responseData.message || 'Error desconocido');
@@ -46,6 +46,7 @@ function Login() {
           placeholder="Correo"
           value={correo}
           onChange={(e) => setCorreo(e.target.value)}
+          class="form-control"
         />
         <br></br>
         <input
@@ -53,6 +54,7 @@ function Login() {
           placeholder="Contraseña"
           value={contrasenia}
           onChange={(e) => setContrasenia(e.target.value)}
+          class="form-control"
         />
         <br></br>
         <button type="submit">Iniciar Sesión</button>
