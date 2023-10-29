@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import './Vapor.css';
 
 function Login() {
   const [correo, setCorreo] = useState('');
@@ -46,12 +47,14 @@ function Login() {
           value={correo}
           onChange={(e) => setCorreo(e.target.value)}
         />
+        <br></br>
         <input
           type="password"
           placeholder="Contraseña"
           value={contrasenia}
           onChange={(e) => setContrasenia(e.target.value)}
         />
+        <br></br>
         <button type="submit">Iniciar Sesión</button>
       </form>
       {mensaje && <p>{mensaje}</p>}
