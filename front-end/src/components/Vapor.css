@@ -223,11 +223,12 @@ hr {
 }
 
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+  font-family: 'Nico-Moji';
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
-  color: var(--bs-heading-color);
+  color: white;
 }
 
 h1, .h1 {
@@ -3092,6 +3093,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #ea39b8;
   --bs-btn-disabled-border-color: #ea39b8;
+  
 }
 
 .btn-success {
@@ -3228,6 +3230,8 @@ textarea.form-control-lg {
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #ea39b8;
   --bs-gradient: none;
+  margin: 10px;
+  font-family: 'Nico-Moji';
 }
 
 .btn-outline-success {
@@ -12092,6 +12096,7 @@ h6,
 .h4,
 .h5,
 .h6 {
+
   text-shadow: 0 0 1px rgba(50, 251, 226, 0.6), 0 0 3px rgba(50, 251, 226, 0.5), 0 0 0.5rem rgba(50, 251, 226, 0.3), 0 0 2rem rgba(50, 251, 226, 0.2);
 }
 
@@ -12546,4 +12551,15 @@ legend {
 .card .h5,
 .card .h6 {
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2);
+}
+
+
+@font-face {
+  font-family: 'Nico-Moji';
+  src:url('./Fuente-Nico-Moji/Nico-Moji.ttf.woff') format('woff'),
+      url('./Fuente-Nico-Moji/Nico-Moji.ttf.svg#Nico-Moji') format('svg'),
+      url('./Fuente-Nico-Moji/Nico-Moji.ttf.eot'),
+      url('./Fuente-Nico-Moji/Nico-Moji.ttf.eot?#iefix') format('embedded-opentype'); 
+  font-weight: normal;
+  font-style: normal;
 }
