@@ -19,13 +19,13 @@ function Navegacion(){
                 </a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Amigos</a>
+                <a class="nav-link" href="/MiPerfil">Amigos</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Torneos</a>
+                <a class="nav-link" href="/MiPerfil">Torneos</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Buscar usuario</a>
+                <a class="nav-link" href="/MiPerfil">Buscar usuario</a>
                 </li>
             </ul>
             </div>
