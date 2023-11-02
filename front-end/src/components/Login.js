@@ -9,7 +9,6 @@ function Login() {
   const [mensaje, setMensaje] = useState('');
 
   const history = useHistory();
-  const history = useHistory();
 
   const handleSubmit = async (e) => { 
     e.preventDefault(); 
