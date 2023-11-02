@@ -2128,8 +2128,8 @@ progress {
 }
 
 .form-control {
+  height: 45px;
   display: block;
-  width: 300px;
   margin: auto;
   padding: 0.375rem 0.75rem;
   font-weight: 400;
@@ -2143,6 +2143,7 @@ progress {
   border: var(--bs-border-width) solid var(--bs-border-color);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   text-align: center;
+  border-radius: 20px;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-control {
