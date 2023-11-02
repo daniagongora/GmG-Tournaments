@@ -27,6 +27,10 @@ function Navegacion(){
                 <li class="nav-item">
                 <a class="nav-link" href="/MiPerfil">Buscar usuario</a>
                 </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/logout">Cerrar sesión</a>
+                
+                </li>
             </ul>
             </div>
         </div>
