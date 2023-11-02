@@ -88,11 +88,7 @@ def index():
         return redirect(url_for('login'))
     return render_template('index.html')
 
-@app.route('/logout', methods=['GET', 'POST'])
-def logout():
-    session.clear()
-    g.user = None
-    return redirect(url_for('login'))
+
 
 if __name__ == '__main__':
     app.run()
