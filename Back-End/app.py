@@ -1,16 +1,19 @@
+import json
+import os
 from flask import jsonify 
 from alchemyClasses import db
 from CryptoUtils.CryptoUtils import validate
-from flask import Flask, render_template, request, flash, session, redirect, url_for
+from flask import Flask, render_template, request, flash, session, g, redirect, url_for
 from controllers.JsonController import json_controller
 from model.model_participante import get_participante_by_email
 from model.model_superAdmin import get_superAdmin_by_email 
-from model.model_administrador import get_administrador_by_email 
+from model.model_administrador import get_administrador_by_email
 
 from flask_cors import CORS
 app = Flask(__name__)
 # Configura CORS para permitir solicitudes desde cualquier origen
 CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 app.register_blueprint(json_controller)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://root:123456@localhost:3306/proyectois"
@@ -40,14 +43,8 @@ def login():
                 session.clear()
                 session['NombreUsuario'] = participante.NombreParticipante
                 session['Correo'] = participante.Correo
-                session['ImagenPerfil'] = participante.ImagenPerfil
-                session['Rol'] = participante.Rol
                 session.modified = True
-                return jsonify({'success': True, 
-                                'message': 'Inicio de sesión exitoso', 
-                                'NombreUsuario': participante.NombreParticipante, 
-                                'ImagenPerfil': participante.ImagenPerfil, 
-                                'Rol': participante.Rol})
+                return jsonify({'success': True, 'message': 'Inicio de sesión exitoso', 'nombre_usuario': participante.NombreParticipante, 'rol': participante.Rol})
             else:
                 return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
 
@@ -60,14 +57,8 @@ def login():
                 session.clear()
                 session['NombreUsuario'] = superadmin.NombreSuperadministrador
                 session['Correo'] = superadmin.Correo
-                session['ImagenPerfil'] = superadmin.ImagenPerfil
-                session['Rol'] = superadmin.Rol
                 session.modified = True
-                return jsonify({'success': True, 
-                                'message': 'Inicio de sesión exitoso', 
-                                'NombreUsuario': superadmin.NombreSuperadministrador, 
-                                'ImagenPerfil': superadmin.ImagenPerfil, 
-                                'Rol': superadmin.Rol})
+                return jsonify({'success': True, 'message': 'Inicio de sesión exitoso', 'nombre_usuario': superadmin.NombreSuperadministrador, 'rol': superadmin.Rol})
             else:
                 return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
 
@@ -80,14 +71,8 @@ def login():
                 session.clear()
                 session['NombreUsuario'] = admin.NombreAdministrador
                 session['Correo'] = admin.Correo
-                session['ImagenPerfil'] = admin.ImagenPerfil
-                session['Rol'] = admin.Rol
                 session.modified = True
-                return jsonify({'success': True, 
-                                'message': 'Inicio de sesión exitoso', 
-                                'NombreUsuario': admin.NombreAdministrador, 
-                                'ImagenPerfil': admin.ImagenPerfil, 
-                                'Rol': admin.Rol})
+                return jsonify({'success': True, 'message': 'Inicio de sesión exitoso', 'nombre_usuario': admin.NombreAdministrador, 'rol': admin.Rol})
             else:
                 return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
 
@@ -102,6 +87,8 @@ def index():
         flash('Por favor primero inicie sesión.')
         return redirect(url_for('login'))
     return render_template('index.html')
+
+
 
 if __name__ == '__main__':
     app.run()
