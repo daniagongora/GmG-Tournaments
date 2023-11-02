@@ -21,6 +21,7 @@ function Perfil(){
                     <div class="card card-user">
 
                         <div class="card card-picture border-primary mb-3">
+                            <img src={location.state.foto} alt="Imagen de perfil"/>
                         </div>
 
                         <div class="username">

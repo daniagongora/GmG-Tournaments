@@ -23,5 +23,5 @@ class SuperAdministrador(db.Model):
         self.Rol = Rol
 
     def __str__(self):
-        return f'IDSuperAdmin: {self.IDSuperAdministrador}\nnombre: {self.NombreSuperadministrador}\ncorreo: {self.Correo}\nrol: {self.Rol}'
+        return f'IDSuperAdmin: {self.IDSuperAdministrador}\nfoto{self.ImagenPerfil}\nnombre: {self.NombreSuperadministrador}\ncorreo: {self.Correo}\nrol: {self.Rol}'
 

@@ -44,7 +44,7 @@ def login():
                 session['NombreUsuario'] = participante.NombreParticipante
                 session['Correo'] = participante.Correo
                 session.modified = True
-                return jsonify({'success': True, 'message': 'Inicio de sesión exitoso', 'nombre_usuario': participante.NombreParticipante, 'rol': participante.Rol})
+                return jsonify({'success': True, 'message': 'Inicio de sesión exitoso', 'foto': participante.ImagenPerfil, 'nombre_usuario': participante.NombreParticipante, 'rol': participante.Rol})
             else:
                 return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
 
@@ -58,7 +58,7 @@ def login():
                 session['NombreUsuario'] = superadmin.NombreSuperadministrador
                 session['Correo'] = superadmin.Correo
                 session.modified = True
-                return jsonify({'success': True, 'message': 'Inicio de sesión exitoso', 'nombre_usuario': superadmin.NombreSuperadministrador, 'rol': superadmin.Rol})
+                return jsonify({'success': True, 'message': 'Inicio de sesión exitoso', 'foto': superadmin.ImagenPerfil, 'nombre_usuario': superadmin.NombreSuperadministrador, 'rol': superadmin.Rol})
             else:
                 return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
 
@@ -72,7 +72,7 @@ def login():
                 session['NombreUsuario'] = admin.NombreAdministrador
                 session['Correo'] = admin.Correo
                 session.modified = True
-                return jsonify({'success': True, 'message': 'Inicio de sesión exitoso', 'nombre_usuario': admin.NombreAdministrador, 'rol': admin.Rol})
+                return jsonify({'success': True, 'message': 'Inicio de sesión exitoso', 'foto':admin.ImagenPerfil, 'nombre_usuario': admin.NombreAdministrador, 'rol': admin.Rol})
             else:
                 return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
 
