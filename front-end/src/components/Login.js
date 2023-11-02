@@ -7,10 +7,10 @@ function Login() {
   const [contrasenia, setContrasenia] = useState('');
   const [mensaje, setMensaje] = useState('');
 
-  const history = useHistory(); //esta parte
+  const history = useHistory();
 
-  const handleSubmit = async (e) => { //esta
-    e.preventDefault(); // y esta me la dio san gpt 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     const data = new FormData();
     data.append('Correo', correo);
