@@ -3,8 +3,6 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from hashlib import sha256
 from CryptoUtils.CryptoUtils import cipher
 
-from model.model_superAdmin import get_all_SuperAdmins, get_SuperAdmin_by_id
-
 class Administrador(db.Model):
 
     __tablename__ = 'Administrador'
@@ -15,14 +13,16 @@ class Administrador(db.Model):
     Contrasenia = Column(String(64))
     NombreAdministrador = Column(String(120))
     Correo = Column(String(255))
+    Rol = Column(String(20))
 
-    def __init__(self, NombreCompleto, ImagenPerfil, Contrasenia, NombreAdministrador, Correo):
+    def __init__(self, NombreCompleto, ImagenPerfil, Contrasenia, NombreAdministrador, Correo, Rol):
         self.NombreCompleto = NombreCompleto
         self.ImagenPerfil = ImagenPerfil
         self.Contrasenia = sha256(cipher(Contrasenia)).hexdigest()
         self.NombreAdministrador = NombreAdministrador
         self.Correo = Correo
+        self.Rol = Rol
 
     def __str__(self):
-        return f'IDAdministrador: {self.IDAdministrador}\nnombre: {self.NombreAdministrador}\ncorreo: {self.Correo}'
+        return f'IDAdministrador: {self.IDAdministrador}\nnombre: {self.NombreAdministrador}\ncorreo: {self.Correo}\nrol: {self.Rol}'
 

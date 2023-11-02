@@ -1,9 +1,10 @@
 
 .btn-menu {
+    font-size: 21px;
     height: 55px;
-    width: 300px;
-    font-size: 20px;
     margin: 30px; 
+    text-align: center;
+    width: 300px;
 }
 
 .card-menu {

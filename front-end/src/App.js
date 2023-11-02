@@ -4,9 +4,8 @@ import Login from './components/Login';
 import Bienvenida from './components/Bienvenida';
 import Error from './components/Error';
 import Principal from './components/Principal';
-import MiPerfil from './components/MiPerfil';
 import Logout from './components/Logout';
-import PerfilParticipante from './components/PerfilParticipante';
+import Perfil from './components/Perfil';
 
 function App() {
   return (
@@ -16,8 +15,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/bienvenida" exact component={Bienvenida} />
         <Route path="/error" exact component={Error} />
-        <Route path="/MiPerfil" exact component={MiPerfil}/>
-        <Route path="/perfil" exact component={PerfilParticipante}/>
+        <Route path="/perfil" exact component={Perfil}/>
         <Route path="/logout" exact component={Logout}/> 
       </Switch>
     </Router>

@@ -6,7 +6,7 @@ import './Perfil.css'
 import './General.css';
 import Navegacion from './Navegacion';
 
-function PerfilParticipante(){
+function Perfil(){
     const location = useLocation();
 
     return(
@@ -18,7 +18,7 @@ function PerfilParticipante(){
                 
                 <div class="card card-principal border-primary mb-3">
 
-                    <div class="card card-user border-primary mb-3">
+                    <div class="card card-user">
 
                         <div class="card card-picture border-primary mb-3">
                         </div>
@@ -29,10 +29,21 @@ function PerfilParticipante(){
 
                     </div>
 
-                    <div class="card card-menu border-primary mb-3">
+                    <div class="card card-menu">
                         <div class="button-container">
                             <button class="btn btn-menu btn-outline-secondary">Torneos</button>
-                            <button class="btn btn-menu btn-outline-secondary">Amigos</button>
+                            {location.state.rol === 'Participante' && (
+                                <button class="btn btn-menu btn-outline-secondary">Amigos</button>
+                            )}
+
+                            {location.state.rol === 'Administrador' && (
+                                <button class="btn btn-menu btn-outline-secondary">Crear Torneo</button>
+                            )}
+
+                            {location.state.rol === 'SuperAdministrador' && (
+                                <button class="btn btn-menu btn-outline-secondary">Gestionar</button>
+                            )}
+                            
                             <button class="btn btn-menu btn-outline-secondary">Editar Perfil</button>
                             <button class="btn btn-menu btn-outline-secondary">
                                 <a class="nav-link" href="/logout">Cerrar sesion</a>
@@ -45,4 +56,4 @@ function PerfilParticipante(){
     );
 }
 
-export default PerfilParticipante;
+export default Perfil;

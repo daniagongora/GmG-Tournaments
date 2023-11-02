@@ -12,14 +12,16 @@ class Participante(db.Model):
     Contrasenia = Column(String(64))
     NombreParticipante = Column(String(120))
     Correo = Column(String(255))
+    Rol = Column(String(20))
 
-    def __init__(self, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo):
+    def __init__(self, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol):
         self.NombreCompleto = NombreCompleto
         self.ImagenPerfil = ImagenPerfil
         self.Contrasenia = sha256(cipher(Contrasenia)).hexdigest()
         self.NombreParticipante = NombreParticipante
         self.Correo = Correo
+        self.Rol = Rol
 
     def __str__(self):
-        return f'IDPartcipante: {self.IDParticipante}\nnombre: {self.NombreParticipante}\ncorreo: {self.Correo}'
+        return f'IDPartcipante: {self.IDParticipante}\nnombre: {self.NombreParticipante}\ncorreo: {self.Correo}\nrol: {self.Rol}'
 
