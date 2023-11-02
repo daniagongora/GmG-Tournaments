@@ -87,3 +87,7 @@ VALUES (1, 'Dania Paula Gongora', 'aaa', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc
 
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
 VALUES (2, 'Cristian Ramirez', 'aaa', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Niity', 'bolillo@gmail.com', 'Participante');
+
+UPDATE Participante
+SET ImagenPerfil = '/icon.png'
+WHERE IDParticipante = 1;

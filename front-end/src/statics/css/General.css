@@ -3993,7 +3993,8 @@ textarea.form-control-lg {
   --bs-navbar-toggler-border-radius: var(--bs-border-radius);
   --bs-navbar-toggler-focus-width: 0.25rem;
   --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
-
+  border-bottom: 1px solid;
+  border-color: #f8f9fa;
   position: 0;
   display: flex;
   flex-wrap: wrap;

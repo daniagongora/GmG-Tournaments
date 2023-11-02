@@ -18,6 +18,7 @@
 
 .card-picture{
     background-color: transparent !important;
+    border-radius: 100%;
     border: none;
     height: 250px;
     margin-top: 20px;
@@ -26,6 +27,7 @@
 }
 
 .card-principal{
+    border: none;
     margin-top: 20px;
     height: 580px;
     width: 1280px;
@@ -46,6 +48,10 @@
     display: flex;
     flex-wrap: wrap; 
     place-content: center;
+}
+
+.picture{
+    border-radius: 100%;
 }
 
 .username{

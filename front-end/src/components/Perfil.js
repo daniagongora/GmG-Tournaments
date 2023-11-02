@@ -16,12 +16,12 @@ function Perfil(){
 
                 <br></br>
                 
-                <div class="card card-principal border-primary mb-3">
+                <div class="card card-principal">
 
                     <div class="card card-user">
 
-                        <div class="card card-picture border-primary mb-3">
-                            <img src={location.state.ImagenPerfil} alt="Imagen de perfil"/>     
+                        <div class="card card-picture border-secondary mb-3">
+                            <img class="picture" src={location.state.ImagenPerfil} alt="Imagen de perfil"/>     
                         </div>
 
                         <div class="username">

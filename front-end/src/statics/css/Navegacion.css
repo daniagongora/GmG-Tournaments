@@ -17,6 +17,7 @@
 }
 
 .collapse{
+    text-emphasis-color: #fff;
     font-size: 20px;
     font-family: Geneva, Verdana, sans-serif;
     margin-left: 610px;
