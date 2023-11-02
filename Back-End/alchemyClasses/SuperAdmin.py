@@ -8,7 +8,7 @@ class SuperAdministrador(db.Model):
     __tablename__ = 'SuperAdministrador'
     IDSuperAdministrador = Column(Integer, primary_key=True)
     NombreCompleto = Column(String(255))
-    ImagenPerfil = Column(String(255))
+    ImagenPerfil = Column(String(1000))
     Contrasenia = Column(String(64))
     NombreSuperadministrador = Column(String(120))
     Correo = Column(String(255))
@@ -23,5 +23,4 @@ class SuperAdministrador(db.Model):
         self.Rol = Rol
 
     def __str__(self):
-        return f'IDSuperAdmin: {self.IDSuperAdministrador}\nfoto{self.ImagenPerfil}\nnombre: {self.NombreSuperadministrador}\ncorreo: {self.Correo}\nrol: {self.Rol}'
-
+        return f'IDSuperAdmin: {self.IDSuperAdministrador}\nImagenPerfil: {self.ImagenPerfil}\nNombreSuperadministrador: {self.NombreSuperadministrador}\nCorreo: {self.Correo}\nRol: {self.Rol}'

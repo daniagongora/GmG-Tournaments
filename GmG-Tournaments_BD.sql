@@ -1,10 +1,11 @@
 -- CREACIÓN DE TABLAS
+CREATE SCHEMA proyectois;
 
 -- Tabla SuperAdministrador
 CREATE TABLE SuperAdministrador (
     IDSuperAdministrador INT PRIMARY KEY,
     NombreCompleto VARCHAR(255),
-    ImagenPerfil VARCHAR(999),
+    ImagenPerfil VARCHAR(1000),
     Contrasenia VARCHAR(64),
     NombreSuperadministrador VARCHAR(120),
     Correo VARCHAR(255),
@@ -16,7 +17,7 @@ CREATE TABLE Administrador (
     IDAdministrador INT PRIMARY KEY,
     IDSuperAdministrador INT,
     NombreCompleto VARCHAR(255),
-    ImagenPerfil VARCHAR(255),
+    ImagenPerfil VARCHAR(1000),
     Contrasenia VARCHAR(64),
     NombreAdministrador VARCHAR(120),
     Correo VARCHAR(255),
@@ -28,7 +29,7 @@ CREATE TABLE Administrador (
 CREATE TABLE Participante (
     IDParticipante INT PRIMARY KEY,
     NombreCompleto VARCHAR(255),
-    ImagenPerfil VARCHAR(255),
+    ImagenPerfil VARCHAR(1000),
     Contrasenia VARCHAR(64),
     NombreParticipante VARCHAR(120),
     Correo VARCHAR(255),
@@ -74,17 +75,15 @@ CREATE TABLE Participar (
 	
 -- Población de la tabla SuperAdministrador
 INSERT INTO SuperAdministrador (IDSuperAdministrador, NombreCompleto, ImagenPerfil, Contrasenia, NombreSuperadministrador, Correo, Rol)
-VALUES (1, 'Victoria', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fsewardjohnsonatelier.org%2Fbiography%2F%3Fk%3Dpin-on-portal-gambar-hh-D6z5GmF2&psig=AOvVaw0K8l_QbW-OIo8cWaZSQP7X&ust=1699026159452000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOD-q-fTpYIDFQAAAAAdAAAAABAa', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Vic45', 'Vichy@gmail.com', 'SuperAdministrador');
+VALUES (1, 'Victoria', 'aaa', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Vic45', 'Vichy@gmail.com', 'SuperAdministrador');
 
 -- Población de la tabla Administrador
 INSERT INTO Administrador (IDAdministrador, IDSuperAdministrador, NombreCompleto, ImagenPerfil, Contrasenia, NombreAdministrador, Correo, Rol)
-VALUES (1, 1, 'Mariana gonzales', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fsewardjohnsonatelier.org%2Fbiography%2F%3Fk%3Dpin-on-portal-gambar-hh-D6z5GmF2&psig=AOvVaw0K8l_QbW-OIo8cWaZSQP7X&ust=1699026159452000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOD-q-fTpYIDFQAAAAAdAAAAABAa', '25d93efd1f9e923a62ab2bf4f0476ebe638e028210111d93c5106ddee0bb458c', 'Mart3', 'Mar123@yahoo.com', 'Administrador');
+VALUES (1, 1, 'Mariana gonzales', 'aaa', '25d93efd1f9e923a62ab2bf4f0476ebe638e028210111d93c5106ddee0bb458c', 'Mart3', 'Mar123@yahoo.com', 'Administrador');
 
 -- Población de la tabla Participante
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
-VALUES (1, 'Dania Paula Gongora', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fsewardjohnsonatelier.org%2Fbiography%2F%3Fk%3Dpin-on-portal-gambar-hh-D6z5GmF2&psig=AOvVaw0K8l_QbW-OIo8cWaZSQP7X&ust=1699026159452000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOD-q-fTpYIDFQAAAAAdAAAAABAa', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'DaniaGon', 'dania1012@ciencias.unam.mx', 'Participante');
+VALUES (1, 'Dania Paula Gongora', 'aaa', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'DaniaGon', 'dania1012@ciencias.unam.mx', 'Participante');
 
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
-VALUES (2, 'Cristian Ramirez', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fsewardjohnsonatelier.org%2Fbiography%2F%3Fk%3Dpin-on-portal-gambar-hh-D6z5GmF2&psig=AOvVaw0K8l_QbW-OIo8cWaZSQP7X&ust=1699026159452000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOD-q-fTpYIDFQAAAAAdAAAAABAa', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Niity', 'bolillo@gmail.com', 'Participante');
-
-
+VALUES (2, 'Cristian Ramirez', 'aaa', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Niity', 'bolillo@gmail.com', 'Participante');

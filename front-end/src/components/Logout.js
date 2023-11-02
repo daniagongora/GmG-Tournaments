@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
-import './General.css';
+import '../statics/css/General.css';
 
 function Logout() {
     const history = useHistory();

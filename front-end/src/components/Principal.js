@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {Link} from 'react-router-dom'
-import './Principal.css'
-import './General.css';
+import '../statics/css/Principal.css'
+import '../statics/css/General.css';
 
 function Principal() {
     return (

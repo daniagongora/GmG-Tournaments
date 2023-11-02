@@ -9,7 +9,7 @@ class Administrador(db.Model):
     IDAdministrador = Column(Integer, primary_key=True)
     IDSuperAdministrador = Column(Integer, ForeignKey('SuperAdministrador.IDSuperAdministrador'))
     NombreCompleto = Column(String(255))
-    ImagenPerfil = Column(String(255))
+    ImagenPerfil = Column(String(1000))
     Contrasenia = Column(String(64))
     NombreAdministrador = Column(String(120))
     Correo = Column(String(255))
@@ -24,5 +24,4 @@ class Administrador(db.Model):
         self.Rol = Rol
 
     def __str__(self):
-        return f'IDAdministrador: {self.IDAdministrador}\nfoto{self.ImagenPerfil}\nnombre: {self.NombreAdministrador}\ncorreo: {self.Correo}\nrol: {self.Rol}\n{self.ImagenPerfil}'
-
+        return f'IDAdministrador: {self.IDAdministrador}\nImagenPerfil: {self.ImagenPerfil}\nNombreAdministrador: {self.NombreAdministrador}\nCorreo: {self.Correo}\nRol: {self.Rol}\n'

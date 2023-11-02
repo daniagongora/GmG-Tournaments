@@ -12568,10 +12568,10 @@ legend {
 
 @font-face {
   font-family: 'Nico-Moji';
-  src:url('./Fuente-Nico-Moji/Nico-Moji.ttf.woff') format('woff'),
-      url('./Fuente-Nico-Moji/Nico-Moji.ttf.svg#Nico-Moji') format('svg'),
-      url('./Fuente-Nico-Moji/Nico-Moji.ttf.eot'),
-      url('./Fuente-Nico-Moji/Nico-Moji.ttf.eot?#iefix') format('embedded-opentype'); 
+  src:url('../fonts/Nico-Moji/Nico-Moji.ttf.woff') format('woff'),
+      url('../fonts/Nico-Moji/Nico-Moji.ttf.svg#Nico-Moji') format('svg'),
+      url('../fonts/Nico-Moji/Nico-Moji.ttf.eot'),
+      url('../fonts/Nico-Moji/Nico-Moji.ttf.eot?#iefix') format('embedded-opentype'); 
   font-weight: normal;
   font-style: normal;
 }
