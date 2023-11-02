@@ -1,0 +1,24 @@
+.navbar{
+    height: 70px; 
+    width: 100%; 
+    position:absolute; 
+    top: 0; 
+    left: 0; 
+    z-index: 1; 
+}
+
+.navbar-brand{
+    font-size: 30px;
+}
+
+.navbar-content{
+    max-width: 1280px;
+    margin: auto;
+}
+
+.collapse{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Geneva, Tahoma, sans-serif;
+    margin-left: 640px;
+}

@@ -1,15 +1,14 @@
 
-body{
-    max-width: 1280px;
+body {
     margin: auto;
     margin-top: 50px;
+    max-width: 1280px;
 }
 
-.principal{
-    border-radius:20px;
-    width: 300px;
+.principal {
+    font-size: 26px;
     height: 60px;
     padding: auto;
     text-align:center;
-    font-size: 26px;
+    width: 300px;
 }

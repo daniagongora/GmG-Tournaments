@@ -1,14 +1,14 @@
 import React from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
-import './Vapor.css';
+import './General.css';
 
-function Logout(){
+function Logout() {
     const history = useHistory();
     history.replace('/', null)
     
     return (
         <div>
-        <Redirect to='/' />
+            <Redirect to='/' />
         </div>
     );
 }

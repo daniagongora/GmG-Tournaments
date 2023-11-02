@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Login.css';
-import './Vapor.css';
+import './General.css';
 
 function Login() {
   const [correo, setCorreo] = useState('');
@@ -27,7 +27,7 @@ function Login() {
 
       if (response.ok && responseData.success) {
         // Inicio de sesión exitoso, redirige al usuario a la página de bienvenida
-        history.push('/MiPerfil', responseData);
+        history.push('/perfil', responseData);
       } else {
         // Muestra el mensaje de error en el formulario
         setMensaje(responseData.message || 'Error desconocido');
@@ -40,32 +40,32 @@ function Login() {
 
   return (
     <div>
-      <div class="title">   
-        <h1>GmG <br></br>Tournaments</h1>
-      </div>
-      <br></br>
-      <form onSubmit={handleSubmit}>
-        <label class="form-label">Correo</label>
-        <input
-          type="email"
-          placeholder="Ingresa tu correo"
-          value={correo}
-          onChange={(e) => setCorreo(e.target.value)}
-          class="form-control form-login"
-        />
+      <body>
+        <div class="title">   
+          <h1>GmG <br></br>Tournaments</h1>
+        </div>
         <br></br>
-        <label class="form-label">Contraseña</label>
-        <input
-          type="password"
-          placeholder="Ingresa tu contraseña "
-          value={contrasenia}
-          onChange={(e) => setContrasenia(e.target.value)}
-          class="form-control form-login"
-        />
-        <br></br><br></br>
-        <button type="submit" class="btn btn-login btn-outline-secondary">Ingresar</button>
-      </form>
-      {mensaje && <p>{mensaje}</p>}
+        <form onSubmit={handleSubmit}>
+          <label class="form-label">Correo</label>
+          <input type="email"
+                placeholder="Ingresa tu correo"
+                value={correo}
+                onChange={(e) => setCorreo(e.target.value)}
+                class="form-control form-login"
+          />
+          <br></br>
+          <label class="form-label">Contraseña</label>
+          <input type="password"
+                placeholder="Ingresa tu contraseña "
+                value={contrasenia}
+                onChange={(e) => setContrasenia(e.target.value)}
+                class="form-control form-login"
+          />
+          <br></br><br></br>
+          <button type="submit" class="btn btn-login btn-outline-secondary">Ingresar</button>
+        </form>
+        {mensaje && <p>{mensaje}</p>}
+      </body>  
     </div>
   );
 }

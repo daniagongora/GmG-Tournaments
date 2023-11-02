@@ -201,19 +201,20 @@
   }
 }
 
+/* Diseño general del cuerpo de la página */
 body {
-  max-width: 1280px;
-  margin: auto;
-  margin-top: 50px;
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
-  color: var(--bs-body-color);
+  margin: auto;
+  margin-top: 50px;
+  max-width: 1280px;
   text-align: center;
-  background-color: var(--bs-body-bg);
-  -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%;
 }
 
 hr {
@@ -2094,11 +2095,13 @@ progress {
     -webkit-overflow-scrolling: touch;
   }
 }
+
+/* Diseño general de los textos en el formulario */
 .form-label {
-  margin-bottom: 0.5rem;
-  font-size: 18px;
   color: var(--bs-white);
+  font-size: 18px;
   font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .col-form-label {
@@ -2127,23 +2130,24 @@ progress {
   color: var(--bs-secondary-color);
 }
 
+/* Diseño general de los formularios */
 .form-control {
-  height: 45px;
+  appearance: none;
+  background-clip: padding-box;
+  background-color: #30115e;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: 20px;
+  color: #fff;
   display: block;
+  font-weight: 400;
+  height: 45px;
+  line-height: 1.5;
   margin: auto;
   padding: 0.375rem 0.75rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #fff;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-color: #30115e;
-  background-clip: padding-box;
-  border: var(--bs-border-width) solid var(--bs-border-color);
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   text-align: center;
-  border-radius: 20px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-control {
@@ -2990,6 +2994,7 @@ textarea.form-control-lg {
   z-index: 4;
 }
 
+/* Diseño general de los botones */
 .btn {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-padding-y: 0.375rem;
@@ -3006,22 +3011,23 @@ textarea.form-control-lg {
   --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
   --bs-btn-disabled-opacity: 0.65;
   --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
+  background-color: var(--bs-btn-bg);
+  border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+  border-radius:20px;
+  color: var(--bs-btn-color);
+  cursor: pointer;
   display: inline-block;
-  padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
   font-family: var(--bs-btn-font-family);
   font-weight: var(--bs-btn-font-weight);
   line-height: var(--bs-btn-line-height);
-  color: var(--bs-btn-color);
+  padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
   text-align: center;
   text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  user-select: none;
   vertical-align: middle;
-  cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
-  user-select: none;
-  border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
-  background-color: var(--bs-btn-bg);
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
   .btn {
@@ -3987,7 +3993,8 @@ textarea.form-control-lg {
   --bs-navbar-toggler-border-radius: var(--bs-border-radius);
   --bs-navbar-toggler-focus-width: 0.25rem;
   --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
-  position: relative;
+
+  position: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -4414,11 +4421,9 @@ textarea.form-control-lg {
   --bs-card-bg: var(--bs-body-bg);
   --bs-card-img-overlay-padding: 1rem;
   --bs-card-group-margin: 0.75rem;
-  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  height: var(--bs-card-height);
   color: var(--bs-body-color);
   word-wrap: break-word;
   background-color: var(--bs-card-bg);

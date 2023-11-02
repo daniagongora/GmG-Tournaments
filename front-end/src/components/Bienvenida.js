@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Bienvenida({ nombreUsuario }) { //yo creo que lo ideal ahi es que muestre el nombre del usuario
+function Bienvenida({ nombreUsuario }) {
   return (
     <div>
       <h2>Bienvenid@ {nombreUsuario}</h2>

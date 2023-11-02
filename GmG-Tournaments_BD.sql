@@ -1,3 +1,5 @@
+-- CREACIÓN DE TABLAS
+
 -- Tabla Participante
 CREATE TABLE Participante (
     IDParticipante INT PRIMARY KEY,
@@ -7,23 +9,7 @@ CREATE TABLE Participante (
     NombreParticipante VARCHAR(120),
     Correo VARCHAR(255)
 );
-INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo)
-VALUES (1, 'Dania Paula Gongora', 'hjghfgdsfghj', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'DaniaGon', 'dania1012@ciencias.unam.mx');
 
-INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo)
-VALUES (2, 'Cristian Ramirez', 'hjghfgdsfghj', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Niity', 'bolillo@gmail.com');
-
--- Tabla SuperAdministrador
-CREATE TABLE SuperAdministrador (
-    IDSuperAdministrador INT PRIMARY KEY,
-    NombreCompleto VARCHAR(255),
-    ImagenPerfil VARCHAR(255),
-    Contrasenia VARCHAR(64),
-    NombreSuperadministrador VARCHAR(120),
-    Correo VARCHAR(255)
-);
-INSERT INTO SuperAdministrador (IDSuperAdministrador, NombreCompleto, ImagenPerfil, Contrasenia, NombreSuperadministrador, Correo)
-VALUES (1, 'Victoria', 'hjghfgdsfghj', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Vic45', 'Vichy@gmail.com');
 -- Tabla Administrador
 CREATE TABLE Administrador (
     IDAdministrador INT PRIMARY KEY,
@@ -35,8 +21,17 @@ CREATE TABLE Administrador (
     Correo VARCHAR(255),
     FOREIGN KEY (IDSuperAdministrador) REFERENCES SuperAdministrador(IDSuperAdministrador)
 );
-INSERT INTO Administrador (IDAdministrador, IDSuperAdministrador, NombreCompleto, ImagenPerfil, Contrasenia, NombreAdministrador, Correo)
-VALUES (1, 1, 'Mariana gonzales', 'hjghfgdsfghj', '25d93efd1f9e923a62ab2bf4f0476ebe638e028210111d93c5106ddee0bb458c', 'Mart3', 'Mar123@yahoo.com');
+
+-- Tabla SuperAdministrador
+CREATE TABLE SuperAdministrador (
+    IDSuperAdministrador INT PRIMARY KEY,
+    NombreCompleto VARCHAR(255),
+    ImagenPerfil VARCHAR(255),
+    Contrasenia VARCHAR(64),
+    NombreSuperadministrador VARCHAR(120),
+    Correo VARCHAR(255)
+);
+
 -- Tabla Torneo
 CREATE TABLE Torneo (
     IDTorneo INT PRIMARY KEY,
@@ -52,7 +47,7 @@ CREATE TABLE Torneo (
     FOREIGN KEY (IDAdministrador) REFERENCES Administrador(IDAdministrador)
 );
 
--- Tabla Amistad
+-- Tabla Amistar
 CREATE TABLE Amistar (
     Solicitante INT, 
     Receptor INT,
@@ -60,7 +55,6 @@ CREATE TABLE Amistar (
     FOREIGN KEY (Solicitante) REFERENCES Participante(IDParticipante),
     FOREIGN KEY (Receptor) REFERENCES Participante(IDParticipante)
 );
-
 
 -- Tabla Participar
 CREATE TABLE Participar (
@@ -71,3 +65,21 @@ CREATE TABLE Participar (
     FOREIGN KEY (IDParticipante) REFERENCES Participante(IDParticipante),
     FOREIGN KEY (IDTorneo) REFERENCES Torneo(IDTorneo)
 );
+
+
+-- POBLACIÓN DE DATOS
+
+-- Población de la tabla Participante
+INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo)
+VALUES (1, 'Dania Paula Gongora', 'hjghfgdsfghj', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'DaniaGon', 'dania1012@ciencias.unam.mx');
+
+INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo)
+VALUES (2, 'Cristian Ramirez', 'hjghfgdsfghj', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Niity', 'bolillo@gmail.com');
+
+-- Población de la tabla Administrador
+INSERT INTO Administrador (IDAdministrador, IDSuperAdministrador, NombreCompleto, ImagenPerfil, Contrasenia, NombreAdministrador, Correo)
+VALUES (1, 1, 'Mariana gonzales', 'hjghfgdsfghj', '25d93efd1f9e923a62ab2bf4f0476ebe638e028210111d93c5106ddee0bb458c', 'Mart3', 'Mar123@yahoo.com');
+
+-- Población de la tabla SuperAdministrador
+INSERT INTO SuperAdministrador (IDSuperAdministrador, NombreCompleto, ImagenPerfil, Contrasenia, NombreSuperadministrador, Correo)
+VALUES (1, 'Victoria', 'hjghfgdsfghj', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Vic45', 'Vichy@gmail.com');
