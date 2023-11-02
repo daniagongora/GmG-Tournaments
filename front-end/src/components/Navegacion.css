@@ -8,7 +8,7 @@
 }
 
 .navbar-brand{
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .navbar-content{
@@ -18,7 +18,10 @@
 
 .collapse{
     font-size: 20px;
-    font-weight: bold;
-    font-family: Geneva, Tahoma, sans-serif;
-    margin-left: 640px;
+    font-family: Geneva, Verdana, sans-serif;
+    margin-left: 610px;
+}
+
+.nav-item{
+    margin-left: 30px;
 }
