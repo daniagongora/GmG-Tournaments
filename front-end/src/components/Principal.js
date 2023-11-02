@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {Link} from 'react-router-dom'
+import './Principal.css'
 import './Vapor.css';
 
 function Principal(){
     return (
         <body>
-            <div>   
-            <h1>GmG <br></br>Tournaments</h1>
-            <Link to='/login' type="button" class="btn btn-outline-secondary" >Iniciar Sesion</Link>
-            <br></br>
-            <Link to='/' type="button" class="btn btn-outline-secondary" >Registrar</Link>
+            <div class="title">   
+                <h1>GmG <br></br>Tournaments</h1>
+            </div>
+            <div class="buttons">
+            <br></br><br></br>
+            <Link to='/login' type="button" class="btn principal btn-outline-secondary" >Iniciar Sesion</Link>
+            <br></br><br></br>
+            <Link to='/' type="button" class="btn principal btn-outline-secondary" >Registrarse</Link>
             </div>
         </body>
       );

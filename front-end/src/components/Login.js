@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import './Login.css';
 import './Vapor.css';
 
 function Login() {
@@ -7,10 +8,10 @@ function Login() {
   const [contrasenia, setContrasenia] = useState('');
   const [mensaje, setMensaje] = useState('');
 
-  const history = useHistory(); //esta parte
+  const history = useHistory();
 
-  const handleSubmit = async (e) => { //esta
-    e.preventDefault(); // y esta me la dio san gpt 
+  const handleSubmit = async (e) => { 
+    e.preventDefault(); 
 
     const data = new FormData();
     data.append('Correo', correo);
@@ -39,25 +40,30 @@ function Login() {
 
   return (
     <div>
-      <h2>Iniciar Sesión</h2>
+      <div class="title">   
+        <h1>GmG <br></br>Tournaments</h1>
+      </div>
+      <br></br>
       <form onSubmit={handleSubmit}>
+        <label class="form-label">Correo</label>
         <input
           type="email"
-          placeholder="Correo"
+          placeholder="Ingresa tu correo"
           value={correo}
           onChange={(e) => setCorreo(e.target.value)}
-          class="form-control"
+          class="form-control form-login"
         />
         <br></br>
+        <label class="form-label">Contraseña</label>
         <input
           type="password"
-          placeholder="Contraseña"
+          placeholder="Ingresa tu contraseña "
           value={contrasenia}
           onChange={(e) => setContrasenia(e.target.value)}
-          class="form-control"
+          class="form-control form-login"
         />
-        <br></br>
-        <button type="submit">Iniciar Sesión</button>
+        <br></br><br></br>
+        <button type="submit" class="btn btn-login btn-outline-secondary">Ingresar</button>
       </form>
       {mensaje && <p>{mensaje}</p>}
     </div>
