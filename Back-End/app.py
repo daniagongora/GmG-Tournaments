@@ -8,17 +8,20 @@ from model.model_superAdmin import get_superAdmin_by_email
 from model.model_administrador import get_administrador_by_email 
 
 from flask_cors import CORS
+from controllers.EliminarPerfil import eliminar_perfil
+
 app = Flask(__name__)
 # Configura CORS para permitir solicitudes desde cualquier origen
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.register_blueprint(json_controller)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://[USER]:[PASSWORD]@localhost:3306/proyectois"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://root:root@localhost:3306/proyectois"
 app.config.from_mapping(
     SECRET_KEY='dev',
 )
 db.init_app(app)
 
+app.register_blueprint(eliminar_perfil)
 @app.route('/', methods=['GET', 'POST'])
 def main():
     return redirect(url_for('login'))
@@ -42,12 +45,14 @@ def login():
                 session['Correo'] = participante.Correo
                 session['ImagenPerfil'] = participante.ImagenPerfil
                 session['Rol'] = participante.Rol
+                session['IDParticipante'] = participante.IDParticipante
                 session.modified = True
                 return jsonify({'success': True, 
                                 'message': 'Inicio de sesión exitoso', 
                                 'NombreUsuario': participante.NombreParticipante, 
                                 'ImagenPerfil': participante.ImagenPerfil, 
-                                'Rol': participante.Rol})
+                                'Rol': participante.Rol,
+                                'ID':participante.IDParticipante})
             else:
                 return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
 

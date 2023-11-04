@@ -22,6 +22,12 @@ eso deberia bastar, pero si react trae problemas, hagan:
 npm install react-router-dom
 y luego
 npm install react-router-dom@5
+
+ACTUALIZACION:
+para personalizar las alertas instalé sweet alert:
+
+npm install sweetalert2
+
 Credenciales para probar el inicio de sesion:
 
 REcuerden que para probar el login se prueba en la ruta 

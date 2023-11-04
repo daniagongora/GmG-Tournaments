@@ -1,0 +1,81 @@
+
+.btn-menu {
+    font-size: 21px;
+    height: 55px;
+    margin: 30px; 
+    text-align: center;
+    width: 300px;
+}
+
+.card-menu {
+    background-color: transparent !important;
+    border: none;
+    height: auto;
+    margin-left: 450px;
+    margin-top: 315px;
+    position:absolute;
+    width: 800px;
+} 
+
+.card-picture{
+    background-color: transparent !important;
+    border-radius: 100%;
+    border: none;
+    height: 250px;
+    margin-top: 20px;
+    position:absolute;
+    width: 250px;
+}
+
+.card-principal{
+    border: none;
+    margin-top: 20px;
+    height: 580px;
+    width: 1280px;
+}
+
+.card-user{
+    background-color: transparent !important;
+    border: none;
+    height: 510px;
+    margin-left: 20px;
+    margin-top: 35px;
+    align-items: center;
+    position:absolute;
+    width: 420px;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap; 
+    place-content: center;
+}
+
+.picture{
+    border-radius: 100%;
+}
+
+.username{
+    margin-top: 300px;
+    position:absolute;
+}
+.card-user-small{
+    color: aliceblue;
+}
+  
+.profile-info {
+    padding: 20px;
+}
+  
+.perfil-table {
+    width: 100%;
+}
+  
+.table{
+    margin-top: 80px;
+    margin-left: 150px;
+}
+
+.h2{
+    margin-top: 150px;
+}

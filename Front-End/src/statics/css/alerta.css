@@ -1,0 +1,36 @@
+
+.custom-alert-container .swal2-popup {
+    background-color: #9747FF; 
+}
+.custom-alert-title {
+    font-size: 24px; 
+    color: white;
+}
+  
+.custom-alert-text {
+    font-size: 16px; 
+    color: white !important;
+}
+  
+.swal2-confirm {
+    background-color: #EA39B8 !important;
+    color: #fff !important;
+}
+  
+.swal2-cancel {
+    background-color: #44d9e8 !important;
+    color: #fff !important;
+}
+
+.swal2-warning .swal2-icon {
+    color: #ff5733 !important; 
+  }
+
+.custom-alert-title {
+    color: white !important; 
+  }
+  
+.custom-alert-icon {
+    color: #EA39B8 !important; 
+}
+  
