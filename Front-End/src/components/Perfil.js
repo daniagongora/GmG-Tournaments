@@ -30,9 +30,9 @@ function Perfil() {
             <body>
                 <Navegacion/>
 
-                <br></br>
+                <br></br><br></br>
                 
-                <div class="card card-principal">
+                <div class="card body-content">
 
                     <div class="card card-user">
 

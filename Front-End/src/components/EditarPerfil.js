@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import Navegacion from './Navegacion';
 import Swal from 'sweetalert2';
+import '../statics/css/General.css';
 import '../statics/css/EditarPerfil.css';
 import '../statics/css/alerta.css';
 
 function EditarPerfil(props) {
   const history = useHistory();
+  const location = useLocation();
   const rol = props.location.state.Rol.toString();
   const imagenPerfil = props.location.state.ImagenPerfil.toString();
-  const nombre = props.location.state.NombreUsuario.toString();
+  const nombreUsuario = props.location.state.NombreUsuario.toString();
 
   const [perfil, setPerfil] = useState({
     nombre: '',
@@ -28,15 +31,12 @@ function EditarPerfil(props) {
       customClass: {
         container: 'custom-alert-container',
         title: 'custom-alert-title',
-        text: 'custom-alert-text',
-        confirmButton: 'custom-confirm-button',
-        cancelButton: 'custom-cancel-button',
       },
     });
 
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:5000/participante/eliminarPerfil/${nombre}`, {
+        const response = await fetch(`http://localhost:5000/participante/eliminarPerfil/${nombreUsuario}`, {
           method: 'POST',
         });
 
@@ -88,55 +88,67 @@ function EditarPerfil(props) {
 
   return (
     <div>
-      <Navegacion />
-      <br />
-      <h2>Editar Perfil de {nombre}</h2>
-      <div class="profile-container">
-        <div class="picture-edit-container">
-          <div class="card card-picture border-secondary mb-3">
-            <img class="picture" src={imagenPerfil} alt="Imagen de perfil" />
-            <button class="btn btn-outline-secondary edit-image-button" onClick={() => handleEditarCampo('imagen')}>
-              Editar Imagen
-            </button>
+
+      <body>
+        <Navegacion/>
+
+        <br></br><br></br>
+
+        <div class="card body-content">
+          
+          <h2>Editar Perfil</h2>
+
+          <div class="card card-user">
+
+            <div class="card card-picture border-secondary mb-3">
+                <img class="picture" src={imagenPerfil} alt="Imagen de perfil"/>  
+
+                <br></br>
+                <button class="btn btn-outline-secondary edit-image" onClick={() => handleEditarCampo('imagen')}>
+                  Editar Imagen
+                </button>   
+                {rol === 'Participante' && (
+                <button class="btn btn-outline-secondary delete-profile" onClick={EliminarPerfil}>
+                  Eliminar Perfil
+                </button>
+                )}
+            </div>
+
           </div>
-        </div>
-        <div class="profile-info">
-          <table class="table">
-            <tr>
-              <td>Nombre:</td>
-              <td>{perfil.nombre}</td>
-              <td>
-                <button class="btn btn-outline-secondary" onClick={() => handleEditarCampo('nombre')}>
-                  Editar
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Correo:</td>
-              <td>{perfil.correo}</td>
-              <td>
-                <button class="btn btn-outline-secondary" onClick={() => handleEditarCampo('correo')}>
-                  Editar
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Username:</td>
-              <td>{perfil.username}</td>
-              <td>
-                <button class="btn btn-outline-secondary" onClick={() => handleEditarCampo('username')}>
-                  Editar
-                </button>
-              </td>
-            </tr>
-          </table>
-          {rol === 'Participante' && (
-            <button class="btn btn-outline-danger" onClick={EliminarPerfil}>
-              Eliminar Perfil
-            </button>
-          )}
-        </div>
-      </div>
+
+          {/* <div class="card card-profile-info">
+              <table class="table">
+                <tr>
+                  <td>{location.state.Nombre}</td>
+                  <td>
+                    <button class="btn btn-outline-secondary" onClick={() => handleEditarCampo('nombre')}>
+                      Editar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{location.state.NombreUsuario}</td>
+                  <td>{perfil.correo}</td>
+                  <td>
+                    <button class="btn btn-outline-secondary" onClick={() => handleEditarCampo('correo')}>
+                      Editar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Username:</td>
+                  <td>{perfil.username}</td>
+                  <td>
+                    <button class="btn btn-outline-secondary" onClick={() => handleEditarCampo('username')}>
+                      Editar
+                    </button>
+                  </td>
+                </tr>
+              </table>
+              </div> */}
+        </div> 
+      </body>
+      
     </div>
   );
 }

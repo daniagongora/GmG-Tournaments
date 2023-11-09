@@ -7,6 +7,19 @@
     width: 300px;
 }
 
+.btn.btn-outline-secondary.delete-profile{
+    border-color:crimson;
+    font-size: larger;
+}
+
+.btn.btn-outline-secondary.delete-profile:hover{
+    background-color:crimson;
+}
+
+.btn.btn-outline-secondary.edit-image{
+    font-size: larger;
+}
+
 .card-menu {
     background-color: transparent !important;
     border: none;
@@ -27,12 +40,6 @@
     width: 250px;
 }
 
-.card-principal{
-    border: none;
-    margin-top: 20px;
-    height: 580px;
-    width: 1280px;
-}
 
 .card-user{
     background-color: transparent !important;
@@ -76,6 +83,4 @@
     margin-left: 150px;
 }
 
-.h2{
-    margin-top: 150px;
-}
+
