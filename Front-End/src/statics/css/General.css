@@ -201,6 +201,7 @@
   }
 }
 
+
 /* Diseño general del cuerpo de la página */
 body {
   background-color: var(--bs-body-bg);
@@ -4429,7 +4430,7 @@ textarea.form-control-lg {
   word-wrap: break-word;
   background-color: var(--bs-card-bg);
   background-clip: border-box;
-  border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  border: none;
   border-radius: var(--bs-card-border-radius);
 }
 .card > hr {
@@ -4453,6 +4454,12 @@ textarea.form-control-lg {
 .card > .card-header + .list-group,
 .card > .list-group + .card-footer {
   border-top: 0;
+}
+
+.card.body-content{
+  max-width: 1280px;
+  margin: auto;
+  margin-top: 16px;
 }
 
 .card-body {

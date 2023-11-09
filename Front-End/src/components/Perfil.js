@@ -6,17 +6,33 @@ import '../statics/css/Perfil.css';
 import '../statics/css/General.css';
 import Navegacion from './Navegacion';
 
-function Perfil(){
-    const location = useLocation();
 
-    return(
-        <div>
+function Perfil() {
+    const location = useLocation();
+    const nombreUsuario = location.state.NombreUsuario;
+    const imagenPerfil = location.state.ImagenPerfil;
+    const rol = location.state.Rol;
+    const history = useHistory();
+  
+    const handleEditarPerfil = () => {
+        history.push({
+            pathname: `/editarperfil/${nombreUsuario}`,
+            state: {
+              NombreUsuario: nombreUsuario,
+              ImagenPerfil: imagenPerfil,
+              Rol: rol,
+            },
+          });
+    };
+  
+    return (
+      <div>
             <body>
                 <Navegacion/>
 
-                <br></br>
+                <br></br><br></br>
                 
-                <div class="card card-principal">
+                <div class="card body-content">
 
                     <div class="card card-user">
 
@@ -45,7 +61,7 @@ function Perfil(){
                                 <button class="btn btn-menu btn-outline-secondary">Gestionar</button>
                             )}
                             
-                            <button class="btn btn-menu btn-outline-secondary">Editar Perfil</button>
+                            <button class="btn btn-menu btn-outline-secondary" onClick={handleEditarPerfil}>Editar Perfil</button>
                             <button class="btn btn-menu btn-outline-secondary">
                                 <a class="nav-link" href="/logout">Cerrar sesion</a>
                             </button>
@@ -55,6 +71,7 @@ function Perfil(){
             </body>  
         </div>
     );
-}
-
-export default Perfil;
+  }
+  
+  export default Perfil;
+  

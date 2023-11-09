@@ -13,9 +13,12 @@ def get_participantes():
     response = []
     for participante in participantes:
         response.append({
+            'NombreCompleto':participante.NombreCompleto,
+            'ImagenPerfil':participante.ImagenPerfil,
+            'Contrasenia':participante.Contrasenia,
             'NombreParticipante':participante.NombreParticipante,
             'Correo':participante.Correo,
-            'ImagenPerfil':participante.ImagenPerfil
+            'Rol':participante.Rol
         })
     return json.dumps(response)
 
@@ -25,9 +28,12 @@ def get_superAdmin():
     response = []
     for superAdmin in superAdmins:
         response.append({
+            'NombreCompleto':superAdmin.NombreCompleto,
+            'ImagenPerfil':superAdmin.ImagenPerfil,
+            'Contrasenia':superAdmin.Contrasenia,
             'NombreSuperadministrador':superAdmin.NombreSuperadministrador,
             'Correo':superAdmin.Correo,
-            'ImagenPerfil':superAdmin.ImagenPerfil
+            'Rol':superAdmin.Rol
         })
     return json.dumps(response)
 
@@ -37,8 +43,11 @@ def get_Admin():
     response = []
     for Admin in Admins:
         response.append({
+            'NombreCompleto':Admin.NombreCompleto,
+            'ImagenPerfil':Admin.ImagenPerfil,
+            'Contrasenia':Admin.Contrasenia,
             'NombreAdministrador':Admin.NombreAdministrador,
             'Correo':Admin.Correo,
-            'ImagenPerfil':Admin.ImagenPerfil
+            'Rol':Admin.Rol
         })
     return json.dumps(response)

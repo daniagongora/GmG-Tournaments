@@ -1,0 +1,27 @@
+
+.custom-alert-container .swal2-popup {
+    background-color: #1c0c31; 
+}
+
+.custom-alert-title {
+    font-size: 30px; 
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+    
+.swal2-confirm {
+    background-color:#b1308c !important; 
+}
+  
+.swal2-cancel {
+    background-color:#4e1994 !important;
+}
+
+.swal2-warning .swal2-icon {
+    color: #ff5733 !important; 
+  }
+  
+.custom-alert-icon {
+    color: #EA39B8 !important; 
+}
+  

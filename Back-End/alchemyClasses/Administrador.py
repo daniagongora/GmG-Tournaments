@@ -24,4 +24,4 @@ class Administrador(db.Model):
         self.Rol = Rol
 
     def __str__(self):
-        return f'IDAdministrador: {self.IDAdministrador}\nImagenPerfil: {self.ImagenPerfil}\nNombreAdministrador: {self.NombreAdministrador}\nCorreo: {self.Correo}\nRol: {self.Rol}\n'
+        return f'IDAdministrador: {self.IDAdministrador}\nIDSuperAdministrador: {self.IDSuperAdministrador}\nNombreCompleto: {self.NombreCompleto}\nImagenPerfil: {self.ImagenPerfil}\nContrasenia: {self.Contrasenia}\nNombreAdministrador: {self.NombreAdministrador}\nCorreo: {self.Correo}\nRol: {self.Rol}\n'
