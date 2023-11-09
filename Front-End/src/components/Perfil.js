@@ -42,6 +42,7 @@ function Perfil() {
 
                         <div class="username">
                             <h2> {location.state.NombreUsuario} </h2>
+                            
                         </div>
 
                     </div>

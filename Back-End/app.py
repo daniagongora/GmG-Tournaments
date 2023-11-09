@@ -15,7 +15,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.register_blueprint(json_controller)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://[USER]:[PASSWORD]@localhost:3306/proyectois"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://root:root@localhost:3306/proyectois"
 app.config.from_mapping(
     SECRET_KEY='dev',
 )
@@ -69,7 +69,7 @@ def login():
             if validate(Contrasenia, superadmin.Contrasenia):
                 session.clear()
                 session['NombreCompleto'] = superadmin.NombreCompleto
-                session['NombreUsuario'] = superadmin.NombreParticipante
+                session['NombreUsuario'] = superadmin.NombreSuperadministrador
                 session['Correo'] = superadmin.Correo
                 session['Contrasenia'] = superadmin.Contrasenia
                 session['ImagenPerfil'] = superadmin.ImagenPerfil
@@ -79,7 +79,7 @@ def login():
                 return jsonify({'success': True, 
                                 'message': 'Inicio de sesión exitoso', 
                                 'NombreCompleto': superadmin.NombreCompleto, 
-                                'NombreUsuario': superadmin.NombreParticipante, 
+                                'NombreUsuario': superadmin.NombreSuperadministrador, 
                                 'Correo': superadmin.Correo,
                                 'Contrasenia': superadmin.Contrasenia,
                                 'ImagenPerfil': superadmin.ImagenPerfil, 
@@ -96,7 +96,7 @@ def login():
             if validate(Contrasenia, admin.Contrasenia):
                 session.clear()
                 session['NombreCompleto'] = admin.NombreCompleto
-                session['NombreUsuario'] = admin.NombreParticipante
+                session['NombreUsuario'] = admin.NombreAdministrador
                 session['Correo'] = admin.Correo
                 session['Contrasenia'] = admin.Contrasenia
                 session['ImagenPerfil'] = admin.ImagenPerfil
@@ -107,7 +107,7 @@ def login():
                 return jsonify({'success': True, 
                                 'message': 'Inicio de sesión exitoso', 
                                 'NombreCompleto': admin.NombreCompleto, 
-                                'NombreUsuario': admin.NombreParticipante, 
+                                'NombreUsuario': admin.NombreAdministrador, 
                                 'Correo': admin.Correo,
                                 'Contrasenia': admin.Contrasenia,
                                 'ImagenPerfil': admin.ImagenPerfil, 
