@@ -23,4 +23,4 @@ class Participante(db.Model):
         self.Rol = Rol
 
     def __str__(self):
-        return f'IDPartcipante: {self.IDParticipante}\nImagenPerfil: {self.ImagenPerfil}\nNombreParticipante: {self.NombreParticipante}\nCorreo: {self.Correo}\nRol: {self.Rol}\n'
+        return f'IDPartcipante: {self.IDParticipante}\nNombreCompleto: {self.NombreCompleto}\nImagenPerfil: {self.ImagenPerfil}\nContrasenia: {self.Contrasenia}\nNombreParticipante: {self.NombreParticipante}\nCorreo: {self.Correo}\nRol: {self.Rol}\n'

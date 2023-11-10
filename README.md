@@ -41,6 +41,7 @@ MySQL | 8.0.34
 
 ### Librerías necesarias para correr el Front-End
 Recuerda estar ubicado en el directorio __Front-End__ al momento de instalar estas librerías.
+- `npm install sweetalert2`
 - `npm install react-router-dom@5`
 Solo si lo anterior no funciona se tendrá que instalar primero esta otra librería:
 - `npm install react-router-dom`

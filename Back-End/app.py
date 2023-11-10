@@ -8,6 +8,8 @@ from model.model_superAdmin import get_superAdmin_by_email
 from model.model_administrador import get_administrador_by_email 
 
 from flask_cors import CORS
+from controllers.EliminarPerfil import eliminar_perfil
+
 app = Flask(__name__)
 # Configura CORS para permitir solicitudes desde cualquier origen
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -19,6 +21,7 @@ app.config.from_mapping(
 )
 db.init_app(app)
 
+app.register_blueprint(eliminar_perfil)
 @app.route('/', methods=['GET', 'POST'])
 def main():
     return redirect(url_for('login'))
@@ -38,16 +41,23 @@ def login():
             participante = participantes[0]
             if validate(Contrasenia, participante.Contrasenia):
                 session.clear()
+                session['NombreCompleto'] = participante.NombreCompleto
                 session['NombreUsuario'] = participante.NombreParticipante
                 session['Correo'] = participante.Correo
+                session['Contrasenia'] = participante.Contrasenia
                 session['ImagenPerfil'] = participante.ImagenPerfil
                 session['Rol'] = participante.Rol
+                session['IDParticipante'] = participante.IDParticipante
                 session.modified = True
                 return jsonify({'success': True, 
                                 'message': 'Inicio de sesión exitoso', 
+                                'NombreCompleto': participante.NombreCompleto, 
                                 'NombreUsuario': participante.NombreParticipante, 
+                                'Correo': participante.Correo,
+                                'Contrasenia': participante.Contrasenia,
                                 'ImagenPerfil': participante.ImagenPerfil, 
-                                'Rol': participante.Rol})
+                                'Rol': participante.Rol,
+                                'ID':participante.IDParticipante})
             else:
                 return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
 
@@ -58,16 +68,23 @@ def login():
             superadmin = superadmins[0]
             if validate(Contrasenia, superadmin.Contrasenia):
                 session.clear()
+                session['NombreCompleto'] = superadmin.NombreCompleto
                 session['NombreUsuario'] = superadmin.NombreSuperadministrador
                 session['Correo'] = superadmin.Correo
+                session['Contrasenia'] = superadmin.Contrasenia
                 session['ImagenPerfil'] = superadmin.ImagenPerfil
                 session['Rol'] = superadmin.Rol
+                session['IDSuperAdministrador'] = superadmin.IDSuperAdministrador
                 session.modified = True
                 return jsonify({'success': True, 
                                 'message': 'Inicio de sesión exitoso', 
+                                'NombreCompleto': superadmin.NombreCompleto, 
                                 'NombreUsuario': superadmin.NombreSuperadministrador, 
+                                'Correo': superadmin.Correo,
+                                'Contrasenia': superadmin.Contrasenia,
                                 'ImagenPerfil': superadmin.ImagenPerfil, 
-                                'Rol': superadmin.Rol})
+                                'Rol': superadmin.Rol,
+                                'ID':superadmin.IDSuperAdministrador})
             else:
                 return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
 
@@ -78,16 +95,25 @@ def login():
             admin = admins[0]
             if validate(Contrasenia, admin.Contrasenia):
                 session.clear()
+                session['NombreCompleto'] = admin.NombreCompleto
                 session['NombreUsuario'] = admin.NombreAdministrador
                 session['Correo'] = admin.Correo
+                session['Contrasenia'] = admin.Contrasenia
                 session['ImagenPerfil'] = admin.ImagenPerfil
                 session['Rol'] = admin.Rol
+                session['IDAdministrador'] = admin.IDAdministrador
+                session['IDSuperAdministrador'] = admin.IDSuperAdministrador
                 session.modified = True
                 return jsonify({'success': True, 
                                 'message': 'Inicio de sesión exitoso', 
+                                'NombreCompleto': admin.NombreCompleto, 
                                 'NombreUsuario': admin.NombreAdministrador, 
+                                'Correo': admin.Correo,
+                                'Contrasenia': admin.Contrasenia,
                                 'ImagenPerfil': admin.ImagenPerfil, 
-                                'Rol': admin.Rol})
+                                'Rol': admin.Rol,
+                                'IDAdministrador':admin.IDAdministrador,
+                                'IDSuperAdministrador':admin.IDSuperAdministrador})
             else:
                 return jsonify({'success': False, 'message': 'Contraseña incorrecta'})
 
