@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useLocation } from "react-router-dom";
 import Navegacion from './Navegacion';
 import Swal from 'sweetalert2';
 import '../statics/css/General.css';
@@ -8,12 +7,16 @@ import '../statics/css/EditarPerfil.css';
 import '../statics/css/alerta.css';
 
 function EditarPerfil(props) {
-  const history = useHistory();
-  const location = useLocation();
-  const rol = props.location.state.Rol.toString();
-  const imagenPerfil = props.location.state.ImagenPerfil.toString();
-  const nombreUsuario = props.location.state.NombreUsuario.toString();
 
+  const history = useHistory();
+
+  const correo = props.location.state.Correo.toString();
+  const imagenPerfil = props.location.state.ImagenPerfil.toString();
+  const nombreCompleto = props.location.state.NombreCompleto.toString();
+  const nombreUsuario = props.location.state.NombreUsuario.toString();
+  const rol = props.location.state.Rol.toString();
+  
+  
   const [perfil, setPerfil] = useState({
     nombre: '',
     correo: '',
@@ -87,12 +90,13 @@ function EditarPerfil(props) {
   };
 
   return (
+
     <div>
 
       <body>
         <Navegacion/>
 
-        <br></br><br></br>
+        <br></br>
 
         <div class="card body-content">
           
@@ -101,54 +105,73 @@ function EditarPerfil(props) {
           <div class="card card-user">
 
             <div class="card card-picture border-secondary mb-3">
-                <img class="picture" src={imagenPerfil} alt="Imagen de perfil"/>  
+                <img class="picture" src={imagenPerfil} alt="Imagen de perfil"/>
 
                 <br></br>
                 <button class="btn btn-outline-secondary edit-image" onClick={() => handleEditarCampo('imagen')}>
                   Editar Imagen
                 </button>   
+
+                {rol === 'Participante' && (
+                <button class="btn btn-outline-secondary delete-profile" onClick={EliminarPerfil}>
+                  Eliminar Perfil
+                </button>
+                )}
                 
             </div>
 
           </div>
 
-           <div class="card card-profile-info">
+            <div class="card card-profile-info">
+              <br></br>
               <table class="table">
                 <tr>
-                <td>Nombre:</td>
-                  <td>
+                <td> <h5>Nombre:</h5></td>
+                <td> <h3>{nombreCompleto}</h3></td>
+                  {/* <td>
                     <button class="btn btn-outline-secondary" onClick={() => handleEditarCampo('nombre')}>
                       Editar
                     </button>
-                  </td>
+                  </td> */}
                 </tr>
+
+                <br></br>
+
                 <tr>
-                  
-                <td>Username:</td>
-                  <td>
+                <td> <h5>Username:</h5></td>
+                <td> <h3>{nombreUsuario}</h3></td>
+                  {/* <td>
                     <button class="btn btn-outline-secondary" onClick={() => handleEditarCampo('correo')}>
                       Editar
                     </button>
-                  </td>
+                  </td> */}
                 </tr>
+
+                <br></br>
+
                 <tr>
-                  <td>Correo:</td>
-                  
-                  <td>
+                  <td><h5>Correo:</h5></td>
+                  <td> <h3>{correo}</h3></td>
+                  {/* <td>
                     <button class="btn btn-outline-secondary" onClick={() => handleEditarCampo('username')}>
                       Editar
                     </button>
-                  </td>
+                  </td> */}
                 </tr>
+
+                <br></br>
+
+                <tr>
+                  <td> <h5>Password:</h5></td>
+                  {/* <td>
+                    <button class="btn btn-outline-secondary" onClick={() => handleEditarCampo('username')}>
+                      Editar
+                    </button>
+                  </td> */}
+                </tr>
+
               </table>
-              </div> 
-              <div>
-              {rol === 'Participante' && (
-                <button class="btn btn-outline-secondary delete-profile" onClick={EliminarPerfil}>
-                  Eliminar Perfil
-                </button>
-                )}
-              </div>
+            </div> 
         </div> 
       </body>
       

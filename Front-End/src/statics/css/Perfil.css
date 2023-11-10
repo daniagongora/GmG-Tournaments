@@ -6,34 +6,30 @@
     width: 300px;
 }
 
-.card-menu {
+.card.card-menu {
     background-color: transparent !important;
     border: none;
-    height: auto;
     margin-left: 450px;
-    margin-top: 315px;
-    position:absolute;
+    margin-top: 100px;
     width: 800px;
 } 
 
-.card-picture{
+.card.card-picture{
     background-color: transparent !important;
     border-radius: 100%;
     border: none;
     height: 250px;
     margin-top: 20px;
-    position:absolute;
     width: 250px;
 }
 
-.card-user{
+.card.card-user{
     background-color: transparent !important;
     border: none;
     height: 510px;
     margin-left: 20px;
     margin-top: 35px;
     align-items: center;
-    position:absolute;
     width: 420px;
 }
 
@@ -46,9 +42,3 @@
 .picture{
     border-radius: 100%;
 }
-
-.username{
-    margin-top: 300px;
-    position:absolute;
-}
-

@@ -8,19 +8,25 @@ import Navegacion from './Navegacion';
 
 
 function Perfil() {
-    const location = useLocation();
-    const nombreUsuario = location.state.NombreUsuario;
-    const imagenPerfil = location.state.ImagenPerfil;
-    const rol = location.state.Rol;
+
     const history = useHistory();
+    const location = useLocation();
+
+    const correo = location.state.Correo;
+    const imagenPerfil = location.state.ImagenPerfil;
+    const nombreCompleto = location.state.NombreCompleto;
+    const nombreUsuario = location.state.NombreUsuario;
+    const rol = location.state.Rol
   
     const handleEditarPerfil = () => {
         history.push({
             pathname: `/editarperfil/${nombreUsuario}`,
             state: {
-              NombreUsuario: nombreUsuario,
-              ImagenPerfil: imagenPerfil,
-              Rol: rol,
+                Correo: correo,
+                ImagenPerfil: imagenPerfil,
+                NombreCompleto: nombreCompleto,
+                NombreUsuario: nombreUsuario,
+                Rol: rol,
             },
           });
     };
@@ -30,21 +36,18 @@ function Perfil() {
             <body>
                 <Navegacion/>
 
-                <br></br><br></br>
+                <br></br>
                 
                 <div class="card body-content">
 
                     <div class="card card-user">
 
                         <div class="card card-picture border-secondary mb-3">
-                            <img class="picture" src={location.state.ImagenPerfil} alt="Imagen de perfil"/>     
+                            <img class="picture" src={location.state.ImagenPerfil} alt="Imagen de perfil"/>  
+                            <br></br> 
+                            <h2> {location.state.NombreUsuario} </h2>  
                         </div>
-
-                        <div class="username">
-                            <h2> {location.state.NombreUsuario} </h2>
-                            
-                        </div>
-
+                        
                     </div>
 
                     <div class="card card-menu">
@@ -68,6 +71,7 @@ function Perfil() {
                             </button>
                         </div>
                     </div>
+                    
                 </div>
             </body>  
         </div>
