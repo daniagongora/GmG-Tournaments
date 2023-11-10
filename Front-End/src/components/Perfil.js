@@ -8,9 +8,30 @@ import Navegacion from './Navegacion';
 
 function Perfil(){
     const location = useLocation();
+<<<<<<< Updated upstream
 
     return(
         <div>
+=======
+    const nombreUsuario = location.state.NombreUsuario.toString();
+    const imagenPerfil = location.state.ImagenPerfil;
+    const rol = location.state.Rol;
+    const history = useHistory();
+  
+    const handleEditarPerfil = () => {
+        history.push({
+            pathname: `/editarperfil/${nombreUsuario}`,
+            state: {
+              NombreUsuario: nombreUsuario,
+              ImagenPerfil: imagenPerfil,
+              Rol: rol,
+            },
+          });
+    };
+  
+    return (
+      <div>
+>>>>>>> Stashed changes
             <body>
                 <Navegacion/>
 

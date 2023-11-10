@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {Link} from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 import '../statics/css/Navegacion.css';
 import '../statics/css/General.css';
 
 function Navegacion() {
+
+    const location = useLocation();
+    const nombreUsuario = location.state.NombreUsuario.toString();
+
     return (
         <div>
             <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
@@ -16,7 +21,7 @@ function Navegacion() {
                         <div class="collapse navbar-collapse" id="navbarColor02">
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
-                                <a class="nav-link" href="/perfil">Mi Perfil</a>
+                                <a class="nav-link" href={`/perfil/${nombreUsuario}`}>Mi Perfil</a>
                                 </li>
                                 <li class="nav-item">
                                 <a class="nav-link" href="/logout">Cerrar Sesion</a>

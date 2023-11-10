@@ -13,7 +13,7 @@ function App() {
         <Route path="/" exact component ={Principal}/>
         <Route path="/login" exact component={Login} />
         <Route path="/error" exact component={Error} />
-        <Route path="/perfil" exact component={Perfil}/>
+        <Route path="/perfil/:nombreUsuario" exact component={Perfil}/>
         <Route path="/logout" exact component={Logout}/> 
       </Switch>
     </Router>
