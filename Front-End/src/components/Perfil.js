@@ -6,9 +6,10 @@ import '../statics/css/Perfil.css';
 import '../statics/css/General.css';
 import Navegacion from './Navegacion';
 
-function Perfil(){
+
+function Perfil() {
     const location = useLocation();
-    const nombreUsuario = location.state.NombreUsuario.toString();
+    const nombreUsuario = location.state.NombreUsuario;
     const imagenPerfil = location.state.ImagenPerfil;
     const rol = location.state.Rol;
     const history = useHistory();
@@ -29,9 +30,9 @@ function Perfil(){
             <body>
                 <Navegacion/>
 
-                <br></br>
+                <br></br><br></br>
                 
-                <div class="card card-principal">
+                <div class="card body-content">
 
                     <div class="card card-user">
 
@@ -41,6 +42,7 @@ function Perfil(){
 
                         <div class="username">
                             <h2> {location.state.NombreUsuario} </h2>
+                            
                         </div>
 
                     </div>
@@ -60,7 +62,7 @@ function Perfil(){
                                 <button class="btn btn-menu btn-outline-secondary">Gestionar</button>
                             )}
                             
-                            <button class="btn btn-menu btn-outline-secondary">Editar Perfil</button>
+                            <button class="btn btn-menu btn-outline-secondary" onClick={handleEditarPerfil}>Editar Perfil</button>
                             <button class="btn btn-menu btn-outline-secondary">
                                 <a class="nav-link" href="/logout">Cerrar sesion</a>
                             </button>
@@ -70,6 +72,6 @@ function Perfil(){
             </body>  
         </div>
     );
-}
-
-export default Perfil;
+  }
+  
+  export default Perfil;
