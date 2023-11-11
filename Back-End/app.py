@@ -9,6 +9,7 @@ from model.model_administrador import get_administrador_by_email
 
 from flask_cors import CORS
 from controllers.EliminarPerfil import eliminar_perfil
+from controllers.VerAmigos import ver_amigos
 
 app = Flask(__name__)
 # Configura CORS para permitir solicitudes desde cualquier origen
@@ -22,6 +23,8 @@ app.config.from_mapping(
 db.init_app(app)
 
 app.register_blueprint(eliminar_perfil)
+app.register_blueprint(ver_amigos)
+
 @app.route('/', methods=['GET', 'POST'])
 def main():
     return redirect(url_for('login'))

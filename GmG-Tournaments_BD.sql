@@ -55,6 +55,7 @@ CREATE TABLE Torneo (
 CREATE TABLE Amistar (
     Solicitante INT, 
     Receptor INT,
+    Estatus TINYINT(1) NOT NULL CHECK (Estatus IN (0, 1)),
     PRIMARY KEY (Solicitante, Receptor),
     FOREIGN KEY (Solicitante) REFERENCES Participante(IDParticipante),
     FOREIGN KEY (Receptor) REFERENCES Participante(IDParticipante)
@@ -87,3 +88,13 @@ VALUES (1, 'Dania Paula Gongora', '/icon.png', 'd7f8acca0a63b2e39b378f21ee8f7954
 
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
 VALUES (2, 'Cristian Ramirez', '/icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Niity', 'bolillo@gmail.com', 'Participante');
+
+INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
+VALUES (3, 'Paola Amaro', '/icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Pao', 'pao@gmail.com', 'Participante');
+
+-- Población de la tabla Amistar
+INSERT INTO Amistar (Solicitante, Receptor, Estatus)
+VALUES (1, 2, 1); -- El valor 1 en Estatu indica que la amistad está aceptada
+
+INSERT INTO Amistar (Solicitante, Receptor, Estatus)
+VALUES (1, 3, 1);

@@ -18,7 +18,7 @@ function Perfil() {
     const nombreUsuario = location.state.NombreUsuario;
     const rol = location.state.Rol
   
-    const handleEditarPerfil = () => {
+    const EditarPerfil = () => {
         history.push({
             pathname: `/editarperfil/${nombreUsuario}`,
             state: {
@@ -30,7 +30,16 @@ function Perfil() {
             },
           });
     };
-  
+    
+    const VerAmigos = () => {
+        history.push({
+            pathname: `/veramigos/${nombreUsuario}`,
+            state: {
+                NombreUsuario: nombreUsuario,
+            },
+          });
+    };
+
     return (
       <div>
             <body>
@@ -54,7 +63,7 @@ function Perfil() {
                         <div class="button-container">
                             <button class="btn btn-menu btn-outline-secondary">Torneos</button>
                             {location.state.Rol === 'Participante' && (
-                                <button class="btn btn-menu btn-outline-secondary">Amigos</button>
+                                <button class="btn btn-menu btn-outline-secondary" onClick={VerAmigos}>Amigos</button>
                             )}
 
                             {location.state.Rol === 'Administrador' && (
@@ -65,7 +74,7 @@ function Perfil() {
                                 <button class="btn btn-menu btn-outline-secondary">Gestionar</button>
                             )}
                             
-                            <button class="btn btn-menu btn-outline-secondary" onClick={handleEditarPerfil}>Editar Perfil</button>
+                            <button class="btn btn-menu btn-outline-secondary" onClick={EditarPerfil}>Editar Perfil</button>
                             <button class="btn btn-menu btn-outline-secondary">
                                 <a class="nav-link" href="/logout">Cerrar sesion</a>
                             </button>
