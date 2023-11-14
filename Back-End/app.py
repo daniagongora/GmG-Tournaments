@@ -5,6 +5,7 @@ from CryptoUtils.CryptoUtils import validate
 
 from controllers.JsonController import json_controller
 from controllers.EliminarPerfil_Controller import eliminar_perfil
+from controllers.VerAmigos_Controller import ver_amigos
 
 from model.model_participante import get_participante_by_email
 from model.model_superAdmin import get_superAdmin_by_email 
@@ -22,6 +23,8 @@ app.config.from_mapping(
 db.init_app(app)
 
 app.register_blueprint(eliminar_perfil)
+app.register_blueprint(ver_amigos)
+
 @app.route('/', methods=['GET', 'POST'])
 def main():
     return redirect(url_for('login'))

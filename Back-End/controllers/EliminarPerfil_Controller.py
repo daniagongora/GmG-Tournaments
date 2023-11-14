@@ -7,6 +7,7 @@ eliminar_perfil = Blueprint('eliminar_perfil', __name__, url_prefix='/participan
 
 @eliminar_perfil.route('/eliminarPerfil/<name>', methods=['POST'])
 def eliminar_usuario(name):
+    
     if request.method == 'POST':
         participante = get_participante_by_name(name)
         if participante:
