@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import '../statics/css/Login.css';
+
 import '../statics/css/General.css';
+import '../statics/css/Login.css';
 
 function Login() {
   const [correo, setCorreo] = useState('');

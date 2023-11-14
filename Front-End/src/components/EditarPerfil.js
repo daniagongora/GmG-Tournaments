@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
 import Navegacion from './Navegacion';
 import Swal from 'sweetalert2';
+
 import '../statics/css/General.css';
 import '../statics/css/EditarPerfil.css';
-import '../statics/css/alerta.css';
+import '../statics/css/Alerta.css';
 
 function EditarPerfil(props) {
 

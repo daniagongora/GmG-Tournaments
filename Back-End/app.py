@@ -1,21 +1,21 @@
-from flask import jsonify 
+from flask import Flask, jsonify, render_template, request, flash, session, redirect, url_for
+from flask_cors import CORS
 from alchemyClasses import db
 from CryptoUtils.CryptoUtils import validate
-from flask import Flask, render_template, request, flash, session, redirect, url_for
+
 from controllers.JsonController import json_controller
+from controllers.EliminarPerfil_Controller import eliminar_perfil
+
 from model.model_participante import get_participante_by_email
 from model.model_superAdmin import get_superAdmin_by_email 
 from model.model_administrador import get_administrador_by_email 
-
-from flask_cors import CORS
-from controllers.EliminarPerfil import eliminar_perfil
 
 app = Flask(__name__)
 # Configura CORS para permitir solicitudes desde cualquier origen
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.register_blueprint(json_controller)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://[USER]:[PASSWORD]@localhost:3306/proyectois"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://root:123456@localhost:3306/proyectois"
 app.config.from_mapping(
     SECRET_KEY='dev',
 )
@@ -28,7 +28,7 @@ def main():
 
 @app.route('/login', methods=['POST'])
 def login():
-    # Lógica de inicio de sesión, validación de credenciales, etc.
+    # Lógica de inicio de sesión, validación de credenciales, etc
 
     try:
         Correo = request.form.get('Correo')

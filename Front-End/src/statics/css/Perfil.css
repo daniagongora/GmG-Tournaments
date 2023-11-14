@@ -14,7 +14,7 @@
     width: 800px;
 } 
 
-.card.card-picture{
+.card.card-picture {
     background-color: transparent !important;
     border-radius: 100%;
     border: none;
@@ -23,7 +23,7 @@
     width: 250px;
 }
 
-.card.card-user{
+.card.card-user {
     background-color: transparent !important;
     border: none;
     height: 510px;
@@ -39,6 +39,6 @@
     place-content: center;
 }
 
-.picture{
+.picture {
     border-radius: 100%;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactRouterDom, { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import Login from './components/Login';
 import Error from './components/Error';
 import Principal from './components/Principal';

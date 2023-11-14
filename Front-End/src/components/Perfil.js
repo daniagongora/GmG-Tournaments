@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import {Link} from 'react-router-dom'
-import { useLocation } from "react-router-dom";
-import '../statics/css/Perfil.css';
-import '../statics/css/General.css';
+import { useLocation } from 'react-router-dom';
+
 import Navegacion from './Navegacion';
 
+import '../statics/css/General.css';
+import '../statics/css/Perfil.css';
 
 function Perfil() {
 
@@ -79,4 +79,3 @@ function Perfil() {
   }
   
   export default Perfil;
-  

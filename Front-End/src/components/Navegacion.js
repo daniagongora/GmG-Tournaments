@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import {Link} from 'react-router-dom'
-import '../statics/css/Navegacion.css';
+
 import '../statics/css/General.css';
+import '../statics/css/Navegacion.css';
 
 function Navegacion() {
     return (

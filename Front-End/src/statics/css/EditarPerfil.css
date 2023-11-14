@@ -1,14 +1,13 @@
-
-h2{
+h2 {
     font-size: 45px;
 }
 
-h5{
-    text-align:center;
+h3 {
+    text-align: start;
 }
 
-h3{
-    text-align: start;
+h5 {
+    text-align: center;
 }
 
 .btn-menu {
@@ -19,26 +18,26 @@ h3{
     width: 300px;
 }
 
-.btn.btn-outline-secondary.delete-profile{
+.btn.btn-outline-secondary.delete-profile {
     border-color:crimson;
     font-size: larger;
 }
 
-.btn.btn-outline-secondary.delete-profile:hover{
+.btn.btn-outline-secondary.delete-profile:hover {
     background-color:crimson;
 }
 
-.btn.btn-outline-secondary.edit-image{
+.btn.btn-outline-secondary.edit-image {
     font-size: larger;
 }
 
-.card-picture{
+.card-picture {
     background-color: transparent !important;
     border-radius: 100%;
     border: none;
     height: 250px;
     margin-top: 20px;
-    position:absolute;
+    position: absolute;
     width: 250px;
 }
 
@@ -48,25 +47,21 @@ h3{
     height: 400px;
     margin-left: 500px;
     margin-top: 100px;
-    position:absolute;
+    position: absolute;
     width: 750px;
 } 
 
-.card-user{
+.card-user {
+    align-items: center;
     background-color: transparent !important;
     border: none;
     height: 510px;
     margin-left: 20px;
     margin-top: 35px;
-    align-items:center;
-    position:absolute;
+    position: absolute;
     width: 420px;
 }
 
-.picture{
+.picture {
     border-radius: 100%;
 }
-  
-
-
-
