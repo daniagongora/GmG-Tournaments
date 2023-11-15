@@ -15,6 +15,7 @@ function EditarPerfil(props) {
   const [nombreCompleto, setNombreCompleto] = useState(props.location.state.NombreCompleto.toString());
   const [nombreUsuario, setNombreUsuario] = useState(props.location.state.NombreUsuario.toString());
   const [correo, setCorreo] = useState(props.location.state.Correo.toString());
+  const [contrasenia, setContrasenia] = useState('');
   const [imagenPerfil, setImagenPerfil] = useState(props.location.state.ImagenPerfil.toString());
   const [rol, setRol] = useState(props.location.state.Rol.toString());
 
@@ -94,12 +95,15 @@ function EditarPerfil(props) {
     setMostrarModal(true);
   };
 
-  const EditarDatos = async () => {
+  const EditarDatos = async (e) => {
+    e.preventDefault();
+
     try {
       const campos = {
         NombreCompleto: document.getElementById('nombre').value,
         NombreParticipante: document.getElementById('username').value,
         Correo: document.getElementById('correo').value,
+        Contrasenia: document.getElementById('contrasenia').value,
       };
   
       const response = await fetch(`http://localhost:5000/participante/editarPerfil/${nombreUsuario}`, {
@@ -111,10 +115,10 @@ function EditarPerfil(props) {
       });
   
       if (response.ok) {
-        setMostrarModal(false);
-        setNombreCompleto(campos.NombreCompleto);
-        setNombreUsuario(campos.NombreParticipante);
-        setCorreo(campos.Correo);
+          setNombreCompleto(campos.NombreCompleto);
+          setNombreUsuario(campos.NombreParticipante);
+          setCorreo(campos.Correo);
+          setContrasenia(campos.Contrasenia);
         
         Swal.fire({
           title: 'Actualización de datos',
@@ -127,6 +131,8 @@ function EditarPerfil(props) {
             icon: 'custom-alert-icon',
           },
         });
+
+        CerrarModal();
       } else {
         Swal.fire({
           title: 'Error',
@@ -164,7 +170,7 @@ function EditarPerfil(props) {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
             </div>
             <div className="modal-body">
-              {children}
+              <form onSubmit={EditarDatos}> {children} </form>
             </div>
           </div>
         </div>
@@ -225,7 +231,8 @@ function EditarPerfil(props) {
                 <br></br>
 
                 <tr>
-                  <td> <h5>Password:</h5> </td>
+                  <td> <h5>Password:</h5></td>
+                  <td> <h3>************</h3> </td>
                 </tr>
               </table>
             </div> 
@@ -238,31 +245,26 @@ function EditarPerfil(props) {
                   <div class="row">
                     <div class="col-md">
                       <label class="form-label modal-label" htmlFor="nombre">Nombre:</label>
-                      <input class="modal-input" type="text" id="nombre" 
-                             value={nombreCompleto} 
-                             onChange={(e) => setNombreCompleto(e.target.value)}
-                             autoFocus={true}/>
+                      <input class="modal-input" type="text" id="nombre" required
+                             defaultValue={nombreCompleto} />
                     </div>
                     <div class="col-md">
                       <label class="form-label modal-label" htmlFor="username">Username:</label>
-                      <input class="modal-input" type="text" id="username" 
-                             value={nombreUsuario} 
-                             onChange={(e) => setNombreUsuario(e.target.value)}
-                             autoFocus={true}/>
+                      <input class="modal-input" type="text" id="username" required
+                             defaultValue={nombreUsuario} />
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col-md">
                       <label class="form-label modal-label" htmlFor="correo">Correo:</label>
-                      <input class="modal-input" type="text" id="correo" 
-                             value={correo} 
-                             onChange={(e) => setCorreo(e.target.value)}
-                             autoFocus={true}/>
+                      <input class="modal-input" type="email" id="correo" required
+                             defaultValue={correo} />
                     </div>
                     <div class="col-md">
-                      <label class="form-label modal-label" htmlFor="password">Password:</label>
-                      <input class="modal-input" type="text" id="password" />
+                      <label class="form-label modal-label" htmlFor="contrasenia">Password:</label>
+                      <input class="modal-input" type="password" id="contrasenia" required
+                             defaultValue={"************"} />
                     </div>
                   </div>
                   
