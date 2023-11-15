@@ -13,7 +13,6 @@ function Navegacion() {
         <div>
 
             <div class="card body-content">
-
                 <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
                         <div class="navbar-content container-fluid">
                             <a class="navbar-brand" href="/">GmG Tournaments</a>
@@ -32,9 +31,7 @@ function Navegacion() {
                             </div>
                         </div>
                 </nav>
-
             </div>
-            
         </div> 
     );
 }

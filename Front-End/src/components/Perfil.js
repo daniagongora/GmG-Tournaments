@@ -12,20 +12,22 @@ function Perfil() {
     const history = useHistory();
     const location = useLocation();
 
-    const correo = location.state.Correo;
-    const imagenPerfil = location.state.ImagenPerfil;
+    const idUsuario = location.state.ID;
     const nombreCompleto = location.state.NombreCompleto;
     const nombreUsuario = location.state.NombreUsuario;
+    const correo = location.state.Correo;
+    const imagenPerfil = location.state.ImagenPerfil;
     const rol = location.state.Rol
   
     const EditarPerfil = () => {
         history.push({
             pathname: `/editarperfil/${nombreUsuario}`,
             state: {
-                Correo: correo,
-                ImagenPerfil: imagenPerfil,
+                ID: idUsuario,
                 NombreCompleto: nombreCompleto,
                 NombreUsuario: nombreUsuario,
+                Correo: correo,
+                ImagenPerfil: imagenPerfil,
                 Rol: rol,
             },
           });

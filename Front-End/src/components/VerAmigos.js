@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Swal from 'sweetalert2';
-
 import Navegacion from './Navegacion';
+import Swal from 'sweetalert2';
 
 import '../statics/css/General.css';
 import '../statics/css/Alerta.css';

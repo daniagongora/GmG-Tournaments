@@ -5,6 +5,7 @@ from CryptoUtils.CryptoUtils import validate
 
 from controllers.JsonController import json_controller
 from controllers.EliminarPerfil_Controller import eliminar_perfil
+from controllers.EditarPerfil_Controller import editar_perfil
 from controllers.VerAmigos_Controller import ver_amigos
 
 from model.model_participante import get_participante_by_email
@@ -17,12 +18,14 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.register_blueprint(json_controller)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://root:123456@localhost:3306/proyectois"
+app.config['JSON_AS_ASCII'] = False
 app.config.from_mapping(
     SECRET_KEY='dev',
 )
 db.init_app(app)
 
 app.register_blueprint(eliminar_perfil)
+app.register_blueprint(editar_perfil)
 app.register_blueprint(ver_amigos)
 
 @app.route('/', methods=['GET', 'POST'])
