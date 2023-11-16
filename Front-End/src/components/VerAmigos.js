@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import Navegacion from './Navegacion';
 import Swal from 'sweetalert2';
@@ -12,6 +12,7 @@ function VerAmigos(props) {
   const location = useLocation();
   
   const nombreUsuario = props.location.state.NombreUsuario.toString();
+  const { idUsuario } = useParams();
   const imagenPerfil = props.location.state.ImagenPerfil;
 
   const [amigos, setAmigos] = useState([]);
@@ -19,7 +20,7 @@ function VerAmigos(props) {
   useEffect(() => {
     const obtenerAmigos = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/participante/verAmigos/${nombreUsuario}`);
+        const response = await fetch(`http://localhost:5000/participante/verAmigos/${idUsuario}`);
         const data = await response.json();
 
         if (data.success) {

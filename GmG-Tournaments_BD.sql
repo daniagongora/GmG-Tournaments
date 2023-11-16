@@ -72,6 +72,16 @@ CREATE TABLE Participar (
 );
 
 
+ALTER TABLE Amistar
+    ADD CONSTRAINT FK_Solicitante FOREIGN KEY (Solicitante)
+    REFERENCES Participante(IDParticipante)
+    ON DELETE CASCADE;
+
+ALTER TABLE Amistar
+    ADD CONSTRAINT FK_Receptor FOREIGN KEY (Receptor)
+    REFERENCES Participante(IDParticipante)
+    ON DELETE CASCADE;
+
 -- POBLACIÓN DE DATOS
 	
 -- Población de la tabla SuperAdministrador

@@ -3,16 +3,17 @@ from flask import Blueprint, jsonify
 from alchemyClasses.Amistar import Amistar
 from alchemyClasses.Participante import Participante
 
-from model.model_participante import get_participante_by_name
+from model.model_participante import get_participante_by_id
 
 ver_amigos = Blueprint('ver_amigos', __name__, url_prefix='/participante')
 
-@ver_amigos.route('/verAmigos/<name>', methods=['GET'])
-def ver_amigos_participante(name):
+@ver_amigos.route('/verAmigos/<int:id>', methods=['GET'])
+def ver_amigos_participante(id):
 
-    participante = get_participante_by_name(name)
+    participante = get_participante_by_id(id)
 
     if participante:
+        # Obtener el ID del participante
         id_participante = participante.IDParticipante
 
         # Buscar amigos del participante con estatus 1:

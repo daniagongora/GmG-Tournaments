@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 import Navegacion from './Navegacion';
@@ -33,7 +33,7 @@ function EditarPerfil(props) {
   const [contrasenia, setContrasenia] = useState('');
   const [imagenPerfil, setImagenPerfil] = useState(props.location.state.ImagenPerfil.toString());
   const [rol, setRol] = useState(props.location.state.Rol.toString());
-
+  const { idUsuario } = useParams();
   const [mostrarModalImagen, setMostrarModalImagen] = useState(false);
   const [mostrarModalDatos, setMostrarModalDatos] = useState(false);
 
@@ -62,7 +62,7 @@ function EditarPerfil(props) {
 
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:5000/participante/eliminarPerfil/${nombreUsuario}`, {
+        const response = await fetch(`http://localhost:5000/participante/eliminarPerfil/${idUsuario}`, {
           method: 'POST',
         });
 
@@ -320,7 +320,7 @@ function EditarPerfil(props) {
                   <div class="col-md">
                     <label class="form-label modal-label" htmlFor="contrasenia">Password:</label>
                     <input class="modal-input" type="password" id="contrasenia" required
-                            defaultValue={"************"} />
+                            />
                   </div>
                 </div>
                 

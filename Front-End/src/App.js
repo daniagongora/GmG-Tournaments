@@ -18,8 +18,9 @@ function App() {
         <Route path="/error" exact component={Error} />
         <Route path="/perfil/:nombreUsuario" exact component={Perfil}/>
         <Route path="/logout" exact component={Logout}/> 
-        <Route path="/editarperfil/:nombreUsuario" component={EditarPerfil} />
-        <Route path="/veramigos/:nombreUsuario" component={VerAmigos} />
+        <Route path="/editarperfil/:idUsuario" component={EditarPerfil} />
+        <Route path="/veramigos/:idUsuario" component={VerAmigos} />
+
       </Switch>
     </Router>
   );
