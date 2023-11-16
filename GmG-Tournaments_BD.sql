@@ -84,7 +84,7 @@ VALUES (1, 1, 'Mariana gonzales', '/icons/icon.png', '25d93efd1f9e923a62ab2bf4f0
 
 -- Población de la tabla Participante
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
-VALUES (1, 'Dania Paula Gongora', '/icons/icon1.jpg', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'DaniaGon', 'dania1012@ciencias.unam.mx', 'Participante');
+VALUES (1, 'Dania Paula Gongora', '/icons/icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'DaniaGon', 'dania1012@ciencias.unam.mx', 'Participante');
 
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
 VALUES (2, 'Cristian Ramirez', '/icons/icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Niity', 'bolillo@gmail.com', 'Participante');
