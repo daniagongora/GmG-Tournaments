@@ -11,6 +11,7 @@ import '../statics/css/VerAmigos.css';
 function VerAmigos(props) {
   const location = useLocation();
   const nombreUsuario = props.location.state.NombreUsuario.toString();
+  const imagenPerfil = props.location.state.ImagenPerfil;
 
   const [amigos, setAmigos] = useState([]);
 
@@ -56,30 +57,50 @@ function VerAmigos(props) {
       <body>
         <Navegacion />
 
-        <h2>Amigos de {nombreUsuario}</h2>
-        <br></br>
-
         <div className="card body-content">
-          <div className="card card-user">
-            <button className="btn btn-menu btn-outline-secondary">Ver solicitudes</button>
+
+          <div class="row">
+            <h2 class="title">Mis Amigos</h2>
           </div>
 
-          {amigos.length === 0 ? (
-            <div className="card card-empty">
-              <p>Aún no tienes amigos</p>
+          <div class="row"> 
+
+            <div class="card card-user col-md-4">
+
+                <div class="card card-picture border-secondary mb-2">
+                    <img class="picture" src={location.state.ImagenPerfil} alt="Imagen de perfil"/>                              
+                </div>
+
+                <div class="card card-username">
+                    <h2 class="username"> {location.state.NombreUsuario} </h2>                          
+                </div>
+
+                <button class="btn btn-outline-secondary request-btn">Ver Solicitudes</button>
             </div>
-          ) : (
-            <div className="card card-menu">
-              <ul className="list">
-                {amigos.map((amigo) => (
-                  <li key={amigo.NombreParticipante} className="list-item">
-                    <img src={amigo.ImagenPerfil} alt={amigo.NombreParticipante} className="list-image" />
-                    <span className="list-name">{amigo.NombreParticipante}</span>
-                  </li>
-                ))}
-              </ul>
+
+            <div class="card card-list col-md-8">
+
+              {amigos.length === 0 ? (
+                <div class="card card-empty container-fluid border-secondary d-flex align-items-center justify-content-center">
+                  <h2 class= "card-empty-message">Aun no tienes amigos</h2>
+                </div>
+              ) : (
+                <div class="card card-friends container-fluid border-secondary">
+                  <ul class="list row">
+                    {amigos.map((amigo) => (
+                      <li key={amigo.NombreParticipante} class="list-item col-md-4">
+                        <div class="card list-image-container border-secondary">
+                          <img src={amigo.ImagenPerfil} alt={amigo.NombreParticipante} class="list-image" />
+                        </div>
+                        <span><h4 class="list-name">{amigo.NombreParticipante}</h4></span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
             </div>
-          )}
+          </div>
         </div>
       </body>
     </div>

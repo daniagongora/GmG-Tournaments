@@ -1,24 +1,46 @@
-.list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.btn.btn-outline-secondary.request-btn {
+    font-size: larger;
+    width: 250px;
 }
 
-.list-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 30px;
+.card-empty {
+    height: 100%;
+    margin-top: 20px;
 }
 
-.list-name {
-    font-size: 22px;
-    font-weight: bold;
+.card-empty-message{
+    
+}
+
+.card-friends {
+    height: 100%;
+    margin-top: 20px;
+}
+
+.list.row {
+    padding: 30px;
+    place-content: start;
 }
 
 .list-item {
-    display: flex;
     align-items: center;
+    display: flex;
     margin-bottom: 20px;
-    padding-bottom: 20px;
+    padding: 0;
+}
+
+.list-image {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+}
+
+.list-image-container {
+    border-radius: 50%;
+    width: 30%;
+}
+
+.list-name {
+    font-size: xx-large;
+    margin-left: 20px;
 }

@@ -38,6 +38,7 @@ function Perfil() {
             pathname: `/veramigos/${nombreUsuario}`,
             state: {
                 NombreUsuario: nombreUsuario,
+                ImagenPerfil: imagenPerfil,
             },
           });
     };
@@ -45,44 +46,46 @@ function Perfil() {
     return (
       <div>
             <body>
-                <Navegacion/>
+                <Navegacion/>   
 
-                <br></br>
-                
                 <div class="card body-content">
 
-                    <div class="card card-user">
+                    <div class="row"> 
 
-                        <div class="card card-picture border-secondary mb-3">
-                            <img class="picture" src={location.state.ImagenPerfil} alt="Imagen de perfil"/>  
-                            <br></br> 
-                            <h2> {location.state.NombreUsuario} </h2>  
+                        <div class="card card-user col-md">
+
+                            <div class="card card-picture border-secondary mb-2">
+                                <img class="picture" src={location.state.ImagenPerfil} alt="Imagen de perfil"/>                              
+                            </div>
+
+                            <div class="card card-username">
+                                <h2 class="username"> {location.state.NombreUsuario} </h2>                          
+                            </div>
+      
                         </div>
-                        
                     </div>
+                    <div class="row"> 
+                        <div class="card card-menu col-md">
+                            <div class="button-container">
+                                <button class="btn btn-menu btn-outline-secondary">Torneos</button>
+                                {location.state.Rol === 'Participante' && (
+                                    <button class="btn btn-menu btn-outline-secondary" onClick={VerAmigos}>Amigos</button>
+                                )}
 
-                    <div class="card card-menu">
-                        <div class="button-container">
-                            <button class="btn btn-menu btn-outline-secondary">Torneos</button>
-                            {location.state.Rol === 'Participante' && (
-                                <button class="btn btn-menu btn-outline-secondary" onClick={VerAmigos}>Amigos</button>
-                            )}
+                                {location.state.Rol === 'Administrador' && (
+                                    <button class="btn btn-menu btn-outline-secondary">Crear Torneo</button>
+                                )}
 
-                            {location.state.Rol === 'Administrador' && (
-                                <button class="btn btn-menu btn-outline-secondary">Crear Torneo</button>
-                            )}
-
-                            {location.state.Rol === 'SuperAdministrador' && (
-                                <button class="btn btn-menu btn-outline-secondary">Gestionar</button>
-                            )}
-                            
-                            <button class="btn btn-menu btn-outline-secondary" onClick={EditarPerfil}>Editar Perfil</button>
-                            <button class="btn btn-menu btn-outline-secondary">
-                                <a class="nav-link" href="/logout">Cerrar sesion</a>
-                            </button>
+                                {location.state.Rol === 'SuperAdministrador' && (
+                                    <button class="btn btn-menu btn-outline-secondary">Gestionar</button>
+                                )}
+                                
+                                <button class="btn btn-menu btn-outline-secondary" onClick={EditarPerfil}>Editar Perfil</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </body>  
         </div>
     );

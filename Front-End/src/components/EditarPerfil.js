@@ -185,59 +185,65 @@ function EditarPerfil(props) {
       <body>
         <Navegacion/>
 
-        <br></br>
-
         <div class="card body-content">
           
-          <h2>Editar Perfil</h2>
-
-          <div class="card card-user">
-
-            <div class="card card-picture border-secondary mb-3">
-                <img class="picture" src={imagenPerfil} alt="Imagen de perfil"/>
-
-                <br></br>
-
-                <button class="btn btn-outline-secondary edit-image" onClick={() => EditarImagen('imagen')}>Editar Imagen</button>   
-
-                {rol === 'Participante' && (
-                <button class="btn btn-outline-secondary delete-profile" onClick={EliminarPerfil}>Eliminar Perfil</button>
-                )}
-            </div>
+          <div class="row">
+            <h2 class="title">Editar Perfil</h2>
           </div>
+        
+          <div class="row">
 
-            <div class="card card-profile-info">
-              <br></br>
-              <table class="table">
-                <tr>
-                <td> <h5>Nombre:</h5> </td>
-                <td> <h3>{nombreCompleto}</h3> </td>
-                </tr>
+            <div class="card card-user col-md-4">
 
-                <br></br>
+              <div class="card card-picture border-secondary mb-2">
+                  <img class="picture" src={imagenPerfil} alt="Imagen de perfil"/>
+              </div>
 
-                <tr>
-                <td> <h5>Username:</h5> </td>
-                <td> <h3>{nombreUsuario}</h3> </td>
-                </tr>
+              <div class="btns">
+                <button class="btn btn-outline-secondary edit-image" onClick={() => EditarImagen('imagen')}>Editar Imagen</button>   
+                {rol === 'Participante' && (
+                  <button class="btn btn-outline-secondary delete-profile" onClick={EliminarPerfil}>Eliminar Perfil</button>
+                )}
+              </div>
+            </div>
+              
+            <div class="card text-end card-profile-info col-md-8">
+              <div class="card-header">
+                <div class="ml-auto">
+                  <button class="btn btn-outline-secondary edit-data" onClick={AbrirModal}>Editar Datos</button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table">
+                  <tr>
+                  <td> <h5>Nombre:</h5> </td>
+                  <td> <h3>{nombreCompleto}</h3> </td>
+                  </tr>
 
-                <br></br>
+                  <br></br>
 
-                <tr>
-                  <td> <h5>Correo:</h5> </td>
-                  <td> <h3>{correo}</h3> </td>
-                </tr>
+                  <tr>
+                  <td> <h5>Username:</h5> </td>
+                  <td> <h3>{nombreUsuario}</h3> </td>
+                  </tr>
 
-                <br></br>
+                  <br></br>
 
-                <tr>
-                  <td> <h5>Password:</h5></td>
-                  <td> <h3>************</h3> </td>
-                </tr>
-              </table>
+                  <tr>
+                    <td> <h5>Correo:</h5> </td>
+                    <td> <h3>{correo}</h3> </td>
+                  </tr>
+
+                  <br></br>
+
+                  <tr>
+                    <td> <h5>Password:</h5></td>
+                    <td> <h3>************</h3> </td>
+                  </tr>
+                </table>
+              </div>
             </div> 
-            
-            <button class="btn btn-outline-secondary edit-data" onClick={AbrirModal}>Editar Datos</button>
+          </div>
 
             {mostrarModal && (
               <Modal onClose={CerrarModal}>
@@ -272,7 +278,7 @@ function EditarPerfil(props) {
                 </form>
               </Modal>
             )}
-        </div> 
+        </div>  
       </body>
     </div>
   );

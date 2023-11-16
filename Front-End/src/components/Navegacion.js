@@ -13,7 +13,7 @@ function Navegacion() {
         <div>
 
             <div class="card body-content">
-                <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+                <nav class="navbar navbar-expand-md bg-dark" data-bs-theme="dark">
                         <div class="navbar-content container-fluid">
                             <a class="navbar-brand" href="/">GmG Tournaments</a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">

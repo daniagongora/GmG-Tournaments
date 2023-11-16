@@ -1,7 +1,3 @@
-h2 {
-    font-size: 45px;
-}
-
 h3 {
     text-align: start;
 }
@@ -10,17 +6,10 @@ h5 {
     text-align: center;
 }
 
-.btn-menu {
-    font-size: 21px;
-    height: 55px;
-    margin: 30px; 
-    text-align: center;
-    width: 300px;
-}
-
 .btn.btn-outline-secondary.delete-profile {
     border-color:crimson;
     font-size: larger;
+    width: 250px;
 }
 
 .btn.btn-outline-secondary.delete-profile:hover {
@@ -28,43 +17,37 @@ h5 {
 }
 
 .btn.btn-outline-secondary.edit-data {
-    margin-left: 66em;
+    font-size: larger;
     width: 200px;
 }
 
 .btn.btn-outline-secondary.edit-image {
     font-size: larger;
-}
-
-.card-picture {
-    background-color: transparent !important;
-    border-radius: 100%;
-    border: none;
-    height: 250px;
-    margin-top: 20px;
-    position: absolute;
     width: 250px;
 }
 
-.card-profile-info {
+.btns {
+    margin-top: 10px;
+}
+
+.card.card-picture {
+    border-radius: 100%;
+    height: 250px;
+    margin-top: 20px;
+    width: 250px;
+}
+
+.card-header {
     background-color: transparent !important;
     border: none;
-    height: 400px;
-    margin-left: 500px;
-    margin-top: 100px;
-    position: absolute;
-    width: 750px;
+}
+
+.card-profile-info {
+    border: none;
 } 
 
-.card-user {
-    align-items: center;
-    background-color: transparent !important;
-    border: none;
-    height: 510px;
-    margin-left: 20px;
-    margin-top: 35px;
-    position: absolute;
-    width: 420px;
+.form-label.modal-label {
+    margin-right: 10px;
 }
 
 .modal.fade.show {
@@ -89,16 +72,18 @@ h5 {
     border: none;
     border-bottom: 2px solid #b1308c;
     border-width: 0.2em;
+    color: white;
     margin-bottom: 2em;
     outline: none;
-    color: white;
     width: 15em;
 }
 
-.form-label.modal-label {
-    margin-right: 10px;
+.picture {
+    height: 100%;
+    width: 100%;
 }
 
-.picture {
-    border-radius: 100%;
+.title {
+    font-size: 45px;
+    margin-top: 10px;
 }
