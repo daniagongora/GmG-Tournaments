@@ -10,6 +10,7 @@ import '../statics/css/VerAmigos.css';
 
 function VerAmigos(props) {
   const location = useLocation();
+  
   const nombreUsuario = props.location.state.NombreUsuario.toString();
   const imagenPerfil = props.location.state.ImagenPerfil;
 
@@ -98,14 +99,12 @@ function VerAmigos(props) {
                   </ul>
                 </div>
               )}
-
             </div>
           </div>
         </div>
       </body>
     </div>
   );
-
 }
 
 export default VerAmigos;

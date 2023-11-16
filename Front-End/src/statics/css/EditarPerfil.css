@@ -50,6 +50,10 @@ h5 {
     margin-right: 10px;
 }
 
+.imagen-container .album-image {
+    width: 15%;
+}
+
 .modal.fade.show {
     margin-top: 10%;
 }

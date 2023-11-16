@@ -76,21 +76,21 @@ CREATE TABLE Participar (
 	
 -- Población de la tabla SuperAdministrador
 INSERT INTO SuperAdministrador (IDSuperAdministrador, NombreCompleto, ImagenPerfil, Contrasenia, NombreSuperadministrador, Correo, Rol)
-VALUES (1, 'Victoria', 'icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Vic45', 'Vichy@gmail.com', 'SuperAdministrador');
+VALUES (1, 'Victoria', '/Front-End/src/statics/icons/icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Vic45', 'Vichy@gmail.com', 'SuperAdministrador');
 
 -- Población de la tabla Administrador
 INSERT INTO Administrador (IDAdministrador, IDSuperAdministrador, NombreCompleto, ImagenPerfil, Contrasenia, NombreAdministrador, Correo, Rol)
-VALUES (1, 1, 'Mariana gonzales', 'icon.png', '25d93efd1f9e923a62ab2bf4f0476ebe638e028210111d93c5106ddee0bb458c', 'Mart3', 'Mar123@yahoo.com', 'Administrador');
+VALUES (1, 1, 'Mariana gonzales', '/Front-End/src/statics/icons/icon.png', '25d93efd1f9e923a62ab2bf4f0476ebe638e028210111d93c5106ddee0bb458c', 'Mart3', 'Mar123@yahoo.com', 'Administrador');
 
 -- Población de la tabla Participante
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
-VALUES (1, 'Dania Paula Gongora', 'icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'DaniaGon', 'dania1012@ciencias.unam.mx', 'Participante');
+VALUES (1, 'Dania Paula Gongora', '/Front-End/src/statics/icons/icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'DaniaGon', 'dania1012@ciencias.unam.mx', 'Participante');
 
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
-VALUES (2, 'Cristian Ramirez', 'icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Niity', 'bolillo@gmail.com', 'Participante');
+VALUES (2, 'Cristian Ramirez', '/Front-End/src/statics/icons/icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Niity', 'bolillo@gmail.com', 'Participante');
 
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
-VALUES (3, 'Paola Amaro', 'icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Pao', 'pao@gmail.com', 'Participante');
+VALUES (3, 'Paola Amaro', '/Front-End/src/statics/icons/icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Pao', 'pao@gmail.com', 'Participante');
 
 -- Población de la tabla Amistar
 INSERT INTO Amistar (Solicitante, Receptor, Estatus) 
