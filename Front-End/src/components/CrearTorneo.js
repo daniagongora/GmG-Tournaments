@@ -12,43 +12,120 @@ function CrearTorneo(props) {
   //Cargamos en variables los parametros que recibe de la pantalla anterior
   const nombreUsuario = props.location.state.NombreUsuario.toString();
   const idUsuario = props.location.state.ID;
+  const history = useHistory();
   let today = new Date();
 
   const [nombreTorneo, setNombreTorneo] = useState("");
-  const [fechaInicio, setFechaInicio] = useState(
-    `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
-  );
+  const fechaCreacion = `${today.getFullYear()}-${
+    today.getMonth() + 1
+  }-${today.getDate()}`;
+  const [fechaInicio, setFechaInicio] = useState(fechaCreacion);
   const [cupoMaximo, setCupoMaximo] = useState(16);
   const [videojuego, setVideojuego] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [plataforma, setPlataforma] = useState("");
+  //Variables para validar los campos
+  const [validNombreTorneo, setValidNombreTorneo] = useState(false);
+  const [validFechaInicio, setValidFechaInicio] = useState(true);
+  const [validCupoMaximo, setValidCupoMaximo] = useState(true);
+  const [validVideojuego, setValidVideojuego] = useState(false);
+  const [validPlataforma, setValidPlataforma] = useState(false);
+
+  const checkNombreTorneo = async (e) => {
+    let tempNombre = e.target.value;
+    setNombreTorneo(tempNombre);
+    if (tempNombre.length > 120) setValidNombreTorneo(false);
+    else setValidNombreTorneo(true);
+  };
+
+  const checkFechaInicio = (e) => {
+    let tempFecha = e.target.value;
+    setFechaInicio(tempFecha);
+    if (tempFecha < fechaCreacion) setValidFechaInicio(false);
+    else setValidFechaInicio(true);
+  };
+
+  const checkCupoMaximo = (e) => {
+    let tempCupo = e.target.value;
+    setCupoMaximo(tempCupo);
+    if (Math.log2(tempCupo) % 1 === 0) setValidCupoMaximo(true);
+    else setValidCupoMaximo(false);
+  };
+
+  const checkVideojuego = (e) => {
+    let tempVideojuego = e.target.value;
+    setVideojuego(tempVideojuego);
+    if (tempVideojuego.length > 100) setValidVideojuego(false);
+    else setValidVideojuego(true);
+  };
+
+  const checkPlataforma = (e) => {
+    let tempPlataforma = e.target.value;
+    setPlataforma(tempPlataforma);
+    if (tempPlataforma.length > 100) setValidPlataforma(false);
+    else setValidPlataforma(true);
+  };
+
+  // const checkFechaInicio = ()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = new FormData();
-    data.append("IDAdministrador", idUsuario);
-    data.append("NombreTorneo", nombreTorneo);
-    data.append("FechaInicio", fechaInicio);
-    data.append("CupoMaximo", cupoMaximo);
-    data.append("Videojuego", videojuego);
-    data.append("Plataforma", plataforma);
-    data.append("Descripcion", descripcion);
+    if (
+      validNombreTorneo &&
+      validFechaInicio &&
+      validCupoMaximo &&
+      validPlataforma &&
+      validVideojuego
+    ) {
+      try {
+        const data = new FormData();
+        data.append("IDAdministrador", idUsuario);
+        data.append("NombreTorneo", nombreTorneo);
+        data.append("FechaInicio", fechaInicio);
+        data.append("CupoMaximo", cupoMaximo);
+        data.append("Videojuego", videojuego);
+        data.append("Plataforma", plataforma);
+        data.append("Descripcion", descripcion);
+        data.append("FechaCreacion", fechaCreacion);
 
-    try {
-      const response = await fetch("http://localhost:5000/crearTorneo", {
-        method: "POST",
-        body: data,
-      });
+        const response = await fetch("http://localhost:5000/torneo/crear", {
+          method: "POST",
+          body: data,
+        });
 
-      const responseData = await response.json();
+        const responseData = await response.json();
 
-      if (responseData.success) {
-        console.log("YEAH");
-      } else {
+        if (responseData.success) {
+          Swal.fire({
+            title: "Éxito!",
+            text: "Se creo el nuevo torneo correctamente",
+            icon: "success",
+            customClass: {
+              container: "custom-alert-container",
+              title: "custom-alert-title",
+              icon: "custom-alert-icon",
+            },
+          });
+          //Aqui va salir un error porque ya no hay modo de regresar los datos que se obtivieron en login
+          // history.push(`/perfil/${nombreUsuario}`, responseData);
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "Ocurrió un error al intentar insertar el nuevo torneo",
+            icon: "error",
+            customClass: {
+              container: "custom-alert-container",
+              title: "custom-alert-title",
+              icon: "custom-alert-icon",
+            },
+          });
+        }
+      } catch (error) {
+        console.log(error);
         Swal.fire({
           title: "Error",
-          text: "Ocurrió un error al intentar insertar el nuevo torneo",
+          text: "Ocurrio un error inesperado, por favor intentalo mas tarde",
           icon: "error",
           customClass: {
             container: "custom-alert-container",
@@ -57,17 +134,6 @@ function CrearTorneo(props) {
           },
         });
       }
-    } catch (error) {
-      Swal.fire({
-        title: "Error",
-        text: "Ocurrió un error con el servidor al obtener la lista de amigos",
-        icon: "error",
-        customClass: {
-          container: "custom-alert-container",
-          title: "custom-alert-title",
-          icon: "custom-alert-icon",
-        },
-      });
     }
   };
 
@@ -81,7 +147,7 @@ function CrearTorneo(props) {
         </div>
 
         <div class="row">
-          <form>
+          <form onSubmit={handleSubmit}>
             <table class="table">
               <tbody>
                 <tr>
@@ -92,16 +158,23 @@ function CrearTorneo(props) {
                       </label>
                       <input
                         type="text"
-                        class="form-control entry-data"
+                        class={
+                          validNombreTorneo
+                            ? "form-control is-valid entry-data"
+                            : "form-control is-invalid entry-data"
+                        }
                         id="inputNombreTorneo"
                         aria-describedby="NombreAyuda"
                         placeholder="Ex. Torneo #666"
                         value={nombreTorneo}
-                        onChange={(e) => setNombreTorneo(e.target.value)}
+                        onChange={checkNombreTorneo}
+                        required
                       />
-                      <small id="nombreTorneoHint" class="form-text text-muted">
-                        Campo del torneo
-                      </small>
+                      {!validNombreTorneo && (
+                        <div class="invalid-feedback prompt-feedback">
+                          El nombre no puede exceder 120 caracteres
+                        </div>
+                      )}
                     </div>
 
                     <div class="form-group input-instance">
@@ -111,14 +184,20 @@ function CrearTorneo(props) {
                       <input
                         type="date"
                         value={fechaInicio}
-                        onChange={(e) => setFechaInicio(e.target.value)}
-                        class="form-control entry-data"
+                        onChange={checkFechaInicio}
+                        class={
+                          validFechaInicio
+                            ? "form-control is-valid entry-data"
+                            : "form-control is-invalid entry-data"
+                        }
                         id="inputFechaInicio"
                         aria-describedby="FechaAyuda"
                       />
-                      <small id="fechaInicioHint" class="form-text text-muted">
-                        Por default es la fecha actual
-                      </small>
+                      {!validFechaInicio && (
+                        <div class="invalid-feedback prompt-feedback">
+                          La fecha de inicio no puede ser anterior al día actual
+                        </div>
+                      )}
                     </div>
 
                     <div class="form-group input-instance">
@@ -127,15 +206,21 @@ function CrearTorneo(props) {
                       </label>
                       <input
                         type="number"
-                        class="form-control entry-data"
+                        class={
+                          validCupoMaximo
+                            ? "form-control is-valid entry-data"
+                            : "form-control is-invalid entry-data"
+                        }
                         id="inputCupo"
                         aria-describedby="CupoAyuda"
                         value={cupoMaximo}
-                        onChange={(e) => setCupoMaximo(e.target.value)}
+                        onChange={checkCupoMaximo}
                       />
-                      <small id="CupoHint" class="form-text text-muted">
-                        No. máximo de jugadores aceptados
-                      </small>
+                      {!validCupoMaximo && (
+                        <div class="invalid-feedback prompt-feedback">
+                          Solo se aceptan valores que sean potencia de 2
+                        </div>
+                      )}
                     </div>
 
                     <div class="form-group input-instance">
@@ -144,13 +229,23 @@ function CrearTorneo(props) {
                       </label>
                       <input
                         type="text"
-                        class="form-control entry-data"
+                        class={
+                          validVideojuego
+                            ? "form-control is-valid entry-data"
+                            : "form-control is-invalid entry-data"
+                        }
                         id="inputVideojuego"
                         aria-describedby="VideojuegoAyuda"
                         placeholder="Ex. Smash Bros"
                         value={videojuego}
-                        onChange={(e) => setVideojuego(e.target.value)}
+                        onChange={checkVideojuego}
+                        required
                       />
+                      {!validVideojuego && (
+                        <div class="invalid-feedback prompt-feedback">
+                          Tienes un limite de hasta 100 caracteres
+                        </div>
+                      )}
                     </div>
 
                     <div class="form-group input-instance">
@@ -159,13 +254,23 @@ function CrearTorneo(props) {
                       </label>
                       <input
                         type="text"
-                        class="form-control entry-data"
+                        class={
+                          validPlataforma
+                            ? "form-control is-valid entry-data"
+                            : "form-control is-invalid entry-data"
+                        }
                         id="inputPlataforma"
                         aria-describedby="PlataformaAyuda"
                         placeholder="Ex. Consola"
                         value={plataforma}
-                        onChange={(e) => setPlataforma(e.target.value)}
+                        onChange={checkPlataforma}
+                        required
                       />
+                      {!validPlataforma && (
+                        <div class="invalid-feedback prompt-feedback">
+                          Tienes un limite de hasta 100 caracteres
+                        </div>
+                      )}
                     </div>
                   </td>
 

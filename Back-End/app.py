@@ -7,6 +7,7 @@ from controllers.JsonController import json_controller
 from controllers.EliminarPerfil_Controller import eliminar_perfil
 from controllers.EditarPerfil_Controller import editar_perfil
 from controllers.VerAmigos_Controller import ver_amigos
+from controllers.Torneo_Controller import torneo
 
 from model.model_participante import get_participante_by_email
 from model.model_superAdmin import get_superAdmin_by_email 
@@ -17,7 +18,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.register_blueprint(json_controller)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://root:root@localhost:3306/proyectois"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://[USER]:[PASSWORD]@localhost:3306/proyectois"
 app.config['JSON_AS_ASCII'] = False
 app.config.from_mapping(
     SECRET_KEY='dev',
@@ -27,6 +28,7 @@ db.init_app(app)
 app.register_blueprint(eliminar_perfil)
 app.register_blueprint(editar_perfil)
 app.register_blueprint(ver_amigos)
+app.register_blueprint(torneo)
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
