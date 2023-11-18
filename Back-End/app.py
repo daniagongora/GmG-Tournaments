@@ -118,7 +118,7 @@ def login():
                                 'Contrasenia': admin.Contrasenia,
                                 'ImagenPerfil': admin.ImagenPerfil, 
                                 'Rol': admin.Rol,
-                                'IDAdministrador':admin.IDAdministrador,
+                                'ID':admin.IDAdministrador,
                                 'IDSuperAdministrador':admin.IDSuperAdministrador})
             else:
                 return jsonify({'success': False, 'message': 'Contraseña incorrecta'})

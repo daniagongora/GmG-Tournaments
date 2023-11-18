@@ -20,7 +20,7 @@ function VerAmigos(props) {
   useEffect(() => {
     const obtenerAmigos = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/participante/verAmigos/${idUsuario}`);
+        const response = await fetch(`http://localhost:5000/participante/perfil${idUsuario}/${nombreUsuario}/verAmigos`);
         const data = await response.json();
 
         if (data.success) {
@@ -74,7 +74,7 @@ function VerAmigos(props) {
                 </div>
 
                 <div class="card card-username">
-                    <h2 class="username"> {location.state.NombreUsuario} </h2>                          
+                    <h2 class="user"> {location.state.NombreUsuario} </h2>                          
                 </div>
 
                 <button class="btn btn-outline-secondary request-btn">Ver Solicitudes</button>

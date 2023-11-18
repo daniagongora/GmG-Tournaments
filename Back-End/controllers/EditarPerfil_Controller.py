@@ -3,14 +3,14 @@ from alchemyClasses import db
 
 from hashlib import sha256
 from CryptoUtils.CryptoUtils import cipher
-from model.model_participante import get_participante_by_name
+from model.model_participante import get_participante_by_id
 
 editar_perfil = Blueprint('editar_perfil', __name__, url_prefix='/participante')
 
-@editar_perfil.route('/editarPerfil/<name>', methods=('GET', 'POST'))
-def editar_datos(name):
+@editar_perfil.route('/editarPerfil<int:id>/<name>', methods=('GET', 'POST'))
+def editar_datos(id, name):
     if request.method == 'POST':
-        participante = get_participante_by_name(name)
+        participante = get_participante_by_id(id)
         if participante:
             try:
                 campos = request.get_json()

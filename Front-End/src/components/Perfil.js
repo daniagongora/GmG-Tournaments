@@ -21,7 +21,7 @@ function Perfil() {
   
     const EditarPerfil = () => {
         history.push({
-            pathname: `/editarperfil/${idUsuario}`,
+            pathname: `/editarPerfil${idUsuario}/${nombreUsuario}`,
             state: {
                 ID: idUsuario,
                 NombreCompleto: nombreCompleto,
@@ -35,7 +35,7 @@ function Perfil() {
 
     const VerAmigos = () => {
         history.push({
-            pathname: `/veramigos/${idUsuario}`,
+            pathname: `/perfil${idUsuario}/${nombreUsuario}/verAmigos`,
             state: {
                 NombreUsuario: nombreUsuario,
                 ImagenPerfil: imagenPerfil,

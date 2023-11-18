@@ -123,7 +123,7 @@ function EditarPerfil(props) {
         Contrasenia: document.getElementById('contrasenia').value,
       };
   
-      const response = await fetch(`http://localhost:5000/participante/editarPerfil/${nombreUsuario}`, {
+      const response = await fetch(`http://localhost:5000/participante/editarPerfil${idUsuario}/${nombreUsuario}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

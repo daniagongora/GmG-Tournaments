@@ -1,13 +1,37 @@
 import React from 'react';
-import { useLocation } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import '../statics/css/General.css';
 import '../statics/css/Navegacion.css';
 
+
 function Navegacion() {
 
+    const history = useHistory();
     const location = useLocation();
-    const nombreUsuario = location.state.NombreUsuario.toString();
+
+    const MiPerfil = () => {
+
+        const idUsuario = location.state.ID;
+        const nombreCompleto = location.state.NombreCompleto;
+        const nombreUsuario = location.state.NombreUsuario;
+        const correo = location.state.Correo;
+        const imagenPerfil = location.state.ImagenPerfil;
+        const rol = location.state.Rol
+
+        history.push({
+            pathname: `/perfil${idUsuario}/${nombreUsuario}`,
+            state: {
+                idUsuario,
+                nombreCompleto,
+                nombreUsuario,
+                correo,
+                imagenPerfil,
+                rol,
+            },
+          });
+    };
 
     return (
         <div>
@@ -22,10 +46,10 @@ function Navegacion() {
                             <div class="collapse navbar-collapse" id="navbarColor02">
                                 <ul class="navbar-nav me-auto">
                                     <li class="nav-item">
-                                    <a class="nav-link" href={`/perfil/${nombreUsuario}`}>Mi Perfil</a>
+                                        <button className="nav-link" onClick={MiPerfil}>Mi Perfil</button>
                                     </li>
                                     <li class="nav-item">
-                                    <a class="nav-link" href="/logout">Cerrar Sesion</a>
+                                        <a class="nav-link" href="/logout">Cerrar Sesion</a>
                                     </li>
                                 </ul>
                             </div>

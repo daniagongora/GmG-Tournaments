@@ -16,11 +16,10 @@ function App() {
         <Route path="/" exact component ={Principal}/>
         <Route path="/login" exact component={Login} />
         <Route path="/error" exact component={Error} />
-        <Route path="/perfil/:nombreUsuario" exact component={Perfil}/>
+        <Route path="/perfil:idUsuario/:nombreUsuario" exact component={Perfil}/>
         <Route path="/logout" exact component={Logout}/> 
-        <Route path="/editarperfil/:idUsuario" component={EditarPerfil} />
-        <Route path="/veramigos/:idUsuario" component={VerAmigos} />
-
+        <Route path="/editarPerfil:idUsuario/:nombreUsuario" exact component={EditarPerfil} />
+        <Route path="/perfil:idUsuario/:nombreUsuario/verAmigos" exact component={VerAmigos} />
       </Switch>
     </Router>
   );
