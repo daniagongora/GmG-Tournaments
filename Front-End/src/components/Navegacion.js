@@ -11,14 +11,14 @@ function Navegacion() {
     const history = useHistory();
     const location = useLocation();
 
-    const MiPerfil = () => {
+    const idUsuario = location.state.ID;
+    const nombreCompleto = location.state.NombreCompleto;
+    const nombreUsuario = location.state.NombreUsuario;
+    const correo = location.state.Correo;
+    const imagenPerfil = location.state.ImagenPerfil;
+    const rol = location.state.Rol
 
-        const idUsuario = location.state.ID;
-        const nombreCompleto = location.state.NombreCompleto;
-        const nombreUsuario = location.state.NombreUsuario;
-        const correo = location.state.Correo;
-        const imagenPerfil = location.state.ImagenPerfil;
-        const rol = location.state.Rol
+    const MiPerfil = () => {
 
         history.push({
             pathname: `/perfil${idUsuario}/${nombreUsuario}`,
