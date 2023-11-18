@@ -23,12 +23,12 @@ function Navegacion() {
         history.push({
             pathname: `/perfil${idUsuario}/${nombreUsuario}`,
             state: {
-                idUsuario,
-                nombreCompleto,
-                nombreUsuario,
-                correo,
-                imagenPerfil,
-                rol,
+                ID: idUsuario,
+                NombreCompleto: nombreCompleto,
+                NombreUsuario: nombreUsuario,
+                Correo: correo,
+                ImagenPerfil: imagenPerfil,
+                Rol: rol,
             },
           });
     };

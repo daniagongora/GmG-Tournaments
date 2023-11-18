@@ -30,18 +30,21 @@ function Perfil() {
                 ImagenPerfil: imagenPerfil,
                 Rol: rol,
             },
-          });
+        });
     };
 
     const VerAmigos = () => {
         history.push({
             pathname: `/perfil${idUsuario}/${nombreUsuario}/verAmigos`,
             state: {
+                ID: idUsuario,
+                NombreCompleto: nombreCompleto,
                 NombreUsuario: nombreUsuario,
+                Correo: correo,
                 ImagenPerfil: imagenPerfil,
-                ID: idUsuario
+                Rol: rol,
             },
-          });
+        });
     };
   
     return (
