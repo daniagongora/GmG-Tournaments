@@ -1,9 +1,13 @@
 
 #Archivos generados al ejecutarse
 /__pycache__
+
 /alchemyClasses/__pycache__
+
 /controllers/__pycache__
+
 /CryptoUtils/__pycache__
+
 /model/__pycache__
 
 /.idea

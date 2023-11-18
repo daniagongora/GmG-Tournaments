@@ -1,6 +1,9 @@
 -- CREACIÓN DE TABLAS
 CREATE SCHEMA proyectois;
 
+-- Seleccionamos el esquema para realizar el resto de operaciones
+USE proyectois;
+
 -- Tabla SuperAdministrador
 CREATE TABLE SuperAdministrador (
     IDSuperAdministrador INT PRIMARY KEY,

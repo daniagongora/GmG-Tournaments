@@ -8,6 +8,7 @@ import Logout from './components/Logout';
 import Perfil from './components/Perfil';
 import EditarPerfil from './components/EditarPerfil';
 import VerAmigos from './components/VerAmigos';
+import CrearTorneo from './components/CrearTorneo';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/logout" exact component={Logout}/> 
         <Route path="/editarperfil/:idUsuario" component={EditarPerfil} />
         <Route path="/veramigos/:idUsuario" component={VerAmigos} />
+        <Route path="/:nombreUsuario/creartorneo" component={CrearTorneo} />
 
       </Switch>
     </Router>
