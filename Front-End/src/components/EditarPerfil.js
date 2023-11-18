@@ -138,8 +138,8 @@ function EditarPerfil(props) {
           setContrasenia(campos.Contrasenia);
         
         Swal.fire({
-          title: 'Actualización de datos',
-          text: 'Perfil actualizado exitosamente',
+          title: 'Perfil actualizado exitosamente',
+          text: 'Por favor, vuelva a iniciar sesión',
           icon: 'success',
           customClass: {
             container: 'custom-alert-container',
@@ -150,6 +150,7 @@ function EditarPerfil(props) {
         });
 
         setMostrarModalDatos(false);
+        history.push('/');
       } else {
         Swal.fire({
           title: 'Error',
@@ -179,14 +180,14 @@ function EditarPerfil(props) {
   
   const ModalEditarImagen = ({ onClose, children }) => {
     return (
-      <div className="modal fade show" style={{ display: 'block' }} id="modalCard">
-        <div className="modal-dialog modal-lg" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h2 className="modal-title">Selecciona una Imagen</h2>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
+      <div class="modal fade show" style={{ display: 'block' }} id="modalCard">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title">Selecciona una Imagen</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
             </div>
-            <div className="modal-body">
+            <div class="modal-body">
               { children }
             </div>
           </div>
@@ -197,14 +198,14 @@ function EditarPerfil(props) {
 
   const ModalEditarDatos = ({ onClose, children }) => {
     return (
-      <div className="modal fade show" style={{ display: 'block' }} id="modalForm">
-        <div className="modal-dialog modal-lg" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h2 className="modal-title">Editar Datos</h2>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
+      <div class="modal fade show" style={{ display: 'block' }} id="modalForm">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title">Editar Datos</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
             </div>
-            <div className="modal-body">
+            <div class="modal-body">
               <form onSubmit={EditarDatos}> {children} </form>
             </div>
           </div>
@@ -282,7 +283,7 @@ function EditarPerfil(props) {
 
           {mostrarModalImagen && (
             <ModalEditarImagen onClose={() => setMostrarModalImagen(false)}>
-              <div className="imagen-container">
+              <div class="imagen-container">
                 {imagenesDisponibles.map((imagen, index) => (
                   <img
                     class="album-image"
