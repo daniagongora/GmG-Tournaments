@@ -7,8 +7,8 @@ from model.model_participante import get_participante_by_id
 
 ver_amigos = Blueprint('ver_amigos', __name__, url_prefix='/participante')
 
-@ver_amigos.route('/verAmigos/<int:id>', methods=['GET'])
-def ver_amigos_participante(id):
+@ver_amigos.route('/perfil<int:id>/<name>/verAmigos', methods=['GET'])
+def ver_amigos_participante(id, name):
 
     participante = get_participante_by_id(id)
 

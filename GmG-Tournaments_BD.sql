@@ -38,16 +38,15 @@ CREATE TABLE Participante (
 
 -- Tabla Torneo
 CREATE TABLE Torneo (
-    IDTorneo INT PRIMARY KEY,
+    IDTorneo INT PRIMARY KEY AUTO_INCREMENT,
     IDAdministrador INT,
-    LimiteInscripcion DATE,
-    FechaTermino DATE,
-    NombreTorneo VARCHAR(120),
-    Plataforma VARCHAR(120),
-    FechaCreacion DATE,
-    Videojuego VARCHAR(255),
+    NombreTorneo VARCHAR(120) NOT NULL,
     FechaInicio DATE,
-    Reglas TEXT,
+    CupoMaximo INT NOT NULL,
+    Videojuego VARCHAR(255) NOT NULL,
+    Plataforma VARCHAR(120) NOT NULL,
+    Descripcion TEXT,
+    FechaCreacion DATE,
     FOREIGN KEY (IDAdministrador) REFERENCES Administrador(IDAdministrador)
 );
 
@@ -108,3 +107,7 @@ VALUES (1, 2, 1); -- El valor 1 en Estatus indica que la amistad está aceptada
 
 INSERT INTO Amistar (Solicitante, Receptor, Estatus) 
 VALUES (1, 3, 1);
+
+-- Poblacion tabla Torneo
+INSERT INTO Torneo (IDAdministrador, NombreTorneo, FechaInicio, CupoMaximo, Videojuego, Plataforma, Descripcion, FechaCreacion)
+VALUES (1, "Primer Torneo", "2023-11-30", 16, "Overwatch 2", "Consola (PS4)", "Estas en un torneo de prueba", "2023-11-17");
