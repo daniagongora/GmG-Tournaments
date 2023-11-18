@@ -1,12 +1,23 @@
 from alchemyClasses.Torneo import Torneo
 from alchemyClasses import db
 
-def get_torneos():
+def get_all_torneos():
     return Torneo.query.all()
 
-def get_torneos_administrador(idAdministrador):
-    torneos = Torneo.query.filter(Torneo.IDAdministrador == idAdministrador)
-    return torneos
+def get_torneo_by_id(id):
+    return Torneo.query.filter(Torneo.IDTorneo == id).all()
+
+def get_torneos_by_administrador(idAdministrador):
+    return Torneo.query.filter(Torneo.IDAdministrador == idAdministrador)
+
+def get_torneo_by_name(name):
+    return Torneo.query.filter(Torneo.NombreTorneo == name).all()
+
+def get_torneo_by_plataforma(platform):
+    return Torneo.query.filter(Torneo.Plataforma == platform).all()
+
+def get_torneo_by_Videojuego(videogame):
+    return Torneo.query.filter(Torneo.Videojuego == videogame).all()
 
 def add_new_torneo(idAdministrador, nombreTorneo, fechaInicio, cupoMaximo, videojuego, plataforma, descripcion, fechaCreacion):
     newTorneo = Torneo(idAdministrador, nombreTorneo, fechaInicio, cupoMaximo, videojuego, plataforma, descripcion, fechaCreacion)

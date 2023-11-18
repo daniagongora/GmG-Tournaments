@@ -23,7 +23,7 @@ function VerAmigos(props) {
     const obtenerAmigos = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/participante/verAmigos/${idUsuario}`
+          `http://localhost:5000/participante/perfil${idUsuario}/${nombreUsuario}/verAmigos`
         );
         const data = await response.json();
 
@@ -79,7 +79,7 @@ function VerAmigos(props) {
               </div>
 
               <div class="card card-username">
-                <h2 class="username"> {location.state.NombreUsuario} </h2>
+                <h2 class="user"> {location.state.NombreUsuario} </h2>
               </div>
 
               <button class="btn btn-outline-secondary request-btn">

@@ -25,11 +25,12 @@ function Login() {
       });
 
       const responseData = await response.json();
-      const nombre = responseData.NombreUsuario;
+      const nombreUsuario = responseData.NombreUsuario;
+      const idUsuario = responseData.ID;
 
       if (response.ok && responseData.success) {
         // Inicio de sesión exitoso, redirige al usuario a la página de bienvenida
-        history.push(`/perfil/${nombre}`, responseData);
+        history.push(`/perfil${idUsuario}/${nombreUsuario}`, responseData);
       } else {
         // Muestra el mensaje de error en el formulario
         setMensaje(responseData.message || 'Error desconocido');

@@ -11,28 +11,45 @@ function Perfil() {
   const history = useHistory();
   const location = useLocation();
 
-  const rol = location.state.Rol;
-  const nombreCompleto = location.state.NombreCompleto;
-  const nombreUsuario = location.state.NombreUsuario;
-  const correo = location.state.Correo;
-  const imagenPerfil = location.state.ImagenPerfil;
-  const idUsuario =
-    rol == "Administrador" ? location.state.IDAdministrador : location.state.ID;
+    const idUsuario = location.state.ID;
+    const nombreCompleto = location.state.NombreCompleto;
+    const nombreUsuario = location.state.NombreUsuario;
+    const correo = location.state.Correo;
+    const imagenPerfil = location.state.ImagenPerfil;
+    const rol = location.state.Rol
+  
+    const EditarPerfil = () => {
+        history.push({
+            pathname: `/editarPerfil${idUsuario}/${nombreUsuario}`,
+            state: {
+                ID: idUsuario,
+                NombreCompleto: nombreCompleto,
+                NombreUsuario: nombreUsuario,
+                Correo: correo,
+                ImagenPerfil: imagenPerfil,
+                Rol: rol,
+            },
+        });
+    };
 
-  const EditarPerfil = () => {
-    history.push({
-      pathname: `/editarperfil/${idUsuario}`,
-      state: {
-        ID: idUsuario,
-        NombreCompleto: nombreCompleto,
-        NombreUsuario: nombreUsuario,
-        Correo: correo,
-        ImagenPerfil: imagenPerfil,
-        Rol: rol,
-      },
-    });
-  };
-
+    const VerAmigos = () => {
+        history.push({
+            pathname: `/perfil${idUsuario}/${nombreUsuario}/verAmigos`,
+            state: {
+                ID: idUsuario,
+                NombreCompleto: nombreCompleto,
+                NombreUsuario: nombreUsuario,
+                Correo: correo,
+                ImagenPerfil: imagenPerfil,
+                Rol: rol,
+            },
+        });
+    };
+  
+    return (
+      <div>
+            <body>
+                <Navegacion/>   
   const VerAmigos = () => {
     history.push({
       pathname: `/veramigos/${idUsuario}`,

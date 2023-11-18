@@ -111,7 +111,6 @@ VALUES (1, 2, 1); -- El valor 1 en Estatus indica que la amistad está aceptada
 INSERT INTO Amistar (Solicitante, Receptor, Estatus) 
 VALUES (1, 3, 1);
 
-
 -- Poblacion tabla Torneo
 INSERT INTO Torneo (IDAdministrador, NombreTorneo, FechaInicio, CupoMaximo, Videojuego, Plataforma, Descripcion, FechaCreacion)
 VALUES (1, "Primer Torneo", "2023-11-30", 16, "Overwatch 2", "Consola (PS4)", "Estas en un torneo de prueba", "2023-11-17");
