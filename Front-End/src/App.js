@@ -9,6 +9,7 @@ import Perfil from "./components/Perfil";
 import EditarPerfil from "./components/EditarPerfil";
 import VerAmigos from "./components/VerAmigos";
 import CrearTorneo from "./components/CrearTorneo";
+import EliminarTorneo from "./components/EliminarTorneo";
 
 function App() {
   return (
@@ -34,9 +35,14 @@ function App() {
           component={VerAmigos}
         />
         <Route
-          path="/:nombreUsuario/creartorneo"
+          path="/:nombreUsuario/crearTorneo"
           exact
           component={CrearTorneo}
+        />
+        <Route
+          path="/:nombreUsuario/eliminarTorneo"
+          exact
+          component={EliminarTorneo}
         />
       </Switch>
     </Router>

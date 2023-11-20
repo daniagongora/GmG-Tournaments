@@ -11,64 +11,65 @@ function Perfil() {
   const history = useHistory();
   const location = useLocation();
 
-    const idUsuario = location.state.ID;
-    const nombreCompleto = location.state.NombreCompleto;
-    const nombreUsuario = location.state.NombreUsuario;
-    const correo = location.state.Correo;
-    const imagenPerfil = location.state.ImagenPerfil;
-    const rol = location.state.Rol
-  
-    const EditarPerfil = () => {
-        history.push({
-            pathname: `/editarPerfil${idUsuario}/${nombreUsuario}`,
-            state: {
-                ID: idUsuario,
-                NombreCompleto: nombreCompleto,
-                NombreUsuario: nombreUsuario,
-                Correo: correo,
-                ImagenPerfil: imagenPerfil,
-                Rol: rol,
-            },
-        });
-    };
+  const idUsuario = location.state.ID;
+  const nombreCompleto = location.state.NombreCompleto;
+  const nombreUsuario = location.state.NombreUsuario;
+  const correo = location.state.Correo;
+  const imagenPerfil = location.state.ImagenPerfil;
+  const rol = location.state.Rol;
 
-    const VerAmigos = () => {
-        history.push({
-            pathname: `/perfil${idUsuario}/${nombreUsuario}/verAmigos`,
-            state: {
-                ID: idUsuario,
-                NombreCompleto: nombreCompleto,
-                NombreUsuario: nombreUsuario,
-                Correo: correo,
-                ImagenPerfil: imagenPerfil,
-                Rol: rol,
-            },
-        });
-    };
-  
-    return (
-      <div>
-            <body>
-                <Navegacion/>   
+  const EditarPerfil = () => {
+    history.push({
+      pathname: `/editarPerfil${idUsuario}/${nombreUsuario}`,
+      state: {
+        ID: idUsuario,
+        NombreCompleto: nombreCompleto,
+        NombreUsuario: nombreUsuario,
+        Correo: correo,
+        ImagenPerfil: imagenPerfil,
+        Rol: rol,
+      },
+    });
+  };
+
   const VerAmigos = () => {
     history.push({
-      pathname: `/veramigos/${idUsuario}`,
+      pathname: `/perfil${idUsuario}/${nombreUsuario}/verAmigos`,
       state: {
-        NombreUsuario: nombreUsuario,
-        ImagenPerfil: imagenPerfil,
         ID: idUsuario,
+        NombreCompleto: nombreCompleto,
+        NombreUsuario: nombreUsuario,
+        Correo: correo,
+        ImagenPerfil: imagenPerfil,
+        Rol: rol,
       },
     });
   };
 
   const CrearTorneo = () => {
-    console.log(nombreUsuario);
-    console.log(idUsuario);
     history.push({
-      pathname: `/${nombreUsuario}/creartorneo`,
+      pathname: `/${nombreUsuario}/crearTorneo`,
       state: {
-        NombreUsuario: nombreUsuario,
         ID: idUsuario,
+        NombreCompleto: nombreCompleto,
+        NombreUsuario: nombreUsuario,
+        Correo: correo,
+        ImagenPerfil: imagenPerfil,
+        Rol: rol,
+      },
+    });
+  };
+
+  const EliminarTorneo = () => {
+    history.push({
+      pathname: `/${nombreUsuario}/eliminarTorneo`,
+      state: {
+        ID: idUsuario,
+        NombreCompleto: nombreCompleto,
+        NombreUsuario: nombreUsuario,
+        Correo: correo,
+        ImagenPerfil: imagenPerfil,
+        Rol: rol,
       },
     });
   };
@@ -115,6 +116,15 @@ function Perfil() {
                     onClick={CrearTorneo}
                   >
                     Crear Torneo
+                  </button>
+                )}
+
+                {location.state.Rol === "Administrador" && (
+                  <button
+                    class="btn btn-menu btn-outline-secondary"
+                    onClick={EliminarTorneo}
+                  >
+                    Eliminar Torneo
                   </button>
                 )}
 

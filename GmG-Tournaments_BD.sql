@@ -49,6 +49,7 @@ CREATE TABLE Torneo (
     Videojuego VARCHAR(100) NOT NULL,
     Plataforma VARCHAR(100) NOT NULL,
     Descripcion TEXT,
+    Estatus BOOLEAN NOT NULL,
     FechaCreacion DATE,
     FOREIGN KEY (IDAdministrador) REFERENCES Administrador(IDAdministrador)
 );
@@ -112,5 +113,5 @@ INSERT INTO Amistar (Solicitante, Receptor, Estatus)
 VALUES (1, 3, 1);
 
 -- Poblacion tabla Torneo
-INSERT INTO Torneo (IDAdministrador, NombreTorneo, FechaInicio, CupoMaximo, Videojuego, Plataforma, Descripcion, FechaCreacion)
-VALUES (1, "Primer Torneo", "2023-11-30", 16, "Overwatch 2", "Consola (PS4)", "Estas en un torneo de prueba", "2023-11-17");
+INSERT INTO Torneo (IDAdministrador, NombreTorneo, FechaInicio, CupoMaximo, Videojuego, Plataforma, Descripcion, Estatus, FechaCreacion)
+VALUES (1, "Primer Torneo", "2023-11-30", 16, "Overwatch 2", "Consola (PS4)", "Estas en un torneo de prueba", TRUE, "2023-11-17");

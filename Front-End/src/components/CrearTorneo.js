@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useParams, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 
 import Navegacion from "./Navegacion";
 import Swal from "sweetalert2";
@@ -8,12 +8,18 @@ import "../statics/css/General.css";
 import "../statics/css/Alerta.css";
 import "../statics/css/CrearTorneo.css";
 
-function CrearTorneo(props) {
-  //Cargamos en variables los parametros que recibe de la pantalla anterior
-  const nombreUsuario = props.location.state.NombreUsuario.toString();
-  const idUsuario = props.location.state.ID;
+function CrearTorneo() {
   const history = useHistory();
+  const location = useLocation();
   let today = new Date();
+
+  //Cargamos en variables los parametros que recibe de la pantalla anterior
+  const idUsuario = location.state.ID;
+  const nombreCompleto = location.state.NombreCompleto;
+  const nombreUsuario = location.state.NombreUsuario.toString();
+  const correo = location.state.Correo;
+  const imagenPerfil = location.state.ImagenPerfil;
+  const rol = location.state.Rol;
 
   const [nombreTorneo, setNombreTorneo] = useState("");
   const fechaCreacion = `${today.getFullYear()}-${
@@ -97,7 +103,7 @@ function CrearTorneo(props) {
         const responseData = await response.json();
 
         if (responseData.success) {
-          Swal.fire({
+          await Swal.fire({
             title: "Éxito!",
             text: "Se creo el nuevo torneo correctamente",
             icon: "success",
@@ -108,7 +114,17 @@ function CrearTorneo(props) {
             },
           });
           //Aqui va salir un error porque ya no hay modo de regresar los datos que se obtivieron en login
-          // history.push(`/perfil/${nombreUsuario}`, responseData);
+          history.push({
+            pathname: `/perfil${idUsuario}/${nombreUsuario}`,
+            state: {
+              ID: idUsuario,
+              NombreCompleto: nombreCompleto,
+              NombreUsuario: nombreUsuario,
+              Correo: correo,
+              ImagenPerfil: imagenPerfil,
+              Rol: rol,
+            },
+          });
         } else {
           Swal.fire({
             title: "Error",
