@@ -8,7 +8,21 @@ import '../statics/css/General.css';
 import '../statics/css/Alerta.css';
 import '../statics/css/VerAmigos.css';
 
+import imagen1 from '../statics/icons/crash.png';
+import imagen2 from '../statics/icons/dave.jpg';
+import imagen3 from '../statics/icons/doge.jpg';
+import imagen4 from '../statics/icons/ender.jpg';
+import imagen5 from '../statics/icons/fallguy.jpg';
+import imagen6 from '../statics/icons/freddy.png';
+import imagen7 from '../statics/icons/kirby.jpg';
+import imagen8 from '../statics/icons/papitas.png';
+import imagen9 from '../statics/icons/pingu.jpg';
+import imagen10 from '../statics/icons/spidergwen.png';
+import imagen11 from '../statics/icons/spidermiles.jpg';
+import imagen12 from '../statics/icons/tracer.jpg';
+
 function VerAmigos(props) {
+
   const location = useLocation();
   
   const nombreUsuario = props.location.state.NombreUsuario.toString();
@@ -16,7 +30,6 @@ function VerAmigos(props) {
   const imagenPerfil = props.location.state.ImagenPerfil;
 
   const [amigos, setAmigos] = useState([]);
-
   useEffect(() => {
     const obtenerAmigos = async () => {
       try {
@@ -26,16 +39,16 @@ function VerAmigos(props) {
         if (data.success) {
           setAmigos(data.amigos);
         } else {
-            Swal.fire({
-                title: 'Error',
-                text: 'Ocurrió un error al obtener la lista de amigos',
-                icon: 'error',
-                customClass: {
-                  container: 'custom-alert-container',
-                  title: 'custom-alert-title',
-                  icon: 'custom-alert-icon',
-                },
-              });
+          Swal.fire({
+              title: 'Error',
+              text: 'Ocurrió un error al obtener la lista de amigos',
+              icon: 'error',
+              customClass: {
+                container: 'custom-alert-container',
+                title: 'custom-alert-title',
+                icon: 'custom-alert-icon',
+              },
+          });
         }
       } catch (error) {
         Swal.fire({
@@ -47,30 +60,28 @@ function VerAmigos(props) {
               title: 'custom-alert-title',
               icon: 'custom-alert-icon',
             },
-          });
+        });
       }
     };
 
     obtenerAmigos();
-  }, [nombreUsuario]);
+  }, [idUsuario, nombreUsuario]);
 
   return (
+
     <div>
       <body>
         <Navegacion />
 
         <div className="card body-content">
-
           <div class="row">
             <h2 class="title">Mis Amigos</h2>
           </div>
 
           <div class="row"> 
-
             <div class="card card-user col-md-4">
-
                 <div class="card card-picture border-secondary mb-2">
-                    <img class="picture" src={location.state.ImagenPerfil} alt="Imagen de perfil"/>                              
+                    <img class="picture" src={imagen1} alt="Imagen de perfil"/>                              
                 </div>
 
                 <div class="card card-username">
@@ -81,7 +92,6 @@ function VerAmigos(props) {
             </div>
 
             <div class="card card-list col-md-8">
-
               {amigos.length === 0 ? (
                 <div class="card card-empty container-fluid border-secondary d-flex align-items-center justify-content-center">
                   <h2 class= "card-empty-message">Aun no tienes amigos</h2>

@@ -8,25 +8,9 @@
     margin-top: 20px;
 }
 
-.card-empty-message{
-    
-}
-
 .card-friends {
     height: 100%;
     margin-top: 20px;
-}
-
-.list.row {
-    padding: 30px;
-    place-content: start;
-}
-
-.list-item {
-    align-items: center;
-    display: flex;
-    margin-bottom: 20px;
-    padding: 0;
 }
 
 .list-image {
@@ -40,9 +24,21 @@
     width: 30%;
 }
 
+.list-item {
+    align-items: center;
+    display: flex;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
 .list-name {
     font-size: xx-large;
     margin-left: 20px;
+}
+
+.list.row {
+    padding: 30px;
+    place-content: start;
 }
 
 .user {

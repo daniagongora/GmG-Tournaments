@@ -16,11 +16,11 @@ def get_torneo_by_name(name):
 def get_torneo_by_plataforma(platform):
     return Torneo.query.filter(Torneo.Plataforma == platform).all()
 
-def get_torneo_by_Videojuego(videogame):
+def get_torneo_by_videojuego(videogame):
     return Torneo.query.filter(Torneo.Videojuego == videogame).all()
 
 def add_new_torneo(idAdministrador, nombreTorneo, fechaInicio, cupoMaximo, videojuego, plataforma, descripcion, fechaCreacion):
-    newTorneo = Torneo(idAdministrador, nombreTorneo, fechaInicio, cupoMaximo, videojuego, plataforma, descripcion, fechaCreacion)
+    newTorneo = Torneo(idAdministrador, nombreTorneo, fechaInicio, cupoMaximo, videojuego, plataforma, descripcion, True, fechaCreacion)
     if nombreTorneo == '' or videojuego == '' or plataforma == '':
         return False
     

@@ -205,6 +205,7 @@ function EditarPerfil(props) {
               <h2 class="modal-title">Editar Datos</h2>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
             </div>
+
             <div class="modal-body">
               <form onSubmit={EditarDatos}> {children} </form>
             </div>
@@ -217,22 +218,18 @@ function EditarPerfil(props) {
   return (
 
     <div>
-
       <body>
         <Navegacion/>
 
         <div class="card body-content">
-          
           <div class="row">
             <h2 class="title">Editar Perfil</h2>
           </div>
         
           <div class="row">
-
             <div class="card card-user col-md-4">
-
               <div class="card card-picture border-secondary mb-2">
-                <img class="picture" src={"../statics/icons/"+location.state.ImagenPerfil} alt="Imagen de perfil"/>
+                <img class="picture" src={imagen1} alt="Imagen de perfil"/>
               </div>
 
               <div class="btns">
@@ -249,6 +246,7 @@ function EditarPerfil(props) {
                   <button class="btn btn-outline-secondary edit-data" onClick={() => setMostrarModalDatos(true)}>Editar Datos</button>
                 </div>
               </div>
+
               <div class="table-responsive">
                 <table class="table">
                   <tr>
@@ -315,13 +313,12 @@ function EditarPerfil(props) {
                 <div class="row">
                   <div class="col-md">
                     <label class="form-label modal-label" htmlFor="correo">Correo:</label>
-                    <input class="modal-input" type="email" id="correo" required
-                            defaultValue={correo} />
+                    <input class="modal-input" type="email" id="correo" required defaultValue={correo} />
                   </div>
+
                   <div class="col-md">
                     <label class="form-label modal-label" htmlFor="contrasenia">Password:</label>
-                    <input class="modal-input" type="password" id="contrasenia" required
-                            />
+                    <input class="modal-input" type="password" id="contrasenia" required />
                   </div>
                 </div>
                 

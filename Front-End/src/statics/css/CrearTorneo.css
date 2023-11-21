@@ -1,0 +1,27 @@
+.btn.btn-create.btn-outline-secondary {
+    bottom: 10vw;
+    position: absolute;
+}
+
+.description-area {
+    height: 10vw;
+}
+
+.entry-data {
+    width: 30vw;
+}
+
+.form-control.entry-data {
+    border-radius: 5px;
+    text-align: left;
+}
+
+.input-instance {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+
+.prompt-feedback {
+    text-align: left;
+}
