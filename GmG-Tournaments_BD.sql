@@ -97,10 +97,10 @@ VALUES (1, 1, 'Mariana gonzales', '../statics/icons/icon.png', '25d93efd1f9e923a
 
 -- Población de la tabla Participante
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
-VALUES (1, 'Dania Paula Gongora', '../statics/icons/icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'DaniaGon', 'dania1012@ciencias.unam.mx', 'Participante');
+VALUES (1, 'Dania Paula Gongora', '../statics/icons/kirby.jpg', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'DaniaGon', 'dania1012@ciencias.unam.mx', 'Participante');
 
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
-VALUES (2, 'Cristian Ramirez', '../statics/icons/icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Niity', 'bolillo@gmail.com', 'Participante');
+VALUES (2, 'Cristian Ramirez', '../statics/icons/ender.jpg', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Niity', 'bolillo@gmail.com', 'Participante');
 
 INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
 VALUES (3, 'Paola Amaro', '../statics/icons/icon.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Pao', 'pao@gmail.com', 'Participante');

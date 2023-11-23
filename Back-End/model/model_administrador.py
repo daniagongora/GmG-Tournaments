@@ -23,7 +23,7 @@ def get_all_administradores():
         list: Lista de administradores que coinciden con el ID.
 """
 def get_administrador_by_id(id):
-    return Administrador.query.filter(Administrador.IDAdministrador == id).all()
+    return Administrador.query.filter(Administrador.IDAdministrador == id).first()
 
 """
     Función que obtiene un administrador por su nombre.
@@ -65,6 +65,7 @@ def edit_administrador(id, name):
 
     # Si se encontró un administrador válido...
     if administrador:
+        print("si encontre a un administrador: ", administrador.NombreCompleto)
         # Obtenemos los campos del formulario JSON
         campos = request.get_json()
 
@@ -73,7 +74,6 @@ def edit_administrador(id, name):
         usernameNuevo = campos.get('NombreAdministrador', '')
         correoNuevo = campos.get('Correo', '')
         contraseniaNueva = campos.get('Contrasenia', '')
-
         # Verificamos si se proporcionó un nuevo nombre
         if nombreNuevo:
             administrador.NombreCompleto = nombreNuevo
@@ -86,9 +86,9 @@ def edit_administrador(id, name):
         # Verificamos si se proporcionó una nueva contraseña
         if contraseniaNueva:
             administrador.Contrasenia = sha256(cipher(contraseniaNueva)).hexdigest()
+        
         # Guardamos los cambios en la base de datos
         db.session.commit()
-
         return True
     else:
         return False

@@ -23,7 +23,7 @@ def get_all_superAdmins():
         list: Lista de superadministradores que coinciden con el ID.
 """
 def get_superAdmin_by_id(id):
-    return SuperAdministrador.query.filter(SuperAdministrador.IDSuperAdministrador == id).all()
+    return SuperAdministrador.query.filter(SuperAdministrador.IDSuperAdministrador == id).first()
 
 """
     Función que obtiene un superadministrador por su nombre.

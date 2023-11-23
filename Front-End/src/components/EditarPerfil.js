@@ -113,13 +113,13 @@ function EditarPerfil(props) {
     e.preventDefault();
   
     try {
+      
       const campos = {
         NombreCompleto: document.getElementById('nombre').value,
         [rol === 'participante' ? 'NombreParticipante' : rol === 'administrador' ? 'NombreAdministrador' : 'NombreSuperadministrador']: document.getElementById('username').value,
         Correo: document.getElementById('correo').value,
         Contrasenia: document.getElementById('contrasenia').value,
       };
-  
       if (!campos.NombreCompleto || 
           !campos[(rol === 'participante' ? 'NombreParticipante' : rol === 'administrador' ? 'NombreAdministrador' : 'NombreSuperadministrador')] || 
           !campos.Correo || 
@@ -253,9 +253,11 @@ function EditarPerfil(props) {
 
               <div class="btns">
                 <button class="btn btn-outline-secondary edit-image" onClick={() => EditarImagen('imagen')}>Editar Imagen</button>   
-                {rol === 'Participante' && (
+                
+                {rol === 'participante' && (
                   <button class="btn btn-outline-danger delete-profile" onClick={EliminarPerfil}>Eliminar Perfil</button>
                 )}
+                
               </div>
             </div>
               
