@@ -2,23 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
+import MostrarImagenPerfil from './MostrarImagen';
 import Navegacion from './Navegacion';
 
 import '../statics/css/General.css';
 import '../statics/css/Perfil.css';
-
-import imagen1 from '../statics/icons/crash.png';
-import imagen2 from '../statics/icons/dave.jpg';
-import imagen3 from '../statics/icons/doge.jpg';
-import imagen4 from '../statics/icons/ender.jpg';
-import imagen5 from '../statics/icons/fallguy.jpg';
-import imagen6 from '../statics/icons/freddy.png';
-import imagen7 from '../statics/icons/kirby.jpg';
-import imagen8 from '../statics/icons/papitas.png';
-import imagen9 from '../statics/icons/pingu.jpg';
-import imagen10 from '../statics/icons/spidergwen.png';
-import imagen11 from '../statics/icons/spidermiles.jpg';
-import imagen12 from '../statics/icons/tracer.jpg';
 
 function Perfil() {
 
@@ -30,7 +18,7 @@ function Perfil() {
     const nombreUsuario = location.state.NombreUsuario;
     const correo = location.state.Correo;
     const imagenPerfil = location.state.ImagenPerfil;
-    const rol = location.state.Rol
+    const rol = location.state.Rol;
   
     const EditarPerfil = () => {
         history.push({
@@ -60,6 +48,7 @@ function Perfil() {
         });
     };
 
+<<<<<<< Updated upstream
     const CrearTorneo = () => {
         history.push({
           pathname: `/perfil${idUsuario}/${nombreUsuario}/misTorneos/crearTorneo`,
@@ -74,6 +63,8 @@ function Perfil() {
         });
     };
 
+=======
+>>>>>>> Stashed changes
     const EliminarTorneo = () => {
         history.push({
           pathname: `/perfil${idUsuario}/${nombreUsuario}/misTorneos`,
@@ -98,7 +89,7 @@ function Perfil() {
                     <div class="row"> 
                         <div class="card card-user col-md">
                             <div class="card card-picture border-secondary mb-2">
-                                <img class="picture" src={imagen1} alt="Imagen de perfil"/>                              
+                                <MostrarImagenPerfil />
                             </div>
 
                             <div class="card card-username">

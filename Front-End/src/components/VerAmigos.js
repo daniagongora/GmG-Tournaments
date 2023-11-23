@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
+import MostrarImagenPerfil from './MostrarImagen';
 import Navegacion from './Navegacion';
 import Swal from 'sweetalert2';
 
@@ -8,18 +9,7 @@ import '../statics/css/General.css';
 import '../statics/css/Alerta.css';
 import '../statics/css/VerAmigos.css';
 
-import imagen1 from '../statics/icons/crash.png';
-import imagen2 from '../statics/icons/dave.jpg';
-import imagen3 from '../statics/icons/doge.jpg';
-import imagen4 from '../statics/icons/ender.jpg';
-import imagen5 from '../statics/icons/fallguy.jpg';
-import imagen6 from '../statics/icons/freddy.png';
-import imagen7 from '../statics/icons/kirby.jpg';
-import imagen8 from '../statics/icons/papitas.png';
-import imagen9 from '../statics/icons/pingu.jpg';
-import imagen10 from '../statics/icons/spidergwen.png';
-import imagen11 from '../statics/icons/spidermiles.jpg';
-import imagen12 from '../statics/icons/tracer.jpg';
+import mostrarImagenPerfil from './MostrarImagen';
 
 function VerAmigos(props) {
 
@@ -81,7 +71,7 @@ function VerAmigos(props) {
           <div class="row"> 
             <div class="card card-user col-md-4">
                 <div class="card card-picture border-secondary mb-2">
-                    <img class="picture" src={imagen1} alt="Imagen de perfil"/>                              
+                  <MostrarImagenPerfil />
                 </div>
 
                 <div class="card card-username">
@@ -102,7 +92,7 @@ function VerAmigos(props) {
                     {amigos.map((amigo) => (
                       <li key={amigo.NombreParticipante} class="list-item col-md-4">
                         <div class="card list-image-container border-secondary">
-                          <img src={amigo.ImagenPerfil} alt={amigo.NombreParticipante} class="list-image" />
+                          <MostrarImagenPerfil />
                         </div>
                         <span><h4 class="list-name">{amigo.NombreParticipante}</h4></span>
                       </li>

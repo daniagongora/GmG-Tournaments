@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
+import MostrarImagenPerfil from './MostrarImagen';
 import Navegacion from './Navegacion';
 import Swal from 'sweetalert2';
 
@@ -23,7 +24,6 @@ import imagen11 from '../statics/icons/spidermiles.jpg';
 import imagen12 from '../statics/icons/tracer.jpg';
 
 function EditarPerfil(props) {
-
   const history = useHistory();
 
   const { idUsuario } = useParams();
@@ -245,7 +245,7 @@ function EditarPerfil(props) {
           <div class="row">
             <div class="card card-user col-md-4">
               <div class="card card-picture border-secondary mb-2">
-                <img class="picture" src={imagen1} alt="Imagen de perfil"/>
+                <MostrarImagenPerfil />
               </div>
 
               <div class="btns">
