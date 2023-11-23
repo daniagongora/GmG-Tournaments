@@ -1,12 +1,13 @@
 .form-login {
     font-size: 17px;
     width: 300px;
+    margin-bottom: 30px;
 }
 
 .btn-login {
     font-size: 22px;
     height: 50px;
     padding: auto;
-    text-align:center;
+    text-align: center;
     width: 200px;
 }

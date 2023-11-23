@@ -1,28 +1,28 @@
-.navbar{
+.collapse {
+    font-family: Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    margin-left: 610px;
+    text-emphasis-color: #fff;
+}
+
+.navbar {
     height: 70px; 
-    width: 100%; 
-    position:absolute; 
+    left: 0;
+    position: absolute; 
     top: 0; 
-    left: 0; 
+    width: 100%;  
     z-index: 1; 
 }
 
-.navbar-brand{
-    font-size: 28px;
+.navbar-brand {
+    font-size: 22px;
 }
 
-.navbar-content{
-    max-width: 1280px;
+.navbar-content {
     margin: auto;
+    max-width: 1280px;
 }
 
-.collapse{
-    text-emphasis-color: #fff;
-    font-size: 20px;
-    font-family: Geneva, Verdana, sans-serif;
-    margin-left: 610px;
-}
-
-.nav-item{
+.nav-item {
     margin-left: 30px;
 }

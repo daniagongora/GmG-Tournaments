@@ -201,6 +201,7 @@
   }
 }
 
+
 /* Diseño general del cuerpo de la página */
 body {
   background-color: var(--bs-body-bg);
@@ -209,9 +210,6 @@ body {
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
-  margin: auto;
-  margin-top: 50px;
-  max-width: 1280px;
   text-align: center;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-text-size-adjust: 100%;
@@ -1874,7 +1872,6 @@ progress {
   --bs-table-color-state: initial;
   --bs-table-bg-state: initial;
   --bs-table-color: #fff;
-  --bs-table-bg: var(--bs-body-bg);
   --bs-table-border-color: var(--bs-border-color);
   --bs-table-accent-bg: transparent;
   --bs-table-striped-color: #fff;
@@ -3311,6 +3308,8 @@ textarea.form-control-lg {
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #e44c55;
   --bs-gradient: none;
+  margin: 10px;
+  font-family: 'Nico-Moji';
 }
 
 .btn-outline-light {
@@ -4429,7 +4428,7 @@ textarea.form-control-lg {
   word-wrap: break-word;
   background-color: var(--bs-card-bg);
   background-clip: border-box;
-  border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  border: none;
   border-radius: var(--bs-card-border-radius);
 }
 .card > hr {
@@ -4453,6 +4452,12 @@ textarea.form-control-lg {
 .card > .card-header + .list-group,
 .card > .list-group + .card-footer {
   border-top: 0;
+}
+
+.card.body-content{
+  max-width: 1280px;
+  margin: auto;
+  padding: 30px;
 }
 
 .card-body {
@@ -12531,7 +12536,7 @@ legend {
   box-shadow: 0 0 2px rgba(111, 66, 193, 0.9), 0 0 4px rgba(111, 66, 193, 0.4), 0 0 1rem rgba(111, 66, 193, 0.3), 0 0 4rem rgba(111, 66, 193, 0.1);
 }
 .card.border-secondary {
-  box-shadow: 0 0 2px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1);
+  box-shadow: 0 0 20px rgba(234, 57, 184, 0.9), 0 0 4px rgba(234, 57, 184, 0.4), 0 0 1rem rgba(234, 57, 184, 0.3), 0 0 4rem rgba(234, 57, 184, 0.1);
 }
 .card.border-success {
   box-shadow: 0 0 2px rgba(60, 242, 129, 0.9), 0 0 4px rgba(60, 242, 129, 0.4), 0 0 1rem rgba(60, 242, 129, 0.3), 0 0 4rem rgba(60, 242, 129, 0.1);

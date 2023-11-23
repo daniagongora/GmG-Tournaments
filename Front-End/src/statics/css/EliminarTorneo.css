@@ -1,0 +1,17 @@
+.btn.btn-outline-secondary.btn-create-tournament {
+    font-size: large;
+    width: auto;
+}
+
+.btn.btn-outline-danger.btn-delete-tournament {
+    margin: 0%;
+}
+
+.card.card-empty {
+    height: 400px;
+}
+
+.card.card-table {
+    height: 400px;
+    margin-top: 20px;
+}

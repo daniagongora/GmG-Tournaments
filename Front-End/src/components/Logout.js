@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
+
 import '../statics/css/General.css';
 
 function Logout() {
@@ -7,6 +8,7 @@ function Logout() {
     history.replace('/', null)
     
     return (
+        
         <div>
             <Redirect to='/' />
         </div>

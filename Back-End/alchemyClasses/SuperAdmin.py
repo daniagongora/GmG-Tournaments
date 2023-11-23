@@ -1,8 +1,11 @@
 from alchemyClasses import db
-from sqlalchemy import Column, Integer, String
-from hashlib import sha256
 from CryptoUtils.CryptoUtils import cipher
+from hashlib import sha256
+from sqlalchemy import Column, Integer, String
 
+"""
+    Clase que representa a un superadministrador en la base de datos.
+"""
 class SuperAdministrador(db.Model):
 
     __tablename__ = 'SuperAdministrador'
@@ -14,6 +17,17 @@ class SuperAdministrador(db.Model):
     Correo = Column(String(255))
     Rol = Column(String(20))
 
+    """
+        Constructor de la clase SuperAdministrador.
+
+        Args:
+            - NombreCompleto (str): El nombre completo del superadministrador.
+            - ImagenPerfil (str): La URL de la imagen de perfil del superadministrador.
+            - Contrasenia (str): La contraseña del superadministrador.
+            - NombreSuperadministrador (str): El nombre del superadministrador.
+            - Correo (str): El correo electrónico del superadministrador.
+            - Rol (str): El rol del superadministrador.
+    """
     def __init__(self, NombreCompleto, ImagenPerfil, Contrasenia, NombreSuperadministrador, Correo, Rol):
         self.NombreCompleto = NombreCompleto
         self.ImagenPerfil = ImagenPerfil
@@ -22,5 +36,11 @@ class SuperAdministrador(db.Model):
         self.Correo = Correo
         self.Rol = Rol
 
+    """
+        Método para representar el objeto SuperAdministrador como una cadena de texto.
+
+        Returns:
+            str: La representación del objeto SuperAdministrador.
+    """
     def __str__(self):
-        return f'IDSuperAdmin: {self.IDSuperAdministrador}\nImagenPerfil: {self.ImagenPerfil}\nNombreSuperadministrador: {self.NombreSuperadministrador}\nCorreo: {self.Correo}\nRol: {self.Rol}'
+        return f'IDSuperAdministrador: {self.IDSuperAdministrador}\nNombreCompleto: {self.NombreCompleto}\nImagenPerfil: {self.ImagenPerfil}\nContrasenia: {self.Contrasenia}\nNombreSuperadministrador: {self.NombreSuperadministrador}\nCorreo: {self.Correo}\nRol: {self.Rol}'

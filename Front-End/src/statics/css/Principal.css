@@ -1,13 +1,7 @@
-body {
-    margin: auto;
-    margin-top: 50px;
-    max-width: 1280px;
-}
-
-.principal {
-    font-size: 26px;
+.btn.btn-outline-secondary.btn-principal {
+    font-size: 28px;
     height: 60px;
     padding: auto;
-    text-align:center;
+    text-align: center;
     width: 300px;
 }
