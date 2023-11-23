@@ -1872,7 +1872,6 @@ progress {
   --bs-table-color-state: initial;
   --bs-table-bg-state: initial;
   --bs-table-color: #fff;
-  --bs-table-bg: var(--bs-body-bg);
   --bs-table-border-color: var(--bs-border-color);
   --bs-table-accent-bg: transparent;
   --bs-table-striped-color: #fff;
@@ -3309,6 +3308,8 @@ textarea.form-control-lg {
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #e44c55;
   --bs-gradient: none;
+  margin: 10px;
+  font-family: 'Nico-Moji';
 }
 
 .btn-outline-light {

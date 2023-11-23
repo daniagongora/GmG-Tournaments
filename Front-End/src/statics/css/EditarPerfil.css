@@ -6,14 +6,9 @@ h5 {
     text-align: center;
 }
 
-.btn.btn-outline-secondary.delete-profile {
-    border-color:crimson;
+.btn.btn-outline-danger.delete-profile {
     font-size: larger;
     width: 250px;
-}
-
-.btn.btn-outline-secondary.delete-profile:hover {
-    background-color:crimson;
 }
 
 .btn.btn-outline-secondary.edit-data {

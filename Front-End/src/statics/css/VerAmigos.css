@@ -8,18 +8,14 @@
     margin-top: 20px;
 }
 
-.card-empty-message{
-    
-}
-
 .card-friends {
     height: 100%;
     margin-top: 20px;
 }
 
-.list.row {
-    padding: 30px;
-    place-content: start;
+.list-image-container {
+    border-radius: 50%;
+    width: 30%;
 }
 
 .list-item {
@@ -29,20 +25,14 @@
     padding: 0;
 }
 
-.list-image {
-    border-radius: 50%;
-    height: 100%;
-    width: 100%;
-}
-
-.list-image-container {
-    border-radius: 50%;
-    width: 30%;
-}
-
 .list-name {
     font-size: xx-large;
     margin-left: 20px;
+}
+
+.list.row {
+    padding: 30px;
+    place-content: start;
 }
 
 .user {

@@ -11,7 +11,7 @@ function Login() {
 
   const history = useHistory();
 
-  const handleSubmit = async (e) => { 
+  const Login = async (e) => { 
     e.preventDefault(); 
 
     const data = new FormData();
@@ -42,17 +42,15 @@ function Login() {
   };
 
   return (
+
     <div>
-
       <body>
-
         <div class="card body-content">
-
           <div class="title">   
             <h1>GmG <br></br>Tournaments</h1>
           </div>
           <br></br>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={Login}>
             <label class="form-label">Correo</label>
             <input type="email"
                    placeholder="Ingresa tu correo"
@@ -60,7 +58,6 @@ function Login() {
                    onChange={(e) => setCorreo(e.target.value)}
                    class="form-control form-login"
             />
-            <br></br>
             <label class="form-label">Contraseña</label>
             <input type="password"
                    placeholder="Ingresa tu contraseña "
@@ -68,7 +65,6 @@ function Login() {
                    onChange={(e) => setContrasenia(e.target.value)}
                    class="form-control form-login"
             />
-            <br></br><br></br>
             <button type="submit" class="btn btn-login btn-outline-secondary">Ingresar</button>
           </form>
           {mensaje && <p>{mensaje}</p>}

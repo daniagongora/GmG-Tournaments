@@ -8,6 +8,7 @@ function Logout() {
     history.replace('/', null)
     
     return (
+        
         <div>
             <Redirect to='/' />
         </div>
