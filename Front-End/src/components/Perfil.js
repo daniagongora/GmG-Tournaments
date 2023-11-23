@@ -72,7 +72,7 @@ function Perfil() {
                     <div class="row"> 
                         <div class="card card-user col-md">
                             <div class="card card-picture border-secondary mb-2">
-                                <MostrarImagenPerfil />
+                                <MostrarImagenPerfil imagen={location.state.ImagenPerfil}/>
                             </div>
 
                             <div class="card card-username">

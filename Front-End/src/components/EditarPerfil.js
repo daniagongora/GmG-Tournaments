@@ -31,7 +31,7 @@ function EditarPerfil(props) {
   const [nombreUsuario, setNombreUsuario] = useState(props.location.state.NombreUsuario.toString());
   const [correo, setCorreo] = useState(props.location.state.Correo.toString());
   const [contrasenia, setContrasenia] = useState('');
-  // const [imagenPerfil, setImagenPerfil] = useState(props.location.state.ImagenPerfil.toString());
+  const [imagenPerfil, setImagenPerfil] = useState(props.location.state.ImagenPerfil.toString());
   const [rol, setRol] = useState(props.location.state.Rol.toLowerCase());
 
   const [mostrarModalDatos, setMostrarModalDatos] = useState(false);
@@ -248,7 +248,7 @@ function EditarPerfil(props) {
           <div class="row">
             <div class="card card-user col-md-4">
               <div class="card card-picture border-secondary mb-2">
-                <MostrarImagenPerfil />
+                <MostrarImagenPerfil imagen={imagenPerfil}/>
               </div>
 
               <div class="btns">
