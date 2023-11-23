@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 
 import Navegacion from "./Navegacion";
+import CrearTorneo from "./CrearTorneo";
 import Swal from "sweetalert2";
 
 import "../statics/css/General.css";
 import "../statics/css/Alerta.css";
+import "../statics/css/EliminarTorneo.css";
 
 function EliminarTorneo() {
   const history = useHistory();
@@ -67,8 +69,7 @@ function EliminarTorneo() {
 
       if (responseData.success) {
         await Swal.fire({
-          title: "Éxito!",
-          text: `Se eliminó el torneo #${torneoAEliminar} correctamente`,
+          title: `Torneo #${torneoAEliminar} eliminado exitosamente`,
           icon: "success",
           customClass: {
             container: "custom-alert-container",
@@ -105,42 +106,46 @@ function EliminarTorneo() {
     console.log(e.target.value);
   };
 
+  const CrearTorneo = () => {
+    history.push({
+      pathname: `/${nombreUsuario}/crearTorneo`,
+      state: {
+        ID: idUsuario,
+        NombreCompleto: nombreCompleto,
+        NombreUsuario: nombreUsuario,
+        Correo: correo,
+        ImagenPerfil: imagenPerfil,
+        Rol: rol,
+      },
+    });
+};
+
   return (
     <div>
       <body>
         <Navegacion />
 
-        <div className="card body-content">
+        <div className="card body-content ">
+
           <div class="row">
-            <h2 class="title">Eliminar Torneo</h2>
+            <h2 class="title">Mis Torneos</h2>
           </div>
 
-          <br></br>
+          <div class="row">
+            <button class="btn btn-outline-secondary btn-create-tournament" onClick={CrearTorneo}>Nuevo Torneo</button>
+          </div>
 
           {listaTorneos.length == 0 ? (
-            <div>
-              <h3 class="text-info">
-                No se encontró ningún torneo creado por ti :(
-              </h3>
-
-              <br></br>
-
-              <h3 class="text-info">
-                Ve a la sección <strong>Crear Torneo</strong> y genera tu primer torneo!
-              </h3>
+            <div class="card card-empty container-fluid border-secondary d-flex align-items-center justify-content-center">
+              <h2 class= "card-empty-tournaments">Aun no tienes torneos creados</h2>
             </div>
           ) : (
-            <div class="row">
-              <h5>
-                A continuación se muestran los torneos que son de
-                <strong> tu autoría</strong>.
-              </h5>
-
+            <div class="card card-table table-responsive border-secondary">
               <table class="table table-hover">
-                <thead>
+                <thead class="table-dark">
                   <tr>
-                    <th scope="col">Torneo ID</th>
-                    <th scope="col">Nombre del Torneo</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
                     <th scope="col">Videojuego</th>
                     <th scope="col">Creado</th>
                     <th scope="col">Inicio</th>
@@ -150,7 +155,7 @@ function EliminarTorneo() {
                 </thead>
                 <tbody>
                   {listaTorneos.map((torneo, index) => (
-                    <tr class="table-primary" key={index}>
+                    <tr class="table" key={index}>
                       <th scope="row">{torneo.IDTorneo}</th>
                       <td>{torneo.NombreTorneo}</td>
                       <td>{torneo.Videojuego}</td>
@@ -160,7 +165,7 @@ function EliminarTorneo() {
                       <td>
                         <button
                           type="button"
-                          class="btn btn-danger"
+                          class="btn btn-outline-danger btn-delete-tournament"
                           onClick={EliminarTorneo}
                           value={torneo.IDTorneo}
                         >

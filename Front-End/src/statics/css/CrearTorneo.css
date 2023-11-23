@@ -1,27 +1,31 @@
 .btn.btn-create.btn-outline-secondary {
-    bottom: 10vw;
-    position: absolute;
-}
-
-.description-area {
-    height: 10vw;
+    margin-top: 30px;
+    font-size: 20px;
+    height: 50px;
+    text-align: center;
+    width: 220px;
 }
 
 .entry-data {
-    width: 30vw;
+    width: 20vw;
 }
 
 .form-control.entry-data {
-    border-radius: 5px;
-    text-align: left;
+    text-align: center;
+}
+
+.form-control.entry-data.description-area{
+    height: auto;
+    text-align: start;
 }
 
 .input-instance {
-    align-items: flex-start;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
-.prompt-feedback {
-    text-align: left;
-}
+
+
+
+

@@ -58,7 +58,6 @@ function Login() {
                    onChange={(e) => setCorreo(e.target.value)}
                    class="form-control form-login"
             />
-            <br></br>
             <label class="form-label">Contraseña</label>
             <input type="password"
                    placeholder="Ingresa tu contraseña "
@@ -66,7 +65,6 @@ function Login() {
                    onChange={(e) => setContrasenia(e.target.value)}
                    class="form-control form-login"
             />
-            <br></br><br></br>
             <button type="submit" class="btn btn-login btn-outline-secondary">Ingresar</button>
           </form>
           {mensaje && <p>{mensaje}</p>}

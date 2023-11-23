@@ -28,7 +28,7 @@ def registro():
         
         # Validamos que el campo del Nombre no esté vacío
         if Nombre == "":
-            return jsonify({'success': False, 'message': 'Por favor, introduce tu nombre completo'})
+            return jsonify({'success': False, 'message': 'Por favor, ingresa tu nombre completo.'})
         
         # Verificamos si el nombre de usuario ya está registrado en la BD
         usuario_admins = get_administrador_by_name(Usuario)
@@ -36,9 +36,9 @@ def registro():
         usuario_superadmins = get_superAdmin_by_name(Usuario)
         
         if usuario_admins or usuario_participantes or usuario_superadmins:
-            return jsonify({'success': False, 'message': 'Nombre de usuario no disponible, por favor introduzca otro'})
+            return jsonify({'success': False, 'message': 'Nombre de usuario no disponible. Por favor ingresa otro.'})
         elif Usuario == "":
-            return jsonify({'success': False, 'message': 'Escribe un nombre de usuario'})
+            return jsonify({'success': False, 'message': 'Por favor, ingresa un nombre de usuario.'})
         
         # Verificamos si el correo electrónico ya está registrado en la BD
         correo_admins = get_administrador_by_email(Correo)
@@ -48,7 +48,7 @@ def registro():
         if correo_admins or correo_participantes or correo_superadmins:
             return jsonify({'success': False, 'message': 'Correo ya registrado'})
         elif Correo == "":
-            return jsonify({'success': False, 'message': 'Escribe un correo'})
+            return jsonify({'success': False, 'message': 'Por favor, ingresa un correo.'})
     
         # Validamos que la contraseña cumpla con los requisitos mínimos
         patron_contrasenia = re.compile(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?¡@$%^&*-]).{8,}$")

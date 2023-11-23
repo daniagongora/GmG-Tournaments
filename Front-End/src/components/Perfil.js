@@ -116,12 +116,8 @@ function Perfil() {
                                     <button class="btn btn-menu btn-outline-secondary" onClick={VerAmigos}>Amigos</button>
                                 )}
 
-                                {location.state.Rol === 'Administrador' && (
-                                    <button class="btn btn-menu btn-outline-secondary" onClick={CrearTorneo}>Crear Torneo</button>
-                                )}
-
                                 {location.state.Rol === "Administrador" && (
-                                    <button class="btn btn-menu btn-outline-secondary" onClick={EliminarTorneo}>Eliminar Torneo</button>
+                                    <button class="btn btn-menu btn-outline-secondary" onClick={EliminarTorneo}>Crear Torneo</button>
                                 )}
 
                                 {location.state.Rol === 'SuperAdministrador' && (

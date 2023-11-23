@@ -65,8 +65,8 @@ function EditarPerfil(props) {
 
         if (response.ok) {
           Swal.fire({
-            title: 'Perfil eliminado',
-            text: 'Perfil eliminado exitosamente',
+            title: 'Perfil eliminado exitosamente',
+            text: 'Te vamos a extrañar :(',
             icon: 'success',
             customClass: {
               container: 'custom-alert-container',
@@ -251,7 +251,7 @@ function EditarPerfil(props) {
               <div class="btns">
                 <button class="btn btn-outline-secondary edit-image" onClick={() => EditarImagen('imagen')}>Editar Imagen</button>   
                 {rol === 'Participante' && (
-                  <button class="btn btn-outline-secondary delete-profile" onClick={EliminarPerfil}>Eliminar Perfil</button>
+                  <button class="btn btn-outline-danger delete-profile" onClick={EliminarPerfil}>Eliminar Perfil</button>
                 )}
               </div>
             </div>

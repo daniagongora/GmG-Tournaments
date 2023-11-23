@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 import '../statics/css/General.css';
-import '../statics/css/Login.css';
+import '../statics/css/RegistrarPerfil.css';
 
 function RegistrarPerfil() {
   const [nombre, setNombre] = useState('');
@@ -66,63 +66,74 @@ function RegistrarPerfil() {
             <h1>GmG <br></br>Tournaments</h1>
           </div>
           
-          <div class="title">   
+          <div class="subtitle">   
             <h3>Registro</h3>
           </div>
 
           <br></br>
 
           <form onSubmit={RegistrarPerfil}>
-            <label class="form-label">Nombre completo</label>
-            <input type="text"
-                   placeholder="Ingresa tu nombre completo"
-                   value={nombre}
-                   onChange={(e) => setNombre(e.target.value)}
-                   class="form-control form-login" />
+          
+          <div class="row">
+              
+            <div class="col-md-4">
+              <label class="form-label">Nombre completo</label>
+              <input type="text"
+                    placeholder="Ingresa tu nombre completo"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    class="form-control form-login" />
+            </div>
+              
+            <div class="col-md-4">
+              <label class="form-label">Nombre de usuario</label>
+              <input type="text"
+                    placeholder="Ingresa tu nombre de usuario"
+                    value={usuario}
+                    onChange={(e) => setUsuario(e.target.value)}
+                    class="form-control form-login" />
+            </div>
 
-            <br></br>
+            <div class="col-md-4">
+              <label class="form-label">Correo</label>
+              <input type="email"
+                    placeholder="Ingresa tu correo"
+                    value={correo}
+                    onChange={(e) => setCorreo(e.target.value)}
+                    class="form-control form-login" />
+            </div> 
 
-            <label class="form-label">Nombre de usuario</label>
-            <input type="text"
-                   placeholder="Ingresa tu nombre de usuario"
-                   value={usuario}
-                   onChange={(e) => setUsuario(e.target.value)}
-                   class="form-control form-login" />
+          </div>  
 
-            <br></br>
+          <div class="row">
+            
+            <div class="col-md-2"></div>
 
-            <label class="form-label">Correo</label>
-            <input type="email"
-                   placeholder="Ingresa tu correo"
-                   value={correo}
-                   onChange={(e) => setCorreo(e.target.value)}
-                   class="form-control form-login" />
+            <div class="col-md-4">
+              <label class="form-label">Contraseña</label>
+              <input type="password"
+                    placeholder="Ingresa tu contraseña "
+                    value={contrasenia}
+                    onChange={(e) => setContrasenia(e.target.value)}
+                    class="form-control form-login" />
+            </div>
 
-            <br></br>
+            <div class="col-md-4">
+              <label class="form-label">Confirma tu contraseña</label>
+              <input type="password"
+                    placeholder="Ingresa tu contraseña otra vez"
+                    value={confirmarcontrasenia}
+                    onChange={(e) => setConfirmarContrasenia(e.target.value)}
+                    class="form-control form-login" />
+            </div>
 
-            <label class="form-label">Contraseña</label>
-            <input type="password"
-                   placeholder="Ingresa tu contraseña "
-                   value={contrasenia}
-                   onChange={(e) => setContrasenia(e.target.value)}
-                   class="form-control form-login" />
+          </div>
 
-            <br></br>
-
-            <label class="form-label">Confirma tu contraseña</label>
-            <input type="password"
-                   placeholder="Ingresa tu contraseña otra vez"
-                   value={confirmarcontrasenia}
-                   onChange={(e) => setConfirmarContrasenia(e.target.value)}
-                   class="form-control form-login" />
-
-            <br></br>
-
-            <button type="submit" class="btn btn-login btn-outline-secondary">Registrar</button>
-          </form>
-          {mensaje && <p>{mensaje}</p>}
-        </div>
-      </body>  
+            <button type="submit" class="btn btn-outline-secondary btn-create-account">Crear Cuenta</button>
+            {mensaje && <p>{mensaje}</p>}
+            </form>
+          </div>
+        </body>  
     </div>
   );
 }
