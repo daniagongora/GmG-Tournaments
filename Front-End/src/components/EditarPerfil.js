@@ -135,7 +135,7 @@ function EditarPerfil(props) {
         return;
       }
   
-      const response = await fetch(`http://localhost:5000/participante/editarPerfil${idUsuario}/${nombreUsuario}`, {
+      const response = await fetch(`http://localhost:5000/participante/perfil${idUsuario}/${nombreUsuario}/editar`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

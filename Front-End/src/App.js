@@ -16,16 +16,16 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/:nombreUsuario/crearTorneo" exact component={CrearTorneo} />
-        <Route path="/editarPerfil:idUsuario/:nombreUsuario" exact component={EditarPerfil} />
-        <Route path="/:nombreUsuario/eliminarTorneo" exact component={EliminarTorneo} />
+        <Route path="/perfil:idUsuario/:nombreUsuario/misTorneos/crearTorneo" exact component={CrearTorneo} />
+        <Route path="/perfil:idUsuario/:nombreUsuario/editar" exact component={EditarPerfil} />
+        <Route path="/perfil:idUsuario/:nombreUsuario/misTorneos" exact component={EliminarTorneo} />
         <Route path="/error" exact component={Error} />
         <Route path="/login" exact component={Login} />
         <Route path="/logout" exact component={Logout}/> 
         <Route path="/perfil:idUsuario/:nombreUsuario" exact component={Perfil} />
         <Route path="/" exact component ={Principal} />
         <Route path="/registro" exact component={RegistrarPerfil} />
-        <Route path="/perfil:idUsuario/:nombreUsuario/verAmigos" exact component={VerAmigos} />
+        <Route path="/perfil:idUsuario/:nombreUsuario/amigos" exact component={VerAmigos} />
       </Switch>
     </Router>
   );

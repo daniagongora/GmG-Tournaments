@@ -22,8 +22,8 @@ crear_torneo = Blueprint('crear_torneo', __name__, url_prefix='/torneo')
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
 """
-@crear_torneo.route("/crearTorneo", methods=['POST'])
-def agregar_torneo():
+@crear_torneo.route("/perfil<int:idAdmin>/<name>/misTorneos/crearTorneo", methods=['POST'])
+def agregar_torneo(idAdmin, name):
     try:
         # Obtenemos los datos del formulario
         idAdministrador = request.form.get("IDAdministrador")
@@ -60,8 +60,8 @@ eliminar_torneo = Blueprint('eliminar_torneo', __name__, url_prefix='/torneo')
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
 """
-@eliminar_torneo.route("/<idAdmin>/eliminarTorneo", methods=['POST','GET'])
-def eliminarTorneo(idAdmin):
+@eliminar_torneo.route("/perfil<int:idAdmin>/<name>/misTorneos", methods=['POST','GET'])
+def eliminarTorneo(idAdmin, name):
     try:
         if request.method == 'GET':
             listaTorneos = []

@@ -33,7 +33,7 @@ function VerAmigos(props) {
   useEffect(() => {
     const obtenerAmigos = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/participante/perfil${idUsuario}/${nombreUsuario}/verAmigos`);
+        const response = await fetch(`http://localhost:5000/participante/perfil${idUsuario}/${nombreUsuario}/amigos`);
         const data = await response.json();
 
         if (data.success) {

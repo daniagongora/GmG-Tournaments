@@ -22,7 +22,7 @@ editar_perfil_administrador = Blueprint('editar_perfil_administrador', __name__,
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
 """
-@editar_perfil_administrador.route('/editarPerfil<int:id>/<name>', methods=('GET', 'POST'))
+@editar_perfil_administrador.route('/perfil<int:id>/<name>/editar', methods=('GET', 'POST'))
 def editar_datos(id, name):
     try:
         if request.method == 'POST':
@@ -51,7 +51,7 @@ editar_perfil_participante = Blueprint('editar_perfil_participante', __name__, u
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
 """
-@editar_perfil_participante.route('/editarPerfil<int:id>/<name>', methods=('GET', 'POST'))
+@editar_perfil_participante.route('/perfil<int:id>/<name>/editar', methods=('GET', 'POST'))
 def editar_datos(id, name):
     try:
         if request.method == 'POST':
@@ -80,7 +80,7 @@ editar_perfil_superAdmin = Blueprint('editar_perfil_superAdmin', __name__, url_p
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
 """
-@editar_perfil_superAdmin.route('/editarPerfil<int:id>/<name>', methods=('GET', 'POST'))
+@editar_perfil_superAdmin.route('/perfil<int:id>/<name>/editar', methods=('GET', 'POST'))
 def editar_datos(id, name):
     try:
         if request.method == 'POST':
@@ -136,7 +136,7 @@ ver_amigos = Blueprint('ver_amigos', __name__, url_prefix='/participante')
     Returns:
         jsonify: Respuesta JSON con la lista de amigos o un mensaje de error.
 """
-@ver_amigos.route('/perfil<int:id>/<name>/verAmigos', methods=['GET'])
+@ver_amigos.route('/perfil<int:id>/<name>/amigos', methods=['GET'])
 def ver_amigos_participante(id, name):
     # Obtenemos el participante dado su ID
     participante = get_participante_by_id(id)

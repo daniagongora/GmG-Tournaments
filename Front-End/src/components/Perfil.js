@@ -34,7 +34,7 @@ function Perfil() {
   
     const EditarPerfil = () => {
         history.push({
-            pathname: `/editarPerfil${idUsuario}/${nombreUsuario}`,
+            pathname: `/perfil${idUsuario}/${nombreUsuario}/editar`,
             state: {
                 ID: idUsuario,
                 NombreCompleto: nombreCompleto,
@@ -48,7 +48,7 @@ function Perfil() {
 
     const VerAmigos = () => {
         history.push({
-            pathname: `/perfil${idUsuario}/${nombreUsuario}/verAmigos`,
+            pathname: `/perfil${idUsuario}/${nombreUsuario}/amigos`,
             state: {
                 ID: idUsuario,
                 NombreCompleto: nombreCompleto,
@@ -62,7 +62,7 @@ function Perfil() {
 
     const CrearTorneo = () => {
         history.push({
-          pathname: `/${nombreUsuario}/crearTorneo`,
+          pathname: `/perfil${idUsuario}/${nombreUsuario}/misTorneos/crearTorneo`,
           state: {
             ID: idUsuario,
             NombreCompleto: nombreCompleto,
@@ -76,7 +76,7 @@ function Perfil() {
 
     const EliminarTorneo = () => {
         history.push({
-          pathname: `/${nombreUsuario}/eliminarTorneo`,
+          pathname: `/perfil${idUsuario}/${nombreUsuario}/misTorneos`,
           state: {
             ID: idUsuario,
             NombreCompleto: nombreCompleto,

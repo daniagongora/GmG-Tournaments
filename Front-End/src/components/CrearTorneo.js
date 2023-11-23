@@ -93,7 +93,7 @@ function CrearTorneo() {
         data.append("Descripcion", descripcion);
         data.append("FechaCreacion", fechaCreacion);
 
-        const response = await fetch("http://localhost:5000/torneo/crearTorneo", {
+        const response = await fetch(`http://localhost:5000/torneo/perfil${idUsuario}/${nombreUsuario}/misTorneos/crearTorneo`, {
           method: "POST",
           body: data,
         });
@@ -112,7 +112,7 @@ function CrearTorneo() {
             },
           });
           history.push({
-            pathname: `/${nombreUsuario}/eliminarTorneo`,
+            pathname: `/perfil${idUsuario}/${nombreUsuario}/misTorneos`,
             state: {
               ID: idUsuario,
               NombreCompleto: nombreCompleto,

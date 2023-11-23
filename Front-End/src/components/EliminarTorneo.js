@@ -26,7 +26,7 @@ function EliminarTorneo() {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/torneo/${idUsuario}/eliminarTorneo`,
+          `http://localhost:5000/torneo/perfil${idUsuario}/${nombreUsuario}/misTorneos`,
           {
             method: "GET",
           }
@@ -59,7 +59,7 @@ function EliminarTorneo() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/torneo/${idUsuario}/eliminarTorneo`,
+        `http://localhost:5000/torneo/perfil${idUsuario}/${nombreUsuario}/misTorneos`,
         {
           method: "POST",
           body: data,
@@ -108,7 +108,7 @@ function EliminarTorneo() {
 
   const CrearTorneo = () => {
     history.push({
-      pathname: `/${nombreUsuario}/crearTorneo`,
+      pathname: `/perfil${idUsuario}/${nombreUsuario}/misTorneos/crearTorneo`,
       state: {
         ID: idUsuario,
         NombreCompleto: nombreCompleto,
