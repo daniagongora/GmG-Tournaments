@@ -32,7 +32,7 @@ function EditarPerfil(props) {
   const [correo, setCorreo] = useState(props.location.state.Correo.toString());
   const [contrasenia, setContrasenia] = useState('');
   // const [imagenPerfil, setImagenPerfil] = useState(props.location.state.ImagenPerfil.toString());
-  const [rol, setRol] = useState(props.location.state.Rol.toString());
+  const [rol, setRol] = useState(props.location.state.Rol.toLowerCase());
 
   const [mostrarModalDatos, setMostrarModalDatos] = useState(false);
 
@@ -115,12 +115,15 @@ function EditarPerfil(props) {
     try {
       const campos = {
         NombreCompleto: document.getElementById('nombre').value,
-        NombreParticipante: document.getElementById('username').value,
+        [rol === 'participante' ? 'NombreParticipante' : rol === 'administrador' ? 'NombreAdministrador' : 'NombreSuperadministrador']: document.getElementById('username').value,
         Correo: document.getElementById('correo').value,
         Contrasenia: document.getElementById('contrasenia').value,
       };
   
-      if (!campos.NombreCompleto || !campos.NombreParticipante || !campos.Correo || !campos.Contrasenia) {
+      if (!campos.NombreCompleto || 
+          !campos[(rol === 'participante' ? 'NombreParticipante' : rol === 'administrador' ? 'NombreAdministrador' : 'NombreSuperadministrador')] || 
+          !campos.Correo || 
+          !campos.Contrasenia) {
         Swal.fire({
           title: 'Error',
           text: 'Por favor llena todos los campos del formulario',
@@ -135,7 +138,7 @@ function EditarPerfil(props) {
         return;
       }
   
-      const response = await fetch(`http://localhost:5000/participante/perfil${idUsuario}/${nombreUsuario}/editar`, {
+      const response = await fetch(`http://localhost:5000/${rol.toLowerCase()}/perfil${idUsuario}/${nombreUsuario}/editar`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -157,7 +160,7 @@ function EditarPerfil(props) {
         });
 
         setNombreCompleto(campos.NombreCompleto);
-        setNombreUsuario(campos.NombreParticipante);
+        setNombreUsuario(campos[rol === 'participante' ? 'NombreParticipante' : rol === 'administrador' ? 'NombreAdministrador' : 'NombreSuperadministrador']);
         setCorreo(campos.Correo);
 
         if (contrasenia !== "************") {

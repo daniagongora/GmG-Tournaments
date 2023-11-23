@@ -9,15 +9,12 @@ import '../statics/css/General.css';
 import '../statics/css/Alerta.css';
 import '../statics/css/VerAmigos.css';
 
-import mostrarImagenPerfil from './MostrarImagen';
-
 function VerAmigos(props) {
 
   const location = useLocation();
   
   const nombreUsuario = props.location.state.NombreUsuario.toString();
   const { idUsuario } = useParams();
-  const imagenPerfil = props.location.state.ImagenPerfil;
 
   const [amigos, setAmigos] = useState([]);
   useEffect(() => {

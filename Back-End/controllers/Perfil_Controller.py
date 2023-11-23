@@ -10,7 +10,7 @@ from model.model_superAdmin import edit_superAdmin
 # ------------------------------ EDITAR PERFIL ------------------------------
 # ------------------------------ ADMINISTRADOR ------------------------------
 
-editar_perfil_administrador = Blueprint('editar_perfil_administrador', __name__, url_prefix='/admin')
+editar_perfil_administrador = Blueprint('editar_perfil_administrador', __name__, url_prefix='/administrador')
 
 """
     Función para editar el perfil de un administrador.
@@ -68,7 +68,7 @@ def editar_datos(id, name):
 # ------------------------------ EDITAR PERFIL ------------------------------
 # ---------------------------- SUPERADMINISTRADOR ---------------------------
 
-editar_perfil_superAdmin = Blueprint('editar_perfil_superAdmin', __name__, url_prefix='/superAdmin')
+editar_perfil_superAdmin = Blueprint('editar_perfil_superAdmin', __name__, url_prefix='/superadministrador')
 
 """
     Función para editar el perfil de un superadministrador.

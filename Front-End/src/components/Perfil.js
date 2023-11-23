@@ -48,23 +48,6 @@ function Perfil() {
         });
     };
 
-<<<<<<< Updated upstream
-    const CrearTorneo = () => {
-        history.push({
-          pathname: `/perfil${idUsuario}/${nombreUsuario}/misTorneos/crearTorneo`,
-          state: {
-            ID: idUsuario,
-            NombreCompleto: nombreCompleto,
-            NombreUsuario: nombreUsuario,
-            Correo: correo,
-            ImagenPerfil: imagenPerfil,
-            Rol: rol,
-          },
-        });
-    };
-
-=======
->>>>>>> Stashed changes
     const EliminarTorneo = () => {
         history.push({
           pathname: `/perfil${idUsuario}/${nombreUsuario}/misTorneos`,
@@ -125,4 +108,4 @@ function Perfil() {
     );
   }
   
-  export default Perfil;
+export default Perfil;
