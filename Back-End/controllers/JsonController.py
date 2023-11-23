@@ -1,12 +1,39 @@
 from flask import Blueprint
 import json
 
+from model.model_administrador import get_all_administradores
 from model.model_participante import get_all_participantes
 from model.model_superAdmin import get_all_superAdmins
-from model.model_administrador import get_all_administradores
 
 json_controller = Blueprint('json', __name__, url_prefix='/json')
 
+"""
+    Función para obtener todos los administradores en formato JSON.
+
+    Returns:
+        str: Una cadena JSON que contiene los datos de los administradores.
+"""
+@json_controller.route('/admin')
+def get_Admin():
+    admins = get_all_administradores()
+    response = []
+    for admin in admins:
+        response.append({
+            'NombreCompleto':admin.NombreCompleto,
+            'ImagenPerfil':admin.ImagenPerfil,
+            'Contrasenia':admin.Contrasenia,
+            'NombreAdministrador':admin.NombreAdministrador,
+            'Correo':admin.Correo,
+            'Rol':admin.Rol
+        })
+    return json.dumps(response)
+
+"""
+    Función para obtener todos los participantes en formato JSON.
+
+    Returns:
+        str: Una cadena JSON que contiene los datos de los participantes.
+"""
 @json_controller.route('/participante')
 def get_participantes():
     participantes = get_all_participantes()
@@ -22,6 +49,12 @@ def get_participantes():
         })
     return json.dumps(response)
 
+"""
+    Función para obtener todos los superadministradores en formato JSON.
+
+    Returns:
+        str: Una cadena JSON que contiene los datos de los superadministradores.
+"""
 @json_controller.route('/superAdmin')
 def get_superAdmin():
     superAdmins = get_all_superAdmins()
@@ -34,20 +67,5 @@ def get_superAdmin():
             'NombreSuperadministrador':superAdmin.NombreSuperadministrador,
             'Correo':superAdmin.Correo,
             'Rol':superAdmin.Rol
-        })
-    return json.dumps(response)
-
-@json_controller.route('/admin')
-def get_Admin():
-    Admins = get_all_administradores()
-    response = []
-    for Admin in Admins:
-        response.append({
-            'NombreCompleto':Admin.NombreCompleto,
-            'ImagenPerfil':Admin.ImagenPerfil,
-            'Contrasenia':Admin.Contrasenia,
-            'NombreAdministrador':Admin.NombreAdministrador,
-            'Correo':Admin.Correo,
-            'Rol':Admin.Rol
         })
     return json.dumps(response)

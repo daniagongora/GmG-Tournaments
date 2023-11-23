@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 import Navegacion from './Navegacion';
@@ -24,27 +24,24 @@ import imagen12 from '../statics/icons/tracer.jpg';
 
 function EditarPerfil(props) {
 
-  const location = useLocation();
   const history = useHistory();
 
+  const { idUsuario } = useParams();
   const [nombreCompleto, setNombreCompleto] = useState(props.location.state.NombreCompleto.toString());
   const [nombreUsuario, setNombreUsuario] = useState(props.location.state.NombreUsuario.toString());
   const [correo, setCorreo] = useState(props.location.state.Correo.toString());
   const [contrasenia, setContrasenia] = useState('');
-  const [imagenPerfil, setImagenPerfil] = useState(props.location.state.ImagenPerfil.toString());
+  // const [imagenPerfil, setImagenPerfil] = useState(props.location.state.ImagenPerfil.toString());
   const [rol, setRol] = useState(props.location.state.Rol.toString());
-  const { idUsuario } = useParams();
-  const [mostrarModalImagen, setMostrarModalImagen] = useState(false);
+
   const [mostrarModalDatos, setMostrarModalDatos] = useState(false);
 
+  const [mostrarModalImagen, setMostrarModalImagen] = useState(false);
   const [imagenesDisponibles, setImagenesDisponibles] = useState([
     imagen1, imagen2, imagen3, imagen4,
     imagen5, imagen6, imagen7, imagen8, 
     imagen9, imagen10, imagen11, imagen12,
   ]);
-  useEffect(() => {
-    console.log('Rutas de imágenes:', imagenesDisponibles.map(img => img.default));
-  }, [imagenesDisponibles]);
 
   const EliminarPerfil = async () => {
     const result = await Swal.fire({
@@ -114,7 +111,7 @@ function EditarPerfil(props) {
 
   const EditarDatos = async (e) => {
     e.preventDefault();
-
+  
     try {
       const campos = {
         NombreCompleto: document.getElementById('nombre').value,
@@ -122,6 +119,21 @@ function EditarPerfil(props) {
         Correo: document.getElementById('correo').value,
         Contrasenia: document.getElementById('contrasenia').value,
       };
+  
+      if (!campos.NombreCompleto || !campos.NombreParticipante || !campos.Correo || !campos.Contrasenia) {
+        Swal.fire({
+          title: 'Error',
+          text: 'Por favor llena todos los campos del formulario',
+          icon: 'error',
+          customClass: {
+            container: 'custom-alert-container',
+            title: 'custom-alert-title',
+            icon: 'custom-alert-icon',
+          },
+        });
+  
+        return;
+      }
   
       const response = await fetch(`http://localhost:5000/participante/editarPerfil${idUsuario}/${nombreUsuario}`, {
         method: 'POST',
@@ -132,11 +144,6 @@ function EditarPerfil(props) {
       });
   
       if (response.ok) {
-          setNombreCompleto(campos.NombreCompleto);
-          setNombreUsuario(campos.NombreParticipante);
-          setCorreo(campos.Correo);
-          setContrasenia(campos.Contrasenia);
-        
         Swal.fire({
           title: 'Perfil actualizado exitosamente',
           text: 'Por favor, vuelva a iniciar sesión',
@@ -149,6 +156,14 @@ function EditarPerfil(props) {
           },
         });
 
+        setNombreCompleto(campos.NombreCompleto);
+        setNombreUsuario(campos.NombreParticipante);
+        setCorreo(campos.Correo);
+
+        if (contrasenia !== "************") {
+          setContrasenia(campos.Contrasenia);
+        }
+  
         setMostrarModalDatos(false);
         history.push('/');
       } else {
@@ -176,7 +191,7 @@ function EditarPerfil(props) {
         },
       });
     }
-  }; 
+  };   
   
   const ModalEditarImagen = ({ onClose, children }) => {
     return (
@@ -187,6 +202,7 @@ function EditarPerfil(props) {
               <h2 class="modal-title">Selecciona una Imagen</h2>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
             </div>
+            
             <div class="modal-body">
               { children }
             </div>
@@ -279,6 +295,42 @@ function EditarPerfil(props) {
             </div> 
           </div>
 
+          {mostrarModalDatos && (
+            <ModalEditarDatos onClose={() => setMostrarModalDatos(false)}>
+              <form>
+                <div class="row">
+                  <div class="col-md">
+                    <label class="form-label modal-label" htmlFor="nombre">Nombre:</label>
+                    <input class="modal-input" type="text" id="nombre" required
+                            defaultValue={nombreCompleto} />
+                  </div>
+
+                  <div class="col-md">
+                    <label class="form-label modal-label" htmlFor="username">Username:</label>
+                    <input class="modal-input" type="text" id="username" required
+                            defaultValue={nombreUsuario} />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md">
+                    <label class="form-label modal-label" htmlFor="correo">Correo:</label>
+                    <input class="modal-input" type="email" id="correo" required 
+                           defaultValue={correo} />
+                  </div>
+
+                  <div class="col-md">
+                    <label class="form-label modal-label" htmlFor="contrasenia">Password:</label>
+                    <input class="modal-input" type="password" id="contrasenia" required 
+                           defaultValue={"************"}/>
+                  </div>
+                </div>
+                
+                <button class="btn btn-outline-secondary save-changes" type="submit" onClick={EditarDatos}>Guardar</button>
+              </form>
+            </ModalEditarDatos>
+          )}
+
           {mostrarModalImagen && (
             <ModalEditarImagen onClose={() => setMostrarModalImagen(false)}>
               <div class="imagen-container">
@@ -292,39 +344,6 @@ function EditarPerfil(props) {
                 ))}
               </div>
             </ModalEditarImagen>
-          )}
-
-          {mostrarModalDatos && (
-            <ModalEditarDatos onClose={() => setMostrarModalDatos(false)}>
-              <form>
-                <div class="row">
-                  <div class="col-md">
-                    <label class="form-label modal-label" htmlFor="nombre">Nombre:</label>
-                    <input class="modal-input" type="text" id="nombre" required
-                            defaultValue={nombreCompleto} />
-                  </div>
-                  <div class="col-md">
-                    <label class="form-label modal-label" htmlFor="username">Username:</label>
-                    <input class="modal-input" type="text" id="username" required
-                            defaultValue={nombreUsuario} />
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md">
-                    <label class="form-label modal-label" htmlFor="correo">Correo:</label>
-                    <input class="modal-input" type="email" id="correo" required defaultValue={correo} />
-                  </div>
-
-                  <div class="col-md">
-                    <label class="form-label modal-label" htmlFor="contrasenia">Password:</label>
-                    <input class="modal-input" type="password" id="contrasenia" required />
-                  </div>
-                </div>
-                
-                <button class="btn btn-outline-secondary save-changes" type="submit" onClick={EditarDatos}>Guardar</button>
-              </form>
-            </ModalEditarDatos>
           )}
         </div>  
       </body>

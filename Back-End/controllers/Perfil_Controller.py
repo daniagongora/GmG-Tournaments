@@ -1,109 +1,172 @@
 from flask import Blueprint, request, jsonify
-from hashlib import sha256
-from CryptoUtils.CryptoUtils import cipher
 
 from alchemyClasses import db
-from alchemyClasses.Amistar import Amistar
-from alchemyClasses.Participante import Participante
 
-from model.model_participante import get_participante_by_id
 from model.model_amistar import get_friendships
+from model.model_administrador import edit_administrador
+from model.model_participante import get_participante_by_id, delete_participante, edit_participante
+from model.model_superAdmin import edit_superAdmin
 
 # ------------------------------ EDITAR PERFIL ------------------------------
+# ------------------------------ ADMINISTRADOR ------------------------------
 
-editar_perfil = Blueprint('editar_perfil', __name__, url_prefix='/participante')
+editar_perfil_administrador = Blueprint('editar_perfil_administrador', __name__, url_prefix='/admin')
 
-@editar_perfil.route('/editarPerfil<int:id>/<name>', methods=('GET', 'POST'))
+"""
+    Función para editar el perfil de un administrador.
+
+    Args:
+        id (int): El ID del administrador.
+        name (str): El nombre del administrador.
+
+    Returns:
+        jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
+"""
+@editar_perfil_administrador.route('/editarPerfil<int:id>/<name>', methods=('GET', 'POST'))
 def editar_datos(id, name):
-    if request.method == 'POST':
-        participante = get_participante_by_id(id)
-        
-        if participante:
-            try:
-                campos = request.get_json()
+    try:
+        if request.method == 'POST':
+            success = edit_administrador(id, name)
 
-                nombreNuevo = campos.get('NombreCompleto', '')
-                usernameNuevo = campos.get('NombreParticipante', '')
-                correoNuevo = campos.get('Correo', '')
-                contraseniaNueva = campos.get('Contrasenia', '')
+            if success:
+                return jsonify({'success': success, 'message': 'Se actualizaron los datos exitosamente'})
+            else:
+                return jsonify({'success': success, 'message': 'Ocurrió un error al intentar actualizar los datos'})
 
-                if nombreNuevo:
-                    participante.NombreCompleto = nombreNuevo
-                if usernameNuevo:
-                    participante.NombreParticipante = usernameNuevo
-                if correoNuevo:
-                    participante.Correo = correoNuevo
-                if contraseniaNueva:
-                    participante.Contrasenia = sha256(cipher(contraseniaNueva)).hexdigest()
+    except Exception:
+        return jsonify({'success': False, 'message': 'Ocurrió un error inesperado'})
+    
+# ------------------------------ EDITAR PERFIL ------------------------------
+# ------------------------------ PARTICIPANTE -------------------------------
+    
+editar_perfil_participante = Blueprint('editar_perfil_participante', __name__, url_prefix='/participante')
 
-                db.session.commit()
+"""
+    Función para editar el perfil de un participante.
 
-                return jsonify({'success': True, 'message': 'Datos actualizados exitosamente'})
-            except Exception:
-                return jsonify({'success': False, 'message': 'Error durante la actualización'})
-        else:
-            return jsonify({'success': False, 'message': 'Perfil no encontrado'})
-        
-    return jsonify({'success': False, 'message': 'Método no permitido'})
+    Args:
+        id (int): El ID del participante.
+        name (str): El nombre del participante.
+
+    Returns:
+        jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
+"""
+@editar_perfil_participante.route('/editarPerfil<int:id>/<name>', methods=('GET', 'POST'))
+def editar_datos(id, name):
+    try:
+        if request.method == 'POST':
+            success = edit_participante(id, name)
+
+            if success:
+                return jsonify({'success': success, 'message': 'Se actualizaron los datos exitosamente'})
+            else:
+                return jsonify({'success': success, 'message': 'Ocurrió un error al intentar actualizar los datos'})
+
+    except Exception:
+        return jsonify({'success': False, 'message': 'Ocurrió un error inesperado'})
+    
+# ------------------------------ EDITAR PERFIL ------------------------------
+# ---------------------------- SUPERADMINISTRADOR ---------------------------
+
+editar_perfil_superAdmin = Blueprint('editar_perfil_superAdmin', __name__, url_prefix='/superAdmin')
+
+"""
+    Función para editar el perfil de un superadministrador.
+
+    Args:
+        id (int): El ID del superadministrador.
+        name (str): El nombre del superadministrador.
+
+    Returns:
+        jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
+"""
+@editar_perfil_superAdmin.route('/editarPerfil<int:id>/<name>', methods=('GET', 'POST'))
+def editar_datos(id, name):
+    try:
+        if request.method == 'POST':
+            success = edit_superAdmin(id, name)
+
+            if success:
+                return jsonify({'success': success, 'message': 'Se actualizaron los datos exitosamente'})
+            else:
+                return jsonify({'success': success, 'message': 'Ocurrió un error al intentar actualizar los datos'})
+
+    except Exception:
+        return jsonify({'success': False, 'message': 'Ocurrió un error inesperado'})
 
 # ------------------------------ ELIMINAR PERFIL ------------------------------
 
 eliminar_perfil = Blueprint('eliminar_perfil', __name__, url_prefix='/participante')
 
-@eliminar_perfil.route('/eliminarPerfil/<int:id>', methods=['POST'])
-def eliminar_usuario(id):
-    
-    if request.method == 'POST':
-        participante = get_participante_by_id(id)
-        
-        if participante:
-            registros_amistar = get_friendships(id)
-            
-            for registro in registros_amistar:
-                db.session.delete(registro)
-            
-            db.session.delete(participante)
-            
-            try:
-                db.session.commit()
-                return jsonify({'success': True, 'message': 'Perfil eliminado con éxito'})
-            except Exception as e:
-                db.session.rollback()
-                return jsonify({'success': False, 'message': str(e)})
-        
-        else:
-            return jsonify({'success': False, 'message': 'Perfil no encontrado'})
+"""
+    Función para eliminar el perfil de un participante.
 
-    return jsonify({'success': False, 'message': 'Método no permitido'})
+    Args:
+        id (int): El ID del participante.
+
+    Returns:
+        jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
+"""
+@eliminar_perfil.route('/eliminarPerfil/<int:id>', methods=['POST'])
+def eliminar_participante(id):
+    if request.method == 'POST':
+        try:
+            success = delete_participante(id)
+
+            if success: 
+                return jsonify({'success': success, 'message': 'Se eliminó el perfil exitosamente'})
+            else:
+                return jsonify({'success': success, 'message': 'Ocurrió un error al intentar eliminar el perfil'})
+            
+        except Exception:
+            db.session.rollback()
+            return jsonify({'success': False, 'message': 'Ocurrió un error inesperado'})
 
 # ------------------------------ VER AMIGOS ------------------------------
 
 ver_amigos = Blueprint('ver_amigos', __name__, url_prefix='/participante')
 
+"""
+    Función para obtener la lista de amigos de un participante.
+
+    Args:
+        id (int): El ID del participante.
+        name (str): El nombre del participante.
+
+    Returns:
+        jsonify: Respuesta JSON con la lista de amigos o un mensaje de error.
+"""
 @ver_amigos.route('/perfil<int:id>/<name>/verAmigos', methods=['GET'])
 def ver_amigos_participante(id, name):
+    # Obtenemos el participante dado su ID
     participante = get_participante_by_id(id)
 
+    # Verificamos si existe el participante
     if participante:
-        # Obtener el ID del participante
+        # Obtenemos el ID del participante
         id_participante = participante.IDParticipante
 
-        # Buscar amigos del participante con estatus 1:
+        # Buscamos amigos del participante con estatus 1:
         # El estatus 1 denota solicitudes aceptadas
         # El estatus 0 denota solicitudes sin aceptar pendientes
-        amigos = Amistar.query.filter((Amistar.Solicitante == id_participante) | 
-                                      (Amistar.Receptor == id_participante), Amistar.Estatus == 1).all()
+        amigos = get_friendships(id_participante)
 
+        # Lista que almacenará los amigos del participante
         lista_amigos = []
+        # Iteramos sobre la lista de amigos
         for amigo in amigos:
+            # Determinamos el ID del amigo basado en el rol de solicitante/receptor
             if amigo.Solicitante == id_participante:
                 id_amigo = amigo.Receptor
             else:
                 id_amigo = amigo.Solicitante
 
-            amigo = Participante.query.get(id_amigo)
+            # Obtenemos la información del amigo usando su ID
+            amigo = get_participante_by_id(id_amigo)
 
+            # Verificamos si se encontró información del amigo
             if amigo:
+                # Agregamos la información del amigo a la lista
                 lista_amigos.append({
                     'ImagenPerfil': amigo.ImagenPerfil,
                     'NombreParticipante': amigo.NombreParticipante,

@@ -1,11 +1,13 @@
-from flask import Flask, jsonify, render_template, request, flash, session, redirect, url_for
-from flask_cors import CORS
 from alchemyClasses import db
 from CryptoUtils.CryptoUtils import validate
+from flask import Flask, jsonify, render_template, request, flash, session, redirect, url_for
+from flask_cors import CORS
 
 from controllers.JsonController import json_controller
 from controllers.Perfil_Controller import eliminar_perfil
-from controllers.Perfil_Controller import editar_perfil
+from controllers.Perfil_Controller import editar_perfil_administrador
+from controllers.Perfil_Controller import editar_perfil_participante
+from controllers.Perfil_Controller import editar_perfil_superAdmin
 from controllers.Perfil_Controller import ver_amigos
 from controllers.RegistrarPerfil_Controller import registrar_perfil
 from controllers.Torneo_Controller import crear_torneo
@@ -28,16 +30,28 @@ app.config.from_mapping(
 db.init_app(app)
 
 app.register_blueprint(eliminar_perfil)
-app.register_blueprint(editar_perfil)
+app.register_blueprint(editar_perfil_administrador)
+app.register_blueprint(editar_perfil_participante)
+app.register_blueprint(editar_perfil_superAdmin)
 app.register_blueprint(ver_amigos)
 app.register_blueprint(registrar_perfil)
 app.register_blueprint(crear_torneo)
 app.register_blueprint(eliminar_torneo)
 
+"""
+    Ruta principal que redirige a la página de inicio de sesión.
+"""
 @app.route('/', methods=['GET', 'POST'])
 def main():
     return redirect(url_for('login'))
 
+"""
+    Ruta para el manejo de inicio de sesión.
+    Realiza la validación de las credenciales y establece la sesión del usuario.
+
+    Returns:
+        jsonify: Respuesta JSON con el resultado del inicio de sesión.
+"""
 @app.route('/login', methods=['POST'])
 def login():
     # Lógica de inicio de sesión, validación de credenciales, etc
@@ -51,8 +65,8 @@ def login():
 
         if participantes:
             participante = participantes[0]
+            # Establecemos la sesión para un participante
             if validate(Contrasenia, participante.Contrasenia):
-
                 session.clear()
                 session['IDParticipante'] = participante.IDParticipante
                 session['NombreCompleto'] = participante.NombreCompleto
@@ -81,8 +95,8 @@ def login():
 
         if superadmins:
             superadmin = superadmins[0]
+            # Establecemos la sesión para un superadministrador
             if validate(Contrasenia, superadmin.Contrasenia):
-
                 session.clear()
                 session['IDSuperAdministrador'] = superadmin.IDSuperAdministrador
                 session['NombreCompleto'] = superadmin.NombreCompleto
@@ -111,8 +125,8 @@ def login():
 
         if admins:
             admin = admins[0]
+            # Establecemos la sesión para un administrador
             if validate(Contrasenia, admin.Contrasenia):
-
                 session.clear()
                 session['IDAdministrador'] = admin.IDAdministrador
                 session['IDSuperAdministrador'] = admin.IDSuperAdministrador
@@ -143,6 +157,12 @@ def login():
     except KeyError:
         return jsonify({'success': False, 'message': 'No se envió correctamente el correo y/o la contraseña'})
 
+"""
+    Ruta para la página principal, verifica si el usuario ha iniciado sesión.
+
+    Returns:
+        render_template: Devuelve la plantilla de la página principal o redirige al inicio de sesión si no se ha iniciado sesión.
+"""
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     if session.get('NombreParticipante', None) is None:
