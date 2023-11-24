@@ -11,6 +11,7 @@ import Perfil from './components/Perfil';
 import Principal from './components/Principal';
 import RegistrarPerfil from './components/RegistrarPerfil';
 import VerAmigos from './components/VerAmigos';
+import BuscarUsuario from './components/BuscarUsuario';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" exact component ={Principal} />
         <Route path="/registro" exact component={RegistrarPerfil} />
         <Route path="/perfil:idUsuario/:nombreUsuario/amigos" exact component={VerAmigos} />
+        <Route path="/perfil:idUsuario/:nombreUsuario/buscarUsuario" component={BuscarUsuario}/>
       </Switch>
     </Router>
   );

@@ -1,10 +1,10 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 
 from alchemyClasses import db
 
 from model.model_amistar import get_friendships
 from model.model_administrador import edit_administrador
-from model.model_participante import get_participante_by_id, delete_participante, edit_participante
+from model.model_participante import get_participante_by_id, delete_participante, edit_participante, get_participante_by_name
 from model.model_superAdmin import edit_superAdmin
 
 # ------------------------------ EDITAR PERFIL ------------------------------
@@ -175,3 +175,44 @@ def ver_amigos_participante(id, name):
         return jsonify({'success': True, 'amigos': lista_amigos})
 
     return jsonify({'success': False, 'message': 'Participante no encontrado'})
+
+buscar_usuario = Blueprint('buscar_usuario',  __name__, url_prefix='/participante')
+
+"""
+    Función para buscar un usuario siendo un participante.
+
+    Args:
+        name (str): El nombre del participante.
+
+    Returns:
+        jsonify: Respuesta JSON con los datos del usuario buscado o un mensaje de error.
+"""
+@buscar_usuario.route('/perfil<int:id>/<name>/buscarUsuario', methods = ['POST'])
+def buscar(id,name):
+    try:
+        #Obtenemos al usuario por su nombre de usuario
+        Usuario = request.form.get('NombreUsuario')
+        
+        #Buscamos al usuario en la base de datos
+        usuario_participante = get_participante_by_name(Usuario)
+        
+        #Si el usuario existe obtenemos su informacion
+        if usuario_participante:
+            session.clear()
+            session['NombreCompleto'] = usuario_participante.NombreCompleto
+            session['NombreUsuario'] = usuario_participante.NombreParticipante
+            session['ImagenPerfil'] = usuario_participante.ImagenPerfil
+            session['Rol'] = usuario_participante.Rol
+            session.modified = True
+            return jsonify({'success': True, 
+                                'message': 'Usuario encontrado', 
+                                'NombreCompleto': usuario_participante.NombreCompleto, 
+                                'NombreUsuario': usuario_participante.NombreParticipante, 
+                                'ImagenPerfil': usuario_participante.ImagenPerfil, 
+                                'Rol': usuario_participante.Rol})
+        elif Usuario == "":
+            return jsonify({'success': False, 'message': 'Escribe un nombre de usuario por favor'})
+        else:
+            return jsonify({'success': False, 'message': 'No se pudo realizar la búsqueda'})
+    except KeyError:
+        return jsonify({'success': False, 'message': 'No se envió correctamente el nombre de usuario'})

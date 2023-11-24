@@ -61,7 +61,21 @@ function Perfil() {
           },
         });
       };
-  
+    
+    const BuscarUsuario = () => {
+        history.push({
+            pathname: `/perfil${idUsuario}/${nombreUsuario}/buscarUsuario`,
+            state: {
+                ID: idUsuario,
+                NombreCompleto: nombreCompleto,
+                NombreUsuario: nombreUsuario,
+                Correo: correo,
+                ImagenPerfil: imagenPerfil,
+                Rol: rol,
+            },
+          });
+      };
+
     return (
 
         <div>
@@ -97,6 +111,12 @@ function Perfil() {
                                 {location.state.Rol === 'SuperAdministrador' && (
                                     <button class="btn btn-menu btn-outline-secondary">Gestionar</button>
                                 )}
+
+                                {location.state.Rol === 'Participante' &&  (
+                                <button className="btn btn-menu btn-outline-secondary" onClick={BuscarUsuario}>
+                                  Buscar Usuario
+                                </button>
+                            )}
                                 
                                 <button class="btn btn-menu btn-outline-secondary" onClick={EditarPerfil}>Editar Perfil</button>
                             </div>

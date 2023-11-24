@@ -9,6 +9,7 @@ from controllers.Perfil_Controller import editar_perfil_administrador
 from controllers.Perfil_Controller import editar_perfil_participante
 from controllers.Perfil_Controller import editar_perfil_superAdmin
 from controllers.Perfil_Controller import ver_amigos
+from controllers.Perfil_Controller import buscar_usuario
 from controllers.RegistrarPerfil_Controller import registrar_perfil
 from controllers.Torneo_Controller import crear_torneo
 from controllers.Torneo_Controller import eliminar_torneo
@@ -37,6 +38,7 @@ app.register_blueprint(ver_amigos)
 app.register_blueprint(registrar_perfil)
 app.register_blueprint(crear_torneo)
 app.register_blueprint(eliminar_torneo)
+app.register_blueprint(buscar_usuario)
 
 """
     Ruta principal que redirige a la página de inicio de sesión.
