@@ -65,6 +65,7 @@ def edit_administrador(id, name):
 
     # Si se encontró un administrador válido...
     if administrador:
+        print("si encontre a un administrador: ", administrador.NombreCompleto)
         # Obtenemos los campos del formulario JSON
         campos = request.get_json()
 

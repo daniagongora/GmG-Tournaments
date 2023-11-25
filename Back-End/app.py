@@ -9,6 +9,8 @@ from controllers.Perfil_Controller import editar_perfil_administrador
 from controllers.Perfil_Controller import editar_perfil_participante
 from controllers.Perfil_Controller import editar_perfil_superAdmin
 from controllers.Perfil_Controller import ver_amigos
+from controllers.Perfil_Controller import buscar_usuario
+from controllers.Perfil_Controller import buscar_participante
 from controllers.RegistrarPerfil_Controller import registrar_perfil
 from controllers.Torneo_Controller import crear_torneo
 from controllers.Torneo_Controller import eliminar_torneo
@@ -22,7 +24,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.register_blueprint(json_controller)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://root:123456@localhost:3306/proyectois"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://root:angel123@localhost:3306/proyectois"
 app.config['JSON_AS_ASCII'] = False
 app.config.from_mapping(
     SECRET_KEY='dev',
@@ -37,6 +39,8 @@ app.register_blueprint(ver_amigos)
 app.register_blueprint(registrar_perfil)
 app.register_blueprint(crear_torneo)
 app.register_blueprint(eliminar_torneo)
+app.register_blueprint(buscar_usuario)
+app.register_blueprint(buscar_participante)
 
 """
     Ruta principal que redirige a la página de inicio de sesión.

@@ -68,7 +68,7 @@ function VerAmigos(props) {
           <div class="row"> 
             <div class="card card-user col-md-4">
                 <div class="card card-picture border-secondary mb-2">
-                  <MostrarImagenPerfil imagen={location.state.ImagenPerfil}/>
+                  <MostrarImagenPerfil />
                 </div>
 
                 <div class="card card-username">
@@ -89,7 +89,7 @@ function VerAmigos(props) {
                     {amigos.map((amigo) => (
                       <li key={amigo.NombreParticipante} class="list-item col-md-4">
                         <div class="card list-image-container border-secondary">
-                          <MostrarImagenPerfil imagen={amigo.ImagenPerfil} />
+                          <MostrarImagenPerfil />
                         </div>
                         <span><h4 class="list-name">{amigo.NombreParticipante}</h4></span>
                       </li>

@@ -61,7 +61,35 @@ function Perfil() {
           },
         });
       };
-  
+    
+    const BuscarUsuario = () => {
+        history.push({
+            pathname: `/perfil${idUsuario}/${nombreUsuario}/buscarUsuario`,
+            state: {
+                ID: idUsuario,
+                NombreCompleto: nombreCompleto,
+                NombreUsuario: nombreUsuario,
+                Correo: correo,
+                ImagenPerfil: imagenPerfil,
+                Rol: rol,
+            },
+          });
+      };
+
+      const BuscarParticipante = () => {
+        history.push({
+            pathname: `/perfil${idUsuario}/${nombreUsuario}/buscarParticipante`,
+            state: {
+                ID: idUsuario,
+                NombreCompleto: nombreCompleto,
+                NombreUsuario: nombreUsuario,
+                Correo: correo,
+                ImagenPerfil: imagenPerfil,
+                Rol: rol,
+            },
+          });
+      };
+
     return (
 
         <div>
@@ -72,7 +100,7 @@ function Perfil() {
                     <div class="row"> 
                         <div class="card card-user col-md">
                             <div class="card card-picture border-secondary mb-2">
-                                <MostrarImagenPerfil imagen={location.state.ImagenPerfil}/>
+                                <MostrarImagenPerfil />
                             </div>
 
                             <div class="card card-username">
@@ -97,6 +125,16 @@ function Perfil() {
                                 {location.state.Rol === 'SuperAdministrador' && (
                                     <button class="btn btn-menu btn-outline-secondary">Gestionar</button>
                                 )}
+
+                                {location.state.Rol === 'SuperAdministrador' && (
+                                    <button class="btn btn-menu btn-outline-secondary" onClick={BuscarParticipante}> Buscar Participante</button>
+                                )}
+
+                                {location.state.Rol === 'Participante' &&  (
+                                <button className="btn btn-menu btn-outline-secondary" onClick={BuscarUsuario}>
+                                  Buscar Usuario
+                                </button>
+                            )}
                                 
                                 <button class="btn btn-menu btn-outline-secondary" onClick={EditarPerfil}>Editar Perfil</button>
                             </div>

@@ -9,7 +9,7 @@ from alchemyClasses.Participante import Participante
 """
 def registrar_participante(Nombre, Usuario, Correo, Contrasenia):
     # Creamos una instancia de Participante con los datos proporcionados
-    participante = Participante(Nombre, '../statics/icons/icon.png', Contrasenia, Usuario, Correo, 'Participante')
+    participante = Participante(Nombre, '/icon.png', Contrasenia, Usuario, Correo, 'Participante')
 
     # Verificamos si se creó correctamente el participante
     if participante:
