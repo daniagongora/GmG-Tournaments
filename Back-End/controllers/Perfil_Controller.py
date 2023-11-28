@@ -196,20 +196,33 @@ def buscar(id,name):
         #Buscamos al usuario en la base de datos
         usuario_participante = get_participante_by_name(Usuario)
         
+        participante = get_participante_by_id(id)
+        
         #Si el usuario existe obtenemos su informacion
-        if usuario_participante:
+        if usuario_participante and participante:
             session.clear()
             session['NombreCompleto'] = usuario_participante.NombreCompleto
             session['NombreUsuario'] = usuario_participante.NombreParticipante
             session['ImagenPerfil'] = usuario_participante.ImagenPerfil
             session['Rol'] = usuario_participante.Rol
+            esAmigo = False
             session.modified = True
+            id_participante = participante.IDParticipante
+            amigos = get_friendships(id_participante)
+            for amigo in amigos:
+                if amigo.Solicitante == id_participante and amigo.Receptor == usuario_participante.IDParticipante:
+                    esAmigo = True
+                    break
+                elif  amigo.Receptor == id_participante and amigo.Solicitante == usuario_participante.IDParticipante:
+                    esAmigo = True
+                    break
             return jsonify({'success': True, 
                                 'message': 'Usuario encontrado', 
                                 'NombreCompleto': usuario_participante.NombreCompleto, 
                                 'NombreUsuario': usuario_participante.NombreParticipante, 
                                 'ImagenPerfil': usuario_participante.ImagenPerfil, 
-                                'Rol': usuario_participante.Rol})
+                                'Rol': usuario_participante.Rol,
+                                'Amigo' : esAmigo})
         elif Usuario == "":
             return jsonify({'success': False, 'message': 'Escribe un nombre de usuario por favor'})
         else:
