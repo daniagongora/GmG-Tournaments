@@ -13,13 +13,12 @@
     margin-top: 20px;
 }
 
-.list-image-container {
+.card.list-image-container {
     border-radius: 50%;
-    width: 30%;
+    width: 20%;
 }
 
 .list-item {
-    align-items: center;
     display: flex;
     margin-bottom: 20px;
     padding: 0;
@@ -27,12 +26,10 @@
 
 .list-name {
     font-size: xx-large;
-    margin-left: 20px;
 }
 
 .list.row {
     padding: 30px;
-    place-content: start;
 }
 
 .user {

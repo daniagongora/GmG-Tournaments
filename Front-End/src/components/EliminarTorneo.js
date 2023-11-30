@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 
 import Navegacion from "./Navegacion";
-import CrearTorneo from "./CrearTorneo";
 import Swal from "sweetalert2";
 
 import "../statics/css/General.css";
@@ -22,7 +21,7 @@ function EliminarTorneo() {
 
   const [listaTorneos, setListaTorneos] = useState([]);
   useEffect(() => {
-    const obtenerTorneos = async () => {
+    const obtenerMisTorneos = async () => {
 
       try {
         const response = await fetch(
@@ -45,12 +44,11 @@ function EliminarTorneo() {
             icon: "custom-alert-icon",
           },
         });
-        console.log(error);
       }
     };
 
-    obtenerTorneos();
-  }, [idUsuario]);
+    obtenerMisTorneos();
+  }, [idUsuario, nombreUsuario]);
 
   const EliminarTorneo = async (e) => {
     let torneoAEliminar = e.target.value;
@@ -100,10 +98,7 @@ function EliminarTorneo() {
           icon: "custom-alert-icon",
         },
       });
-      console.log(error);
     }
-
-    console.log(e.target.value);
   };
 
   const CrearTorneo = () => {
@@ -118,15 +113,15 @@ function EliminarTorneo() {
         Rol: rol,
       },
     });
-};
+  };
 
   return (
+
     <div>
       <body>
         <Navegacion />
 
         <div className="card body-content ">
-
           <div class="row">
             <h2 class="title">Mis Torneos</h2>
           </div>
@@ -135,7 +130,7 @@ function EliminarTorneo() {
             <button class="btn btn-outline-secondary btn-create-tournament" onClick={CrearTorneo}>Nuevo Torneo</button>
           </div>
 
-          {listaTorneos.length == 0 ? (
+          {listaTorneos.length === 0 ? (
             <div class="card card-empty container-fluid border-secondary d-flex align-items-center justify-content-center">
               <h2 class= "card-empty-tournaments">Aun no tienes torneos creados</h2>
             </div>
@@ -153,6 +148,7 @@ function EliminarTorneo() {
                     <th scope="col"></th>
                   </tr>
                 </thead>
+
                 <tbody>
                   {listaTorneos.map((torneo, index) => (
                     <tr class="table" key={index}>
@@ -167,10 +163,7 @@ function EliminarTorneo() {
                           type="button"
                           class="btn btn-outline-danger btn-delete-tournament"
                           onClick={EliminarTorneo}
-                          value={torneo.IDTorneo}
-                        >
-                          Eliminar
-                        </button>
+                          value={torneo.IDTorneo}>Eliminar</button>
                       </td>
                     </tr>
                   ))}

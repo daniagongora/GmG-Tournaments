@@ -36,7 +36,6 @@ function Login() {
         setMensaje(responseData.message || 'Error desconocido');
       }
     } catch (error) {
-      console.error('Error al procesar la solicitud:', error);
       setMensaje('Error de red. Inténtalo de nuevo.');
     }
   };
@@ -49,22 +48,24 @@ function Login() {
           <div class="title">   
             <h1>GmG <br></br>Tournaments</h1>
           </div>
+
           <br></br>
+
           <form onSubmit={Login}>
             <label class="form-label">Correo</label>
             <input type="email"
                    placeholder="Ingresa tu correo"
                    value={correo}
                    onChange={(e) => setCorreo(e.target.value)}
-                   class="form-control form-login"
-            />
+                   class="form-control form-login" />
+            
             <label class="form-label">Contraseña</label>
             <input type="password"
                    placeholder="Ingresa tu contraseña "
                    value={contrasenia}
                    onChange={(e) => setContrasenia(e.target.value)}
-                   class="form-control form-login"
-            />
+                   class="form-control form-login" />
+            
             <button type="submit" class="btn btn-login btn-outline-secondary">Ingresar</button>
           </form>
           {mensaje && <p>{mensaje}</p>}

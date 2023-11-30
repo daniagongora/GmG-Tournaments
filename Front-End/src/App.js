@@ -1,16 +1,18 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import CrearTorneo from "./components/CrearTorneo";
-import EditarPerfil from './components/EditarPerfil';
+import EditarPerfil from "./components/EditarPerfil";
 import EliminarTorneo from "./components/EliminarTorneo";
-import Error from './components/Error';
-import Login from './components/Login';
-import Logout from './components/Logout';
-import Perfil from './components/Perfil';
-import Principal from './components/Principal';
-import RegistrarPerfil from './components/RegistrarPerfil';
-import VerAmigos from './components/VerAmigos';
+import Error from "./components/Error";
+import Login from "./components/Login";
+import Logout from "./components/Logout";
+import Perfil from "./components/Perfil";
+import Principal from "./components/Principal";
+import RegistrarPerfil from "./components/RegistrarPerfil";
+import VerAmigos from "./components/VerAmigos";
+import VerSolicitudes from "./components/VerSolicitudes";
+import VerTorneos from "./components/VerTorneos";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/" exact component ={Principal} />
         <Route path="/registro" exact component={RegistrarPerfil} />
         <Route path="/perfil:idUsuario/:nombreUsuario/amigos" exact component={VerAmigos} />
+        <Route path="/perfil:idUsuario/:nombreUsuario/solicitudes" exact component={VerSolicitudes} />
+        <Route path="/perfil:idUsuario/:nombreUsuario/verTorneos" exact component={VerTorneos} />
       </Switch>
     </Router>
   );

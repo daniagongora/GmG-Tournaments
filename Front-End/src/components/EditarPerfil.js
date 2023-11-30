@@ -90,7 +90,6 @@ function EditarPerfil(props) {
           });
         }
       } catch (error) {
-        console.error('Error al procesar la solicitud:', error);
         Swal.fire({
           title: 'Ups! :(',
           text: 'Ocurrió un problema con el servidor por favor intenta más tarde',
@@ -162,10 +161,7 @@ function EditarPerfil(props) {
         setNombreCompleto(campos.NombreCompleto);
         setNombreUsuario(campos[rol === 'participante' ? 'NombreParticipante' : rol === 'administrador' ? 'NombreAdministrador' : 'NombreSuperadministrador']);
         setCorreo(campos.Correo);
-
-        if (contrasenia !== "************") {
-          setContrasenia(campos.Contrasenia);
-        }
+        setContrasenia(campos.Contrasenia);
   
         setMostrarModalDatos(false);
         history.push('/');
@@ -182,7 +178,6 @@ function EditarPerfil(props) {
         });
       }
     } catch (error) {
-      console.error('Error al procesar la solicitud:', error);
       Swal.fire({
         title: 'Ups! :(',
         text: 'Ocurrió un problema con el servidor por favor intenta más tarde',
@@ -248,7 +243,7 @@ function EditarPerfil(props) {
           <div class="row">
             <div class="card card-user col-md-4">
               <div class="card card-picture border-secondary mb-2">
-                <MostrarImagenPerfil imagen={imagenPerfil}/>
+                <MostrarImagenPerfil imagen={imagenPerfil} />
               </div>
 
               <div class="btns">
@@ -326,8 +321,7 @@ function EditarPerfil(props) {
 
                   <div class="col-md">
                     <label class="form-label modal-label" htmlFor="contrasenia">Password:</label>
-                    <input class="modal-input" type="password" id="contrasenia" required 
-                           defaultValue={"************"}/>
+                    <input class="modal-input" type="password" id="contrasenia" required />
                   </div>
                 </div>
                 

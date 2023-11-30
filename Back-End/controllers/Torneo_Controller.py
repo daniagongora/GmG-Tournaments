@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 
-from model.model_torneo import add_new_torneo, get_torneos_by_administrador, delete_torneo
+from model.model_torneo import add_new_torneo, get_torneos_by_administrador, delete_torneo, get_all_torneos
 
 # ------------------------------ CREAR TORNEO ------------------------------
 
@@ -10,14 +10,8 @@ crear_torneo = Blueprint('crear_torneo', __name__, url_prefix='/torneo')
     Función para agregar un nuevo torneo.
 
     Args:
-        IDAdministrador (str): El ID del administrador que crea el torneo.
-        NombreTorneo (str): El nombre del torneo.
-        FechaInicio (str): La fecha de inicio del torneo.
-        CupoMaximo (str): El cupo máximo de participantes del torneo.
-        Videojuego (str): El videojuego del torneo.
-        Plataforma (str): La plataforma del torneo.
-        Descripcion (str): La descripción del torneo.
-        FechaCreacion (str): La fecha de creación del torneo.
+        idAdmin (int): El ID del administrador.
+        name (str): El nombre del administrador.
 
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
@@ -47,7 +41,7 @@ def agregar_torneo(idAdmin, name):
     except Exception:
         return jsonify({'success': False, 'message': 'Ocurrió un error inesperado'})
     
-# ------------------------------ ELIMIINAR TORNEO ------------------------------
+# ------------------------------ ELIMINAR TORNEO ------------------------------
 
 eliminar_torneo = Blueprint('eliminar_torneo', __name__, url_prefix='/torneo')
 
@@ -55,7 +49,8 @@ eliminar_torneo = Blueprint('eliminar_torneo', __name__, url_prefix='/torneo')
     Función para eliminar un torneo.
 
     Args:
-        idAdmin (str): El ID del administrador que desea eliminar el torneo.
+        idAdmin (int): El ID del administrador.
+        name (str): El nombre del administrador.
 
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
@@ -88,5 +83,36 @@ def eliminarTorneo(idAdmin, name):
             success = delete_torneo(idTorneo)
             # Devolvemos una respuesta JSON indicando el éxito o fracaso de la operación
             return jsonify({'success': success, 'message': 'Se completó la operación en la base de datos'})
+    except Exception:
+        return jsonify({'success': False, 'message': 'Ocurrió un error inesperado'})
+    
+# ------------------------------ VER TORNEOS ------------------------------
+    
+ver_torneos = Blueprint('ver_torneos', __name__, url_prefix='/torneo')
+
+"""
+    Función para mostrar los torneos existentes.
+
+    Returns:
+        jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
+"""
+@eliminar_torneo.route("/perfil<int:id>/<name>/verTorneos", methods=['GET'])
+def cosultarTorneos(id, name):
+    try:
+        # Creamos una lista para almacenar la información de los torneos
+        listaTorneos = []
+
+        # Obtenemos todos los torneos
+        torneos = get_all_torneos()
+
+        # Iteramos a través de cada torneo y agregamos su información relevante a la lista
+        for trnmt in torneos:
+            listaTorneos.append({
+                'IDTorneo': trnmt.IDTorneo,
+                'NombreTorneo': trnmt.NombreTorneo,
+                'Videojuego' : trnmt.Videojuego
+            })
+        # Devolvemos una respuesta JSON indicando el éxito o fracaso de la operación
+        return jsonify({'success': True, 'message': 'Se consultaron los torneos exitosamente', 'torneos': listaTorneos})
     except Exception:
         return jsonify({'success': False, 'message': 'Ocurrió un error inesperado'})

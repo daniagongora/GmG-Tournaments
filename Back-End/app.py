@@ -9,6 +9,8 @@ from controllers.Perfil_Controller import editar_perfil_administrador
 from controllers.Perfil_Controller import editar_perfil_participante
 from controllers.Perfil_Controller import editar_perfil_superAdmin
 from controllers.Perfil_Controller import ver_amigos
+from controllers.Perfil_Controller import ver_solicitudes
+from controllers.Perfil_Controller import aceptar_amistad, rechazar_amistad, eliminar_amistad
 from controllers.RegistrarPerfil_Controller import registrar_perfil
 from controllers.Torneo_Controller import crear_torneo
 from controllers.Torneo_Controller import eliminar_torneo
@@ -34,6 +36,10 @@ app.register_blueprint(editar_perfil_administrador)
 app.register_blueprint(editar_perfil_participante)
 app.register_blueprint(editar_perfil_superAdmin)
 app.register_blueprint(ver_amigos)
+app.register_blueprint(ver_solicitudes)
+app.register_blueprint(aceptar_amistad)
+app.register_blueprint(rechazar_amistad)
+app.register_blueprint(eliminar_amistad)
 app.register_blueprint(registrar_perfil)
 app.register_blueprint(crear_torneo)
 app.register_blueprint(eliminar_torneo)
