@@ -121,6 +121,20 @@ function VerAmigos(props) {
     });
   };
 
+  const BuscarUsuario = () => {
+    history.push({
+      pathname: `/perfil${idUsuario}/${nombreUsuario}/amigos/buscarUsuario`,
+      state: {
+        ID: idUsuario,
+        NombreCompleto: nombreCompleto,
+        NombreUsuario: nombreUsuario,
+        Correo: correo,
+        ImagenPerfil: imagenPerfil,
+        Rol: rol,
+      },
+    });
+  };
+
   return (
 
     <div>
@@ -139,10 +153,12 @@ function VerAmigos(props) {
                 </div>
 
                 <div class="card card-username">
-                    <h2 class="user"> {location.state.NombreUsuario} </h2>                          
+                    <h2 class="user"> {location.state.NombreUsuario} </h2>                        
                 </div>
 
                 <button class="btn btn-outline-secondary request-btn" onClick={VerSolicitudes}>Ver Solicitudes</button>
+
+                <button className="btn btn-outline-secondary request-btn" onClick={BuscarUsuario}>Buscar Usuario</button>
             </div>
 
             <div class="card card-list col-md-8">

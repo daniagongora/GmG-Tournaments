@@ -4,6 +4,8 @@ from flask import Flask, jsonify, render_template, request, flash, session, redi
 from flask_cors import CORS
 
 from controllers.JsonController import json_controller
+from controllers.Perfil_Controller import buscar_usuario_participante
+from controllers.Perfil_Controller import buscar_usuario_superAdmin
 from controllers.Perfil_Controller import eliminar_perfil
 from controllers.Perfil_Controller import editar_perfil_administrador
 from controllers.Perfil_Controller import editar_perfil_participante
@@ -31,18 +33,20 @@ app.config.from_mapping(
 )
 db.init_app(app)
 
-app.register_blueprint(eliminar_perfil)
+app.register_blueprint(aceptar_amistad)
+app.register_blueprint(buscar_usuario_participante)
+app.register_blueprint(buscar_usuario_superAdmin)
+app.register_blueprint(crear_torneo)
 app.register_blueprint(editar_perfil_administrador)
 app.register_blueprint(editar_perfil_participante)
 app.register_blueprint(editar_perfil_superAdmin)
+app.register_blueprint(eliminar_amistad)
+app.register_blueprint(eliminar_perfil)
+app.register_blueprint(eliminar_torneo)
+app.register_blueprint(rechazar_amistad)
+app.register_blueprint(registrar_perfil)
 app.register_blueprint(ver_amigos)
 app.register_blueprint(ver_solicitudes)
-app.register_blueprint(aceptar_amistad)
-app.register_blueprint(rechazar_amistad)
-app.register_blueprint(eliminar_amistad)
-app.register_blueprint(registrar_perfil)
-app.register_blueprint(crear_torneo)
-app.register_blueprint(eliminar_torneo)
 
 """
     Ruta principal que redirige a la página de inicio de sesión.

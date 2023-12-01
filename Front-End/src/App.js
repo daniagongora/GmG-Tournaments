@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import BuscarUsuario from "./components/BuscarUsuario";
 import CrearTorneo from "./components/CrearTorneo";
 import EditarPerfil from "./components/EditarPerfil";
 import EliminarTorneo from "./components/EliminarTorneo";
@@ -18,6 +19,8 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/perfil:idUsuario/:nombreUsuario/amigos/buscarUsuario" component={BuscarUsuario}/>
+        <Route path="/perfil:idUsuario/:nombreUsuario/gestionar/buscarUsuario" component={BuscarUsuario}/>
         <Route path="/perfil:idUsuario/:nombreUsuario/misTorneos/crearTorneo" exact component={CrearTorneo} />
         <Route path="/perfil:idUsuario/:nombreUsuario/editar" exact component={EditarPerfil} />
         <Route path="/perfil:idUsuario/:nombreUsuario/misTorneos" exact component={EliminarTorneo} />

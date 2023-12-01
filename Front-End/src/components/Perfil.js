@@ -62,6 +62,20 @@ function Perfil() {
         });
     };
 
+    const BuscarUsuario = () => {
+        history.push({
+            pathname: `/perfil${idUsuario}/${nombreUsuario}/gestionar/buscarUsuario`,
+            state: {
+                ID: idUsuario,
+                NombreCompleto: nombreCompleto,
+                NombreUsuario: nombreUsuario,
+                Correo: correo,
+                ImagenPerfil: imagenPerfil,
+                Rol: rol,
+            },
+        });
+    };
+
     const EditarPerfil = () => {
         history.push({
             pathname: `/perfil${idUsuario}/${nombreUsuario}/editar`,
@@ -109,7 +123,7 @@ function Perfil() {
                                 )}
 
                                 {location.state.Rol === 'SuperAdministrador' && (
-                                    <button class="btn btn-menu btn-outline-secondary">Gestionar</button>
+                                    <button class="btn btn-menu btn-outline-secondary" onClick={BuscarUsuario}>Gestionar</button>
                                 )}
                                 
                                 <button class="btn btn-menu btn-outline-secondary" onClick={EditarPerfil}>Editar Perfil</button>
