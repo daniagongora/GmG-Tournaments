@@ -47,6 +47,32 @@ function BuscarParticipante(props){
         }
     };
 
+    const handleVolverAdministrador = async () => {
+        try {
+          const response = await fetch(`http://localhost:5000/participante/perfil${idUsuario}/volverAdministrador`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({}),
+          });
+    
+          const responseData = await response.json();
+    
+          if (response.ok && responseData.success) {
+            console.log('El participante ahora es Administrador');
+            setMensaje('El participante ahora es Administrador');
+          } else {
+            console.error(responseData.message || 'Error desconocido');
+            setMensaje('Error al actualizar el rol del participante');
+          }
+        } catch (error) {
+          console.error('Error al procesar la solicitud:', error);
+          setMensaje('Error de red. Inténtalo de nuevo.');
+        }
+      };
+    
+
   return (
 
     <div>
@@ -80,6 +106,9 @@ function BuscarParticipante(props){
                         </tr>
 
                         <br></br>
+                        
+                        <button className="btn btn-menu btn-outline-secondary" onClick={handleVolverAdministrador}>Volver Administrador</button>
+                                
                     </div>
                     
                 </div>               
