@@ -1,7 +1,7 @@
 .btn.btn-create.btn-outline-secondary {
-    margin-top: 30px;
     font-size: 20px;
     height: 50px;
+    margin-top: 30px;
     text-align: center;
     width: 220px;
 }
@@ -14,7 +14,7 @@
     text-align: center;
 }
 
-.form-control.entry-data.description-area{
+.form-control.entry-data.description-area {
     height: auto;
     text-align: start;
 }
@@ -24,8 +24,3 @@
     flex-direction: column;
     height: 100%;
 }
-
-
-
-
-

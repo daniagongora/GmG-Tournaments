@@ -3,6 +3,10 @@
     width: 250px;
 }
 
+.card-body {
+    width: 100%;
+}
+
 .card-empty {
     height: 100%;
     margin-top: 20px;
@@ -13,13 +17,22 @@
     margin-top: 20px;
 }
 
-.list-image-container {
+.card-text {
+    color: white;
+    width: 50%;
+}
+
+.card.list-image-container {
     border-radius: 50%;
-    width: 30%;
+    width: 20%;
+}
+
+.card.text-white {
+    margin: auto;
+    width: 60%;
 }
 
 .list-item {
-    align-items: center;
     display: flex;
     margin-bottom: 20px;
     padding: 0;
@@ -27,12 +40,16 @@
 
 .list-name {
     font-size: xx-large;
-    margin-left: 20px;
 }
 
 .list.row {
     padding: 30px;
-    place-content: start;
+}
+
+img .picture {
+    border-radius: 100%;
+    height: 25%;
+    width: 25%;
 }
 
 .user {

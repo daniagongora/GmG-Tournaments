@@ -36,6 +36,24 @@ function CrearTorneo() {
   const [validVideojuego, setValidVideojuego] = useState(false);
   const [validPlataforma, setValidPlataforma] = useState(false);
 
+  const listaVideojuegos = [
+    "COD",
+    "CS:GO",
+    "Dota 2",
+    "Fall Guys",
+    "Fortnite",
+    "HearthStone",
+    "League of Legends",
+    "Legends of Runeterra",
+    "Mario Kart",
+    "Minecraft",
+    "Mortal Kombat",
+    "Rocket League",
+    "Smash Bros",
+    "StarCraft II",
+    "Valorant",
+  ];
+
   const checkNombreTorneo = async (e) => {
     let tempNombre = e.target.value;
     setNombreTorneo(tempNombre);
@@ -60,7 +78,7 @@ function CrearTorneo() {
   const checkVideojuego = (e) => {
     let tempVideojuego = e.target.value;
     setVideojuego(tempVideojuego);
-    if (tempVideojuego.length > 100) setValidVideojuego(false);
+    if (tempVideojuego === "Selecciona una opcion") setValidVideojuego(false);
     else setValidVideojuego(true);
   };
 
@@ -93,10 +111,13 @@ function CrearTorneo() {
         data.append("Descripcion", descripcion);
         data.append("FechaCreacion", fechaCreacion);
 
-        const response = await fetch(`http://localhost:5000/torneo/perfil${idUsuario}/${nombreUsuario}/misTorneos/crearTorneo`, {
-          method: "POST",
-          body: data,
-        });
+        const response = await fetch(
+          `http://localhost:5000/torneo/perfil${idUsuario}/${nombreUsuario}/misTorneos/crearTorneo`,
+          {
+            method: "POST",
+            body: data,
+          }
+        );
 
         const responseData = await response.json();
 
@@ -135,7 +156,6 @@ function CrearTorneo() {
           });
         }
       } catch (error) {
-        console.log(error);
         Swal.fire({
           title: "Error",
           text: "Ocurrio un error inesperado, por favor inténtalo más tarde",
@@ -168,6 +188,7 @@ function CrearTorneo() {
                   <tbody class="tbody">
                     <tr>
                       <td class="col-md-2"></td>
+
                       <td class="col-md">
                         <div class="form-group input-instance">
                           <label for="inputNombreTorneo" class="form-label mt-4">Nombre del Torneo</label>
@@ -198,7 +219,7 @@ function CrearTorneo() {
                                 ? "form-control is-valid entry-data"
                                 : "form-control is-invalid entry-data"
                             }
-                            id="inputFechaInicio" 
+                            id="inputFechaInicio"
                             aria-describedby="FechaAyuda"
                             value={fechaInicio} 
                             onChange={checkFechaInicio} />
@@ -230,27 +251,27 @@ function CrearTorneo() {
 
                         <div class="form-group input-instance">
                           <label for="inputVideojuego" class="form-label mt-4">Videojuego</label>
-                          <input type="text"
+                          <select
                             class={
                               validVideojuego
-                                ? "form-control is-valid entry-data"
-                                : "form-control is-invalid entry-data"
+                                ? "form-select is-valid entry-data"
+                                : "form-select is-invalid entry-data"
                             }
-                            id="inputVideojuego"
-                            aria-describedby="VideojuegoAyuda"
-                            placeholder="Ex. Smash Bros"
                             value={videojuego}
                             onChange={checkVideojuego}
-                            required />
-                          {!validVideojuego && (
-                            <div class="invalid-feedback prompt-feedback">
-                              Tienes un limite de hasta 100 caracteres
-                            </div>
-                          )}
+                            required
+                            id="inputVideojuego">
+                            <option>Selecciona una opcion</option>
+
+                            {listaVideojuegos.map((videojuego, index) => (
+                              <option key={index}>{videojuego}</option>
+                            ))}
+                          </select>
                         </div>
                       </td>
+
                       <td class="col-md">
-                      <div class="form-group input-instance">
+                        <div class="form-group input-instance">
                           <label for="inputPlataforma" class="form-label mt-4">Plataforma</label>
                           <input type="text"
                             class={
@@ -288,12 +309,12 @@ function CrearTorneo() {
                             id="inputDescripcion"
                             rows="3"
                             value={descripcion}
-                            onChange={(e) => setDescripcion(e.target.value)}
-                          ></textarea>
+                            onChange={(e) => setDescripcion(e.target.value)}></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-create btn-outline-secondary">Crear Torneo</button>
                       </td>
+                      
                       <td class="col-md-2"></td>
                     </tr>
                   </tbody>

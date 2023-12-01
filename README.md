@@ -78,6 +78,8 @@ bolillo@gmail.com | ola
 Correo | Contraseña
 --- | ---
 Mar123@yahoo.com | 123
+marius@gmail.com | Nuts-1141
+diego@hotmail.com | ola
 
 #### __Super Administradores__
 Correo | Contraseña
