@@ -264,13 +264,11 @@ def buscar(id,name):
 
 
 #---------------------------------Registrar Administrador-----------------------------------------------
+volver_administrador = Blueprint('volver_administrador',  __name__, url_prefix='/superadministrador')
 
-from flask import request, redirect, url_for
-
-@app.route('/perfil<int:participante_id>/volverAdministrador', methods=['POST'])
-def volver_administrador(participante_id):
+@volver_administrador.route('/perfil<int:participante_id>/volverAdministrador/<participante>', methods=['POST'])
+def volver_admin(participante_id, participante):
     try:
-        participante = request.form.get('NombreUsuario')
         usuario_participante = get_participante_by_name(participante)
         participante.rol = 'Administrador'
         db.session.commit()
@@ -279,7 +277,3 @@ def volver_administrador(participante_id):
         print(e)
         db.session.rollback()
         return jsonify({'success': False, 'message': 'Error al actualizar el rol del participante'})
-
-if __name__ == "__main__":
-    app.run(debug=True)
-

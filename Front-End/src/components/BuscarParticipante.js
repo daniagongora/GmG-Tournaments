@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import Navegacion from './Navegacion';
+import Swal from 'sweetalert2';
 
 import '../statics/css/General.css';
 import '../statics/css/BuscarParticipante.css';
@@ -49,7 +50,7 @@ function BuscarParticipante(props){
 
     const handleVolverAdministrador = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/participante/perfil${idUsuario}/volverAdministrador`, {
+          const response = await fetch(`http://localhost:5000/superadministrador/perfil${idUsuario}/volverAdministrador/${usuario}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -71,6 +72,67 @@ function BuscarParticipante(props){
           setMensaje('Error de red. Inténtalo de nuevo.');
         }
       };
+
+    const EliminarPerfil = async () => {
+      const result = await Swal.fire({
+        title: '¿Seguro que deseas asignar a este usuario como administrador?',
+        icon: 'warning',
+        text: '',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar',
+        customClass: {
+          container: 'custom-alert-container',
+          title: 'custom-alert-title',
+        },
+      });
+
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(`http://localhost:5000/superadministrador/perfil${idUsuario}/volverAdministrador/${usuario}`, {
+            method: 'POST',
+          });
+
+          if (response.ok) {
+            Swal.fire({
+              title: 'Usuario asignado como administrador',
+              text: '',
+              icon: 'success',
+              customClass: {
+                container: 'custom-alert-container',
+                title: 'custom-alert-title',
+                text: 'custom-alert-text',
+                icon: 'custom-alert-icon',
+              },
+            });
+
+          } else {
+            Swal.fire({
+              title: 'Error',
+              text: 'Ocurrió un error al asignar administrador',
+              icon: 'error',
+              customClass: {
+                container: 'custom-alert-container',
+                title: 'custom-alert-title',
+                icon: 'custom-alert-icon',
+              },
+            });
+          }
+        } catch (error) {
+          console.error('Error al procesar la solicitud:', error);
+          Swal.fire({
+            title: 'Ups! :(',
+            text: 'Ocurrió un problema con el servidor por favor intenta más tarde',
+            icon: 'error',
+            customClass: {
+              container: 'custom-alert-container',
+              title: 'custom-alert-title',
+              icon: 'custom-alert-icon',
+            },
+          });
+        }
+      }
+    };
     
 
   return (
@@ -106,7 +168,7 @@ function BuscarParticipante(props){
                         </tr>
 
                         <br></br>
-                        
+                        <button class="btn btn-outline-danger delete-profile" onClick={EliminarPerfil}>Eliminar Perfil</button>
                         <button className="btn btn-menu btn-outline-secondary" onClick={handleVolverAdministrador}>Volver Administrador</button>
                                 
                     </div>
