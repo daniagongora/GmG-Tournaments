@@ -112,7 +112,7 @@ editar_imagen_administrador = Blueprint('editar_imagen_administrador', __name__,
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
 """
-@editar_imagen_administrador.route('/perfil<int:id>/<name>/editar', methods=('GET', 'POST'))
+@editar_imagen_administrador.route('/perfil<int:id>/<name>/editarimagen', methods=('GET', 'POST'))
 def editar_imagen(id, name):
     try:
         if request.method == 'POST':
@@ -142,13 +142,13 @@ editar_imagen_participante = Blueprint('editar_imagen_participante', __name__, u
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
 """
-@editar_imagen_participante.route('/perfil<int:id>/<name>/editar', methods=('GET', 'POST'))
+@editar_imagen_participante.route('/perfil<int:id>/<name>/editarimagen', methods=('GET', 'POST'))
 def editar_imagen(id, name):
     try:
         if request.method == 'POST':
             # Intentamos realizar la edición de la imagen de perfil del participante
             success = edit_image_participante(id, name)
-            # Verificamos si la edición fue exitosa
+            # Verificamos si la edición fue exitosa 
             if success:
                 return jsonify({'success': success, 'message': 'Se actualizó la imagen de perfil exitosamente'})
             else:
@@ -172,7 +172,7 @@ editar_imagen_superAdmin = Blueprint('editar_imagen_superAdmin', __name__, url_p
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
 """
-@editar_imagen_superAdmin.route('/perfil<int:id>/<name>/editar', methods=('GET', 'POST'))
+@editar_imagen_superAdmin.route('/perfil<int:id>/<name>/editarimagen', methods=('GET', 'POST'))
 def editar_imagen(id, name):
     try:
         if request.method == 'POST':

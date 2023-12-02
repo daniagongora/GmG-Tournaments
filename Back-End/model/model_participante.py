@@ -139,10 +139,11 @@ def edit_image_participante(id, name):
     if participante:
         # Obtenemos los campos del formulario JSON
         campos = request.get_json()
-
+        print(campos)
         # Obtenemos la nueva imagen de perfil del campo del formulario
         nueva_imagen = campos.get('ImagenPerfil', '')
-
+        print(nueva_imagen)
+        
         # Verificamos si se proporcionó una nueva imagen de perfil
         if nueva_imagen:
             participante.ImagenPerfil = nueva_imagen

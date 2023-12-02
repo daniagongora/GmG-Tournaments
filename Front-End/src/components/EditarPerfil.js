@@ -132,8 +132,11 @@ function EditarPerfil(props) {
   
         return;
       }
+      const nuevaRuta = datos.ImagenPerfil.replace(/^(.*\/[^.]+)\.([^./]+)\.([^./]+)$/, '$1.$3');
 
-      const response = await fetch(`http://localhost:5000/${rol.toLowerCase()}/perfil${idUsuario}/${nombreUsuario}/editar`, {
+    datos.ImagenPerfil = nuevaRuta.replace('/static/media/', '../statics/icons/');
+    console.log("Nueva ruta:", datos.ImagenPerfil);
+      const response = await fetch(`http://localhost:5000/${rol.toLowerCase()}/perfil${idUsuario}/${nombreUsuario}/editarimagen`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
