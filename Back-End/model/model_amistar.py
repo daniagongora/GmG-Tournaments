@@ -13,6 +13,17 @@ def get_friendships(id):
     return amigos
 
 """
+    Función que obtiene las amistades o solicitudes del usuario de la base de datos.
+
+    Returns:
+        list: Lista de todos los amigos o solicitudes en la tabla amistar.
+"""
+def get_relationships(id):
+    amigos = Amistar.query.filter((Amistar.Solicitante == id) | 
+                                  (Amistar.Receptor == id)).all()
+    return amigos
+
+"""
     Función que obtiene las solicitudes de amistad del usuario de la base de datos.
 
     Returns:

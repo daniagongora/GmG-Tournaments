@@ -4,7 +4,7 @@ from CryptoUtils.CryptoUtils import cipher
 from flask import request
 from hashlib import sha256
 
-from model.model_amistar import get_friendships
+from model.model_amistar import get_friendships, get_relationships
 
 """
     Función que obtiene todos los participantes de la base de datos.
@@ -64,7 +64,7 @@ def delete_participante(id):
     participante = get_participante_by_id(id)
         
     if participante:
-        registros_amistar = get_friendships(id)
+        registros_amistar = get_relationships(id)
 
         try:
             for registro in registros_amistar:
