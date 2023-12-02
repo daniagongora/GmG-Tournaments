@@ -117,6 +117,14 @@ function Perfil() {
                                 {location.state.Rol === 'Participante' && (
                                     <button class="btn btn-menu btn-outline-secondary" onClick={VerAmigos}>Amigos</button>
                                 )}
+                                
+                                {location.state.Rol === 'Participante' && (
+                                    <button class="btn btn-menu btn-outline-secondary" onClick={BuscarUsuario}>BuscarUsuario</button>
+                                )}
+
+                                {location.state.Rol === 'SuperAdministrador' && (
+                                    <button class="btn btn-menu btn-outline-secondary" onClick={BuscarUsuario}>BuscarUsuario</button>
+                                )}
 
                                 {location.state.Rol === "Administrador" && (
                                     <button class="btn btn-menu btn-outline-secondary" onClick={CrearTorneo}>Crear Torneo</button>

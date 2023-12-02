@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify, session
 
 from alchemyClasses import db
 
-from model.model_amistar import get_friendships, get_request_friends, accept_request, reject_request, delete_friend
+from model.model_amistar import get_friendships, get_request_friends, accept_request, reject_request, delete_friend, send_request
 from model.model_administrador import edit_administrador
 from model.model_participante import get_participante_by_id, delete_participante, edit_participante, get_participante_by_name
 from model.model_superAdmin import edit_superAdmin
@@ -177,6 +177,37 @@ def ver_amigos_participante(id, name):
 
     return jsonify({'success': False, 'message': 'Participante no encontrado'})
 
+# ------------------------------ ACEPTAR SOLICITUDES DE AMISTAD ------------------------------
+
+enviar_solicitud = Blueprint('enviar_solicitud', __name__, url_prefix='/participante')
+
+"""
+    Función para enviar una solitud de amistad a un participante.
+
+    Args:
+        solicitante (id): El ID del participante que solicito la amistad.
+        receptor (id): El ID del participante que recibio la solicitud de amistad.
+
+    Returns:
+        jsonify: Respuesta JSON con la lista de solicitudes o un mensaje de error.
+"""
+@enviar_solicitud.route('/enviar_solicitud/<int:solicitante>/<int:receptor>', methods=['POST'])
+def enviar_solicitud_participante(solicitante, receptor):
+    try:
+        participante_solicitante = get_participante_by_id(solicitante)
+        participante_receptor = get_participante_by_id(receptor)
+        
+        if participante_solicitante and participante_receptor:
+            success = send_request(solicitante, receptor)
+            if success:
+                return jsonify({'success': success, 
+                                    'message': 'Solicitud enviada exitosamente', 
+                                    'solicitud': True})
+        else:
+            return jsonify({'success': False, 'message': 'Usuario no existente'})
+    except KeyError:
+        return jsonify({'success': False, 'message': 'No se pudo enviar la solicitud'})
+
 # ------------------------------ VER SOLICITUDES DE AMISTAD ------------------------------
 
 ver_solicitudes = Blueprint('ver_solicitudes', __name__, url_prefix='/participante')
@@ -336,6 +367,7 @@ def buscar(id,name):
             session['ImagenPerfil'] = usuario_participante.ImagenPerfil
             session['Rol'] = usuario_participante.Rol
             esAmigo = False
+            solicitudEnviada = False
             session.modified = True
             # Obtenemos el ID del participante y buscamos sus amistades
             id_participante = participante.IDParticipante
@@ -348,6 +380,16 @@ def buscar(id,name):
                 elif  amigo.Receptor == id_participante and amigo.Solicitante == usuario_participante.IDParticipante:
                     esAmigo = True
                     break
+            id_participante_busqueda = usuario_participante.IDParticipante
+            solicitudes = get_request_friends(id_participante_busqueda)
+            
+            for solicitud in solicitudes:
+                if solicitud.Solicitante == id_participante and solicitud.Receptor == usuario_participante.IDParticipante:
+                    solicitudEnviada = True
+                    break
+                elif solicitud.Receptor == id_participante and solicitud.Solicitante == usuario_participante.IDParticipante:
+                    solicitudEnviada = True
+                    break
             # Devolvemos la información del usuario encontrado
             return jsonify({'success': True, 
                                 'message': 'Usuario encontrado', 
@@ -356,7 +398,9 @@ def buscar(id,name):
                                 'Correo':usuario_participante.Correo,
                                 'ImagenPerfil': usuario_participante.ImagenPerfil, 
                                 'Rol': usuario_participante.Rol,
-                                'Amigo' : esAmigo})
+                                'ID': usuario_participante.IDParticipante,
+                                'Amigo' : esAmigo,
+                                'solicitud': solicitudEnviada})
         elif Usuario == "":
             return jsonify({'success': False, 'message': 'Escribe un nombre de usuario por favor'})
         else:
