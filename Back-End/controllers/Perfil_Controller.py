@@ -269,10 +269,77 @@ volver_administrador = Blueprint('volver_administrador',  __name__, url_prefix='
 @volver_administrador.route('/perfil<int:participante_id>/volverAdministrador/<participante>', methods=['POST'])
 def volver_admin(participante_id, participante):
     try:
-        usuario_participante = get_participante_by_name(participante)
-        participante.rol = 'Administrador'
-        db.session.commit()
-        return jsonify({'success': True, 'message': 'El participante ahora es Administrador'})
+        # Obtener el participante por ID
+        usuario_participante = Participante.query.get(participante_id)
+
+        print("Usuario Participante:", usuario_participante)  # Agrega esta línea para imprimir el participante
+
+        # Verificar si el participante existe y si el nombre coincide
+        if usuario_participante and usuario_participante.NombreParticipante == participante:
+            
+            # Crear un nuevo administrador con los datos del participante
+            nuevo_administrador = Administrador(
+                IDSuperAdministrador=None,  # Ajusta según tu lógica
+                NombreCompleto=usuario_participante.NombreCompleto,
+                ImagenPerfil=usuario_participante.ImagenPerfil,
+                Contrasenia=usuario_participante.Contrasenia,
+                NombreAdministrador=usuario_participante.NombreParticipante,
+                Correo=usuario_participante.Correo,
+                Rol='Administrador'
+            )
+
+            # Actualizar el rol del participante
+            usuario_participante.Rol = 'Administrador'
+
+            # Agregar el nuevo administrador a la sesión y confirmar los cambios
+            db.session.add(nuevo_administrador)
+            db.session.commit()
+
+            # Eliminar el participante original y confirmar la eliminación
+            db.session.delete(usuario_participante)
+            db.session.commit()
+
+            return jsonify({'success': True, 'message': 'El participante ahora es Administrador'})
+        else:
+            return jsonify({'success': False, 'message': 'Error: Participante no encontrado o nombre incorrecto'})
+    except Exception as e:
+        print(e)
+        db.session.rollback()
+        return jsonify({'success': False, 'message': 'Error al actualizar el rol del participante'})def volver_admin(participante_id, participante):
+    try:
+        # Obtener el participante por ID
+        usuario_participante = Participante.query.get(participante_id)
+
+        print("Usuario Participante:", usuario_participante)  # Agrega esta línea para imprimir el participante
+
+        # Verificar si el participante existe y si el nombre coincide
+        if usuario_participante and usuario_participante.NombreParticipante == participante:
+            
+            # Crear un nuevo administrador con los datos del participante
+            nuevo_administrador = Administrador(
+                IDSuperAdministrador=None,  # Ajusta según tu lógica
+                NombreCompleto=usuario_participante.NombreCompleto,
+                ImagenPerfil=usuario_participante.ImagenPerfil,
+                Contrasenia=usuario_participante.Contrasenia,
+                NombreAdministrador=usuario_participante.NombreParticipante,
+                Correo=usuario_participante.Correo,
+                Rol='Administrador'
+            )
+
+            # Actualizar el rol del participante
+            usuario_participante.Rol = 'Administrador'
+
+            # Agregar el nuevo administrador a la sesión y confirmar los cambios
+            db.session.add(nuevo_administrador)
+            db.session.commit()
+
+            # Eliminar el participante original y confirmar la eliminación
+            db.session.delete(usuario_participante)
+            db.session.commit()
+
+            return jsonify({'success': True, 'message': 'El participante ahora es Administrador'})
+        else:
+            return jsonify({'success': False, 'message': 'Error: Participante no encontrado o nombre incorrecto'})
     except Exception as e:
         print(e)
         db.session.rollback()
