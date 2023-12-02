@@ -4,7 +4,7 @@ from CryptoUtils.CryptoUtils import cipher
 from flask import request
 from hashlib import sha256
 
-from model.model_amistar import get_friendships
+from model.model_amistar import get_relationships
 
 """
     Función que obtiene todos los participantes de la base de datos.
@@ -61,16 +61,20 @@ def get_participante_by_email(email):
         bool: True si se eliminó exitosamente, False si no se encontró el participante.
 """
 def delete_participante(id):
+    # Obtenemos el participante por su ID
     participante = get_participante_by_id(id)
-        
+    # Verificamos si el participante existe
     if participante:
-        registros_amistar = get_friendships(id)
+        # Obtenemos las relaciones de amistad del participante
+        registros_amistar = get_relationships(id)
 
         try:
+            # Eliminamos todas las relaciones de amistad del participante
             for registro in registros_amistar:
                 db.session.delete(registro)
-        
+            # Eliminamos al participante de la base de datos
             db.session.delete(participante)
+            # Guardamos los cambios en la base de datos
             db.session.commit()
 
             return True
@@ -139,10 +143,8 @@ def edit_image_participante(id, name):
     if participante:
         # Obtenemos los campos del formulario JSON
         campos = request.get_json()
-        print(campos)
         # Obtenemos la nueva imagen de perfil del campo del formulario
         nueva_imagen = campos.get('ImagenPerfil', '')
-        print(nueva_imagen)
         
         # Verificamos si se proporcionó una nueva imagen de perfil
         if nueva_imagen:

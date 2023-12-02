@@ -4,7 +4,9 @@ import "../statics/css/General.css";
 import "../statics/css/VerTorneos.css";
 
 function MostrarTorneo(props) {
+
   function mostrar() {
+    
     const torneoImg = {
       COD: require("../statics/videogames/callOfDuty.png"),
       "CS:GO": require("../statics/videogames/csgo.png"),

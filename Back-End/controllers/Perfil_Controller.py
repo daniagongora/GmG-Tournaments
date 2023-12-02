@@ -112,7 +112,7 @@ editar_imagen_administrador = Blueprint('editar_imagen_administrador', __name__,
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
 """
-@editar_imagen_administrador.route('/perfil<int:id>/<name>/editarimagen', methods=('GET', 'POST'))
+@editar_imagen_administrador.route('/perfil<int:id>/<name>/editarImagen', methods=('GET', 'POST'))
 def editar_imagen(id, name):
     try:
         if request.method == 'POST':
@@ -142,7 +142,7 @@ editar_imagen_participante = Blueprint('editar_imagen_participante', __name__, u
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
 """
-@editar_imagen_participante.route('/perfil<int:id>/<name>/editarimagen', methods=('GET', 'POST'))
+@editar_imagen_participante.route('/perfil<int:id>/<name>/editarImagen', methods=('GET', 'POST'))
 def editar_imagen(id, name):
     try:
         if request.method == 'POST':
@@ -172,7 +172,7 @@ editar_imagen_superAdmin = Blueprint('editar_imagen_superAdmin', __name__, url_p
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
 """
-@editar_imagen_superAdmin.route('/perfil<int:id>/<name>/editarimagen', methods=('GET', 'POST'))
+@editar_imagen_superAdmin.route('/perfil<int:id>/<name>/editarImagen', methods=('GET', 'POST'))
 def editar_imagen(id, name):
     try:
         if request.method == 'POST':
@@ -299,8 +299,8 @@ def enviar_solicitud_participante(solicitante, receptor):
 
             if success:
                 return jsonify({'success': success, 
-                                    'message': 'Solicitud enviada exitosamente', 
-                                    'solicitud': True})
+                                'message': 'Solicitud enviada exitosamente', 
+                                'solicitud': True})
         else:
             return jsonify({'success': False, 'message': 'Usuario no existente'})
     except KeyError:
@@ -495,15 +495,15 @@ def buscar(id,name):
 
             # Devolvemos la información del usuario encontrado
             return jsonify({'success': True, 
-                                'message': 'Usuario encontrado', 
-                                'ID': usuario_participante.IDParticipante,
-                                'NombreCompleto': usuario_participante.NombreCompleto, 
-                                'NombreUsuario': usuario_participante.NombreParticipante, 
-                                'Correo':usuario_participante.Correo,
-                                'ImagenPerfil': usuario_participante.ImagenPerfil, 
-                                'Rol': usuario_participante.Rol,
-                                'Amigo' : esAmigo,
-                                'solicitud': solicitudEnviada})
+                            'message': 'Usuario encontrado', 
+                            'ID': usuario_participante.IDParticipante,
+                            'NombreCompleto': usuario_participante.NombreCompleto, 
+                            'NombreUsuario': usuario_participante.NombreParticipante, 
+                            'Correo':usuario_participante.Correo,
+                            'ImagenPerfil': usuario_participante.ImagenPerfil, 
+                            'Rol': usuario_participante.Rol,
+                            'Amigo' : esAmigo,
+                            'solicitud': solicitudEnviada})
         elif Usuario == "":
             return jsonify({'success': False, 'message': 'Escribe un nombre de usuario por favor'})
         else:
@@ -548,12 +548,12 @@ def buscar(id,name):
             session.modified = True
             # Devolvemos la información del usuario encontrado
             return jsonify({'success': True, 
-                                'message': 'Usuario encontrado', 
-                                'NombreCompleto': usuario_participante.NombreCompleto, 
-                                'NombreUsuario': usuario_participante.NombreParticipante, 
-                                'Correo':usuario_participante.Correo,
-                                'ImagenPerfil': usuario_participante.ImagenPerfil, 
-                                'Rol': usuario_participante.Rol})
+                            'message': 'Usuario encontrado', 
+                            'NombreCompleto': usuario_participante.NombreCompleto, 
+                            'NombreUsuario': usuario_participante.NombreParticipante, 
+                            'Correo':usuario_participante.Correo,
+                            'ImagenPerfil': usuario_participante.ImagenPerfil, 
+                            'Rol': usuario_participante.Rol})
         elif Usuario == "":
             return jsonify({'success': False, 'message': 'Escribe un nombre de usuario por favor'})
         else:

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import MostrarImagenPerfil from "./MostrarImagen";
 import Navegacion from "./Navegacion";
@@ -10,11 +10,8 @@ import "../statics/css/VerAmigos.css";
 
 function BuscarUsuario(props){
 
-    const history = useHistory();
-
     const { idUsuario } = useParams();
     const nombreUsuario = props.location.state.NombreUsuario.toString();
-    const nombreCompleto = props.location.state.NombreCompleto.toString();
     const [nombre, setNombre] = useState('');
     const [usuario, setUsuario] = useState('');
     const [correo, setCorreo] = useState('');

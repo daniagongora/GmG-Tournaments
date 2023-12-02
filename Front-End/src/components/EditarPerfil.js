@@ -116,8 +116,6 @@ function EditarPerfil(props) {
         ImagenPerfil: imagenSeleccionada,
       };
 
-      console.log("1: "+datos.ImagenPerfil);
-
       if (!datos.ImagenPerfil) {
         Swal.fire({
           title: 'Error',
@@ -132,11 +130,12 @@ function EditarPerfil(props) {
   
         return;
       }
+
       const nuevaRuta = datos.ImagenPerfil.replace(/^(.*\/[^.]+)\.([^./]+)\.([^./]+)$/, '$1.$3');
 
-    datos.ImagenPerfil = nuevaRuta.replace('/static/media/', '../statics/icons/');
-    console.log("Nueva ruta:", datos.ImagenPerfil);
-      const response = await fetch(`http://localhost:5000/${rol.toLowerCase()}/perfil${idUsuario}/${nombreUsuario}/editarimagen`, {
+      datos.ImagenPerfil = nuevaRuta.replace('/static/media/', '../statics/icons/');
+
+      const response = await fetch(`http://localhost:5000/${rol.toLowerCase()}/perfil${idUsuario}/${nombreUsuario}/editarImagen`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -158,8 +157,7 @@ function EditarPerfil(props) {
         });
 
         setImagenPerfil(datos.ImagenPerfil);
-        console.log("2: "+imagenPerfil);
-        // history.push('/');
+        history.push("/");
       } else {
         Swal.fire({
           title: 'Error',

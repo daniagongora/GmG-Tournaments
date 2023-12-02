@@ -13,6 +13,17 @@ def get_friendships(id):
     return amigos
 
 """
+    Función que obtiene las amistades o solicitudes del usuario de la base de datos.
+    
+    Returns:
+        list: Lista de todos los amigos o solicitudes en la tabla amistar.
+"""
+def get_relationships(id):
+    amigos = Amistar.query.filter((Amistar.Solicitante == id) | 
+                                  (Amistar.Receptor == id)).all()
+    return amigos
+
+"""
     Función que obtiene las solicitudes de amistad del usuario de la base de datos.
 
     Returns:
@@ -26,7 +37,7 @@ def get_request_friends(id):
 """
     Función que acepta la solicitud de amistad de un usuario.
 
-     Returns:
+    Returns:
         bool: True si se editó exitosamente, False si no se encontró la solicitud.
 """
 def accept_request(solicitante, receptor):
@@ -44,7 +55,7 @@ def accept_request(solicitante, receptor):
 """
     Función que rechaza la solicitud de amistad de un usuario.
 
-     Returns:
+    Returns:
         bool: True si se eliminó exitosamente, False si no se encontró la solicitud.
 """
 def reject_request(solicitante, receptor, estatus):
@@ -61,7 +72,7 @@ def reject_request(solicitante, receptor, estatus):
 """
     Función que elimina la amistad de un usuario.
 
-     Returns:
+    Returns:
         bool: True si se eliminó exitosamente, False si no se encontró la solicitud.
 """
 def delete_friend(solicitante, receptor):
@@ -83,7 +94,7 @@ def delete_friend(solicitante, receptor):
 """
     Función que agrega una solicitud de amistad.
 
-     Returns:
+    Returns:
         bool: True si se agregó correctamente, False si no se agregó correctamente.
 """
 def send_request(solicitante, receptor):

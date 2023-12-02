@@ -7,6 +7,7 @@ import '../statics/css/General.css';
 import '../statics/css/RegistrarPerfil.css';
 
 function RegistrarPerfil() {
+  
   const [nombre, setNombre] = useState('');
   const [usuario, setUsuario] = useState('');
   const [correo, setCorreo] = useState('');

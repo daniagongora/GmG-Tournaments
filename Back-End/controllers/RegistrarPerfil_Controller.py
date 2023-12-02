@@ -84,14 +84,14 @@ def registro():
         # Devolvemos una respuesta JSON indicando el éxito o fracaso del registro
         if success:
             return jsonify({'success': success, 
-                                'message': 'Registro exitoso',
-                                'ID':nuevo_usuario.IDParticipante, 
-                                'NombreCompleto': nuevo_usuario.NombreCompleto, 
-                                'ImagenPerfil': nuevo_usuario.ImagenPerfil,
-                                'Contrasenia': nuevo_usuario.Contrasenia, 
-                                'NombreUsuario': nuevo_usuario.NombreParticipante, 
-                                'Correo': nuevo_usuario.Correo,
-                                'Rol': nuevo_usuario.Rol})
+                            'message': 'Registro exitoso',
+                            'ID':nuevo_usuario.IDParticipante, 
+                            'NombreCompleto': nuevo_usuario.NombreCompleto, 
+                            'ImagenPerfil': nuevo_usuario.ImagenPerfil,
+                            'Contrasenia': nuevo_usuario.Contrasenia, 
+                            'NombreUsuario': nuevo_usuario.NombreParticipante, 
+                            'Correo': nuevo_usuario.Correo,
+                            'Rol': nuevo_usuario.Rol})
         else:
             return jsonify({'success': False, 'message': 'Ocurrió un error al intentar realizar el registro'})
     except KeyError:
