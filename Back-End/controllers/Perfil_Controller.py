@@ -492,7 +492,7 @@ def buscar(id,name):
                 elif solicitud.Receptor == id_participante and solicitud.Solicitante == usuario_participante.IDParticipante:
                     solicitudEnviada = True
                     break
-
+            mismoUsuario = id_participante == id_participante_busqueda       
             # Devolvemos la información del usuario encontrado
             return jsonify({'success': True, 
                             'message': 'Usuario encontrado', 
@@ -503,7 +503,8 @@ def buscar(id,name):
                             'ImagenPerfil': usuario_participante.ImagenPerfil, 
                             'Rol': usuario_participante.Rol,
                             'Amigo' : esAmigo,
-                            'solicitud': solicitudEnviada})
+                            'solicitud': solicitudEnviada,
+                            'MismoUsuario': mismoUsuario})
         elif Usuario == "":
             return jsonify({'success': False, 'message': 'Escribe un nombre de usuario por favor'})
         else:

@@ -23,6 +23,7 @@ function BuscarUsuario(props){
     const [mensaje, setMensaje] = useState('');
     const [amigo, setEsAmigo] = useState('');
     const [solicitud, setSolicitud] = useState('');
+    const [mismoUsuario, setMismoUsuario] = useState('');
 
     const BuscarUsuario = async (e) => { 
         e.preventDefault(); 
@@ -57,6 +58,7 @@ function BuscarUsuario(props){
                 setImagenPerfil(responseData.ImagenPerfil);
                 setEsAmigo(responseData.Amigo);
                 setSolicitud(responseData.solicitud);
+                setMismoUsuario(responseData.MismoUsuario);
             } else {
                 setMensaje(responseData.message || 'Error desconocido');
             }
@@ -201,7 +203,8 @@ function BuscarUsuario(props){
 
                     <div class="col-md"></div>
                     
-                    {rol === 'Participante' && !amigo === true && !solicitud === true && !mensaje && usuario && (
+                    {rol === 'Participante' && !amigo === true && !solicitud === true && !mensaje && usuario && 
+                    !mismoUsuario === true  &&(
                         <div class="col-md-3 buttons">
                             <button className="btn btn-participante btn-outline-secondary" onClick={MandarSolicitud}>Mandar Solicitud</button>
                         </div>
