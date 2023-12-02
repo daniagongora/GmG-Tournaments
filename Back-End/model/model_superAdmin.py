@@ -92,3 +92,35 @@ def edit_superAdmin(id, name):
         return True
     else:
         return False
+    
+"""
+    Función que cambia la imagen de perfil de un superadministrador en la base de datos.
+
+    Args:
+        id (int): ID del superadministrador a editar.
+        name (str): Nuevo nombre del superadministrador.
+
+    Returns:
+        bool: True si se editó exitosamente, False si no se encontró el superadministrador.
+"""
+def edit_image_superAdmin(id, name):
+    # Obtenemos el superadministrador por su ID
+    superadministrador = get_superAdmin_by_id(id)
+
+    # Si se encontró un superadministrador válido...
+    if superadministrador:
+        # Obtenemos los campos del formulario JSON
+        campos = request.get_json()
+
+        # Obtenemos la nueva imagen de perfil del campo del formulario
+        nueva_imagen = campos.get('ImagenPerfil', '')
+
+        # Verificamos si se proporcionó una nueva imagen de perfil
+        if nueva_imagen:
+            superadministrador.ImagenPerfil = nueva_imagen
+
+        # Guardamos los cambios en la base de datos
+        db.session.commit()
+        return True
+    else:
+        return False

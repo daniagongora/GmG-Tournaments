@@ -7,12 +7,15 @@ from controllers.JsonController import json_controller
 from controllers.Perfil_Controller import buscar_usuario_participante
 from controllers.Perfil_Controller import buscar_usuario_superAdmin
 from controllers.Perfil_Controller import eliminar_perfil
-from controllers.Perfil_Controller import editar_perfil_administrador
-from controllers.Perfil_Controller import editar_perfil_participante
-from controllers.Perfil_Controller import editar_perfil_superAdmin
+from controllers.Perfil_Controller import editar_datos_administrador
+from controllers.Perfil_Controller import editar_datos_participante
+from controllers.Perfil_Controller import editar_datos_superAdmin
+from controllers.Perfil_Controller import editar_imagen_administrador
+from controllers.Perfil_Controller import editar_imagen_participante
+from controllers.Perfil_Controller import editar_imagen_superAdmin
 from controllers.Perfil_Controller import ver_amigos
 from controllers.Perfil_Controller import ver_solicitudes
-from controllers.Perfil_Controller import aceptar_amistad, rechazar_amistad, eliminar_amistad
+from controllers.Perfil_Controller import aceptar_amistad, rechazar_amistad, eliminar_amistad, enviar_solicitud
 from controllers.RegistrarPerfil_Controller import registrar_perfil
 from controllers.Torneo_Controller import crear_torneo
 from controllers.Torneo_Controller import eliminar_torneo
@@ -37,12 +40,16 @@ app.register_blueprint(aceptar_amistad)
 app.register_blueprint(buscar_usuario_participante)
 app.register_blueprint(buscar_usuario_superAdmin)
 app.register_blueprint(crear_torneo)
-app.register_blueprint(editar_perfil_administrador)
-app.register_blueprint(editar_perfil_participante)
-app.register_blueprint(editar_perfil_superAdmin)
+app.register_blueprint(editar_datos_administrador)
+app.register_blueprint(editar_datos_participante)
+app.register_blueprint(editar_datos_superAdmin)
+app.register_blueprint(editar_imagen_administrador)
+app.register_blueprint(editar_imagen_participante)
+app.register_blueprint(editar_imagen_superAdmin)
 app.register_blueprint(eliminar_amistad)
 app.register_blueprint(eliminar_perfil)
 app.register_blueprint(eliminar_torneo)
+app.register_blueprint(enviar_solicitud)
 app.register_blueprint(rechazar_amistad)
 app.register_blueprint(registrar_perfil)
 app.register_blueprint(ver_amigos)

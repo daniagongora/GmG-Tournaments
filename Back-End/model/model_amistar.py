@@ -79,3 +79,22 @@ def delete_friend(solicitante, receptor):
         return True
     else:
         return False
+    
+"""
+    Función que agrega una solicitud de amistad.
+
+     Returns:
+        bool: True si se agregó correctamente, False si no se agregó correctamente.
+"""
+def send_request(solicitante, receptor):
+    solicitud = Amistar(solicitante, receptor, 0)
+
+    # Verificamos si se creó correctamente la solicitud
+    if solicitud:
+        # Agregamos la solicitud a la sesión de la base de datos
+        db.session.add(solicitud)
+        # Guardamos los cambios en la base de datos
+        db.session.commit()
+        return True
+    else:
+        return False

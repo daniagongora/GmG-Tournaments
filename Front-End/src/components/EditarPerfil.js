@@ -43,6 +43,8 @@ function EditarPerfil(props) {
     imagen9, imagen10, imagen11, imagen12,
   ]);
 
+  const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
+
   const EliminarPerfil = async () => {
     const result = await Swal.fire({
       title: '¿Seguro que deseas eliminar tu perfil?',
@@ -104,8 +106,81 @@ function EditarPerfil(props) {
     }
   };
 
-  const EditarImagen = () => {
-    setMostrarModalImagen(true);
+  const EditarImagen = async (e) => {
+    e.preventDefault();
+
+    try {
+
+      const datos = {
+        NombreUsuario: nombreUsuario,
+        ImagenPerfil: imagenSeleccionada,
+      };
+
+      console.log("1: "+datos.ImagenPerfil);
+
+      if (!datos.ImagenPerfil) {
+        Swal.fire({
+          title: 'Error',
+          text: 'Por favor selecciona una imagen de perfil',
+          icon: 'error',
+          customClass: {
+            container: 'custom-alert-container',
+            title: 'custom-alert-title',
+            icon: 'custom-alert-icon',
+          },
+        });
+  
+        return;
+      }
+
+      const response = await fetch(`http://localhost:5000/${rol.toLowerCase()}/perfil${idUsuario}/${nombreUsuario}/editar`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos),
+      });
+
+      if (response.ok) {
+        Swal.fire({
+          title: 'Imagen actualizada exitosamente',
+          text: 'Por favor, vuelva a iniciar sesión',
+          icon: 'success',
+          customClass: {
+            container: 'custom-alert-container',
+            title: 'custom-alert-title',
+            text: 'custom-alert-text',
+            icon: 'custom-alert-icon',
+          },
+        });
+
+        setImagenPerfil(datos.ImagenPerfil);
+        console.log("2: "+imagenPerfil);
+        // history.push('/');
+      } else {
+        Swal.fire({
+          title: 'Error',
+          text: 'Ocurrió un error al actualizar la imagen de tu perfil',
+          icon: 'error',
+          customClass: {
+            container: 'custom-alert-container',
+            title: 'custom-alert-title',
+            icon: 'custom-alert-icon',
+          },
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: 'Ups! :(',
+        text: 'Ocurrió un problema con el servidor por favor intenta más tarde',
+        icon: 'error',
+        customClass: {
+          container: 'custom-alert-container',
+          title: 'custom-alert-title',
+          icon: 'custom-alert-icon',
+        },
+      });
+    }
   };
 
   const EditarDatos = async (e) => {
@@ -195,7 +270,7 @@ function EditarPerfil(props) {
     return (
       <div class="modal fade show" style={{ display: 'block' }} id="modalCard">
         <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
+          <div class="modal-content edit-image">
             <div class="modal-header">
               <h2 class="modal-title">Selecciona una Imagen</h2>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
@@ -247,7 +322,7 @@ function EditarPerfil(props) {
               </div>
 
               <div class="btns">
-                <button class="btn btn-outline-secondary edit-image" onClick={() => EditarImagen('imagen')}>Editar Imagen</button>   
+                <button class="btn btn-outline-secondary edit-image" onClick={() => setMostrarModalImagen(true)}>Editar Imagen</button>   
                 
                 {rol === 'participante' && (
                   <button class="btn btn-outline-danger delete-profile" onClick={EliminarPerfil}>Eliminar Perfil</button>
@@ -332,16 +407,23 @@ function EditarPerfil(props) {
 
           {mostrarModalImagen && (
             <ModalEditarImagen onClose={() => setMostrarModalImagen(false)}>
-              <div class="imagen-container">
+              <div class="image-container">
                 {imagenesDisponibles.map((imagen, index) => (
                   <img
-                    class="album-image"
+                    class={`album-image ${imagen === imagenSeleccionada ? 'selected' : ''}`}
                     key={index}
                     src={imagen}
                     alt={`img${index}`}
+                    onClick={() => setImagenSeleccionada(imagen)}
                   />
                 ))}
               </div>
+
+              <br></br>
+
+              <button class="btn btn-outline-secondary change-image" onClick={EditarImagen}>Cambiar Imagen</button>
+
+              <br></br>
             </ModalEditarImagen>
           )}
         </div>  

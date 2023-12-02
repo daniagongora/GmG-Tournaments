@@ -120,3 +120,35 @@ def edit_participante(id, name):
         return True
     else:
         return False
+    
+"""
+    Función que cambia la imagen de perfil de un participante en la base de datos.
+
+    Args:
+        id (int): ID del participante a editar.
+        name (str): Nuevo nombre del participante.
+
+    Returns:
+        bool: True si se editó exitosamente, False si no se encontró el participante.
+"""
+def edit_image_participante(id, name):
+    # Obtenemos el participante por su ID
+    participante = get_participante_by_id(id)
+
+    # Si se encontró un participante válido...
+    if participante:
+        # Obtenemos los campos del formulario JSON
+        campos = request.get_json()
+
+        # Obtenemos la nueva imagen de perfil del campo del formulario
+        nueva_imagen = campos.get('ImagenPerfil', '')
+
+        # Verificamos si se proporcionó una nueva imagen de perfil
+        if nueva_imagen:
+            participante.ImagenPerfil = nueva_imagen
+
+        # Guardamos los cambios en la base de datos
+        db.session.commit()
+        return True
+    else:
+        return False
