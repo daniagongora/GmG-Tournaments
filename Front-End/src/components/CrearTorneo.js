@@ -181,6 +181,8 @@ function CrearTorneo() {
             <h2 class="title">Crear Torneo</h2>
           </div>
 
+          <br></br>
+
           <div class="row">
             <form onSubmit={CrearTorneo}>
               <div class="table-responsive">
@@ -254,14 +256,14 @@ function CrearTorneo() {
                           <select
                             class={
                               validVideojuego
-                                ? "form-select is-valid entry-data"
-                                : "form-select is-invalid entry-data"
+                                ? "form-control is-valid entry-data"
+                                : "form-control is-invalid entry-data"
                             }
                             value={videojuego}
                             onChange={checkVideojuego}
                             required
                             id="inputVideojuego">
-                            <option>Selecciona una opcion</option>
+                            <option>Selecciona una opción</option>
 
                             {listaVideojuegos.map((videojuego, index) => (
                               <option key={index}>{videojuego}</option>

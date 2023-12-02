@@ -6,7 +6,8 @@ import Navegacion from "./Navegacion";
 import Swal from 'sweetalert2';
 
 import "../statics/css/General.css";
-import "../statics/css/VerAmigos.css";
+import '../statics/css/Alerta.css';
+import "../statics/css/BuscarUsuario.css";
 
 function BuscarUsuario(props){
 
@@ -183,69 +184,88 @@ function BuscarUsuario(props){
 
     return (
 
-        <div>
-            <body>
-                <Navegacion/>
-                <br></br>
-            
-                <form onSubmit={BuscarUsuario}>
-                    <label>Nombre:
-                        <input type="text" value={usuarioBusqueda} onChange={(e) => setUsuarioBusqueda(e.target.value)} />
-                    </label>
-                    <button type="submit">Buscar</button>
-                </form>
+        <body>
+            <Navegacion/>
+            <div className="card body-content">
+                <div class="row">
+                    <h2 class="title">Buscar Usuario</h2>
+                </div>
 
                 <br></br>
+                
+                <div class="row-md mb-4 d-flex flex-md-row flex-column">
 
-                {mensaje && <p>{mensaje}</p>}
+                    <form onSubmit={BuscarUsuario}>
+                        <input class="form-control search col-md-3" type="text" value={usuarioBusqueda} placeholder="Ingresa el username" onChange={(e) => setUsuarioBusqueda(e.target.value)} />
+                    </form>
 
-                <br></br>
+                    <div class="col-md"></div>
+                    
+                    {rol === 'Participante' && !amigo === true && !solicitud === true && !mensaje && usuario && (
+                        <div class="col-md-3 buttons">
+                            <button className="btn btn-participante btn-outline-secondary" onClick={MandarSolicitud}>Mandar Solicitud</button>
+                        </div>
+                    )}
+
+                    {rol === 'Participante' && !amigo === true && !solicitud === false && !mensaje && usuario &&(
+                        <div class="col-md-3 buttons">
+                            <button className="btn btn-participante btn-outline-danger" 
+                                onClick={() => CancelarSolicitud(parseInt(idUsuario), parseInt(idUsuarioBusqueda))}>Cancelar Solicitud</button>
+                        </div>
+                    )}
+
+                    {rol === 'SuperAdministrador' && !mensaje && usuario &&(
+                        <div class="col-md-4 buttons">
+                            <button className="btn btn-superadmin btn-outline-secondary">Asignar Administrador</button>
+                        </div>
+                    )}
+
+                    {mensaje && <p>{mensaje}</p>}
+                </div>
 
                 {!mensaje && usuario && (
-                    <div class="card text-white bg-primary mb-3">
-                        <div class="card-body">
-                            <MostrarImagenPerfil imagen={imagenPerfil} />
+                    
 
-                            <tr>
-                                <td> <h5>Username: </h5> </td>
-                                <td> <h3>{usuario}</h3> </td>
-                            </tr>
+                    <div class="row mt-2">
 
-                            <br></br>
+                        <div class="card card-result border-secondary d-flex align-items-center justify-content-center flex-md-row flex-column">
+                            <div class="card card-user col-md">
+                                <div class="card card-picture border-secondary mb-4">
+                                        <MostrarImagenPerfil imagen={imagenPerfil} />
+                                </div>
+                            </div>
 
-                            <tr>
-                                <td> <h5>Nombre: </h5> </td>
-                                <td> <h3>{nombre}</h3> </td>
-                            </tr>
+                            <div class="card card-user-information col-md-8">
+                                <div class="container-fluid d-flex align-items-center justify-content-center mt-3">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <td> <h4>Nombre: </h4> </td>
+                                                <td> <h2>{nombre}</h2> </td>
+                                            </tr>
 
-                            <br></br>
+                                            <tr>
+                                                <td> <h4>Username: </h4> </td>
+                                                <td> <h2>{usuario}</h2> </td>
+                                            </tr>
 
-                            {rol === 'SuperAdministrador' && (
-                                <tr>
-                                    <td> <h5>Correo: </h5> </td>
-                                    <td> <h3>{correo}</h3> </td>
-                                </tr>   
-                            )}
-                            
-                            {rol === 'Participante' && !amigo === true && !solicitud === true && (
-                                <button className="btn btn-outline-secondary" onClick={MandarSolicitud}>Mandar Solicitud</button>
-                            )}
-
-                            {rol === 'Participante' && !amigo === true && !solicitud === false && (
-                                <button className="btn btn-danger" 
-                                        onClick={() => CancelarSolicitud(parseInt(idUsuario), parseInt(idUsuarioBusqueda))}>Cancelar Solicitud</button>
-                            )}
-
-                            {rol === 'SuperAdministrador' && (
-                                <button className="btn btn-outline-secondary">Asignar Administrador</button>
-                            )}
-
-                            <br></br>
+                                            {rol === 'SuperAdministrador' && (
+                                                <tr>
+                                                    <td> <h4>Correo: </h4> </td>
+                                                    <td> <h2>{correo}</h2> </td>
+                                                </tr>   
+                                            )} 
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>               
+                        
+                    </div>           
                 )}
-            </body>
-        </div>
+
+            </div>
+        </body>
     );
 }
 

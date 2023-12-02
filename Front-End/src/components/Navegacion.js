@@ -50,7 +50,7 @@ function Navegacion() {
                                 </li>
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/logout">Cerrar Sesion</a>
+                                    <a class="nav-link" href="/logout">Cerrar Sesión</a>
                                 </li>
                             </ul>
                         </div>

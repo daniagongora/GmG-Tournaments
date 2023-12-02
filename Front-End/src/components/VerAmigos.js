@@ -146,6 +146,8 @@ function VerAmigos(props) {
             <h2 class="title">Mis Amigos</h2>
           </div>
 
+          <br></br>
+          
           <div class="row"> 
             <div class="card card-user col-md-4">
                 <div class="card card-picture border-secondary mb-2">
@@ -163,29 +165,30 @@ function VerAmigos(props) {
 
             <div class="card card-list col-md-8">
               {amigos.length === 0 ? (
-                <div class="card card-empty container-fluid border-secondary d-flex align-items-center justify-content-center">
+                <div class="card card-empty container-fluid border-secondary align-items-center justify-content-center">
                   <h2 class= "card-empty-message">Aun no tienes amigos</h2>
                 </div>
               ) : (
                 <div class="card card-friends container-fluid border-secondary">
-                  <ul class="list row">
+                  <ul class="list">
                     {amigos.map((amigo) => (
-                      <li key={amigo.NombreParticipante} className="list-item col-md-6">
-                        <div className="row">
-                          <div className="col-md d-flex align-items-center">
+                      <li key={amigo.NombreParticipante} className="list-item">
+                        <div className="row-md users d-flex flex-md-row flex-column">
+
+                          <div className="col-md-7 d-flex align-items-center">
                             <div className="card list-image-container border-secondary">
                               <MostrarImagenPerfil imagen={amigo.ImagenPerfil} />
                             </div>
-
-                            <span><h4 className="list-name ms-3 col-md">{amigo.NombreParticipante}</h4></span>
-                            
-                            <span className="btn btn-outline-danger btn-delete-friend ms-5 "
-                                  style={{ cursor: 'pointer' }}
-                                  onClick={() => EliminarAmigo(parseInt(amigo.IDAmigo.toString()), parseInt(idUsuario))}
-                                  role="img"
-                                  aria-label="Bote de basura">&#128465;
-                            </span>
+                            <div><h4 className="list-name ms-3">{amigo.NombreParticipante}</h4></div>
                           </div>
+                            
+                          <div className="col-md btn-solicitud d-flex align-items-center justify-content-center">
+                            {/* <button className="btn btn-outline-secondary">Ver Perfil</button> */}
+                            <button className="btn btn-outline-danger" 
+                                    onClick={() => EliminarAmigo(parseInt(amigo.IDAmigo.toString()), parseInt(idUsuario))}>Eliminar
+                            </button>
+                          </div>
+
                         </div>
                       </li>
                     ))}

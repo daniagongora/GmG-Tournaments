@@ -3,6 +3,9 @@
     width: 250px;
 }
 
+.btn-solicitud{
+}
+
 .card-body {
     width: 100%;
 }
@@ -17,41 +20,33 @@
     margin-top: 20px;
 }
 
-.card-text {
-    color: white;
-    width: 50%;
-}
-
-.card.list-image-container {
+.card.list-image-container{
     border-radius: 50%;
-    width: 20%;
+    margin: 8px;
+    width:  100px;
 }
 
 .card.text-white {
     margin: auto;
-    width: 60%;
+    width: 20%;
 }
 
 .list-item {
-    display: flex;
-    margin-bottom: 20px;
-    padding: 0;
+    display: flex;  
 }
 
 .list-name {
     font-size: xx-large;
 }
 
-.list.row {
+.list{
     padding: 30px;
-}
-
-img .picture {
-    border-radius: 100%;
-    height: 25%;
-    width: 25%;
 }
 
 .user {
     font-size: 40px;
+}
+
+.row .users {
+    width: 100%;
 }

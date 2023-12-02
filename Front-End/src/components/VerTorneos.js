@@ -62,15 +62,17 @@ function VerTorneos() {
             <h2 class="title">Torneos</h2>
           </div>
 
-          <div class="row">
+          <br></br>
+
+          <div class="row tournaments">
             {torneos.map((torneo, index) => (
-              <div class="card border-secondary mb-3 tournament-card" key={index}>
+              <div class="card border-secondary mb-4 tournament-card col-md-4" key={index}>
                 <div class="card-header tournament-header">
                   <MostrarTorneo videojuego={torneo.Videojuego} />
                 </div>
 
                 <div class="card-body">
-                  <h4 class="card-title">{torneo.NombreTorneo}</h4>
+                  <h4 class="card-title text-center">{torneo.NombreTorneo}</h4>
                   <button type="button"
                           class="btn btn-outline-secondary btn-lg"
                           value={torneo.IDTorneo}

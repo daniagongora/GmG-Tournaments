@@ -187,9 +187,12 @@ function VerSolicitudes(props) {
                 <Navegacion />
 
                 <div className="card body-content">
+
                     <div className="row">
-                        <h2 className="title">Solicitudes de amistad</h2>
+                        <h2 className="title">Solicitudes de Amistad</h2>
                     </div>
+
+                    <br></br>
 
                     <div className="row">
                         <div className="card card-user col-md-4 d-flex align-items-center">
@@ -197,7 +200,7 @@ function VerSolicitudes(props) {
                                 <MostrarImagenPerfil imagen={location.state.ImagenPerfil}/>
                             </div>
 
-                            <div className="card card-username text-center ms-3">
+                            <div className="card card-username text-center">
                                 <h2 className="user"> {location.state.NombreUsuario} </h2>
                             </div>
                         </div>
@@ -205,26 +208,27 @@ function VerSolicitudes(props) {
                         <div className="card card-list col-md-8">
                             {solicitudes && solicitudes.length === 0 ? (
                                 <div className="card card-empty container-fluid border-secondary d-flex align-items-center justify-content-center">
-                                    <h2 className="card-empty-message">Aun no te han llegado solicitudes</h2>
+                                    <h2 className="card-empty-message">Aun no tienes solicitudes</h2>
                                 </div>
                             ) : (
                                 <div className="card card-friends container-fluid border-secondary">
-                                    <ul className="list row">
+                                    <ul className="list">
                                         {solicitudes && solicitudes.length > 0 && solicitudes.map((amigo) => (
-                                            <li key={amigo.NombreParticipante} className="list-item col-md-12">
-                                                <div className="row align-items-center">
-                                                    <div className="col-md-8 d-flex align-items-center">
+                                            <li key={amigo.NombreParticipante} className="list-item">
+                                                <div className="row-md users d-flex flex-md-row flex-column">
+
+                                                    <div className="col-md-7 d-flex align-items-center">
                                                         <div className="card list-image-container border-secondary">
                                                             <MostrarImagenPerfil imagen={amigo.ImagenPerfil} />
                                                         </div>
-                                                        <span><h4 className="list-name ms-3">{amigo.NombreParticipante}</h4></span>
+                                                        <div><h4 className="list-name ms-3">{amigo.NombreParticipante}</h4></div>
                                                     </div>
                                         
-                                                    <div className="col-md-4">
-                                                        <button className="btn btn-success me-2" onClick={() => 
+                                                    <div className="col-md btn-solicitud d-flex align-items-center justify-content-center">
+                                                        <button className="btn btn-outline-success" onClick={() => 
                                                             AceptarSolicitud(parseInt(amigo.IDSolicitante.toString()), parseInt(idUsuario))}>Aceptar</button>
                                             
-                                                        <button className="btn btn-danger" onClick={() => 
+                                                        <button className="btn btn-outline-danger" onClick={() => 
                                                             RechazarSolicitud(parseInt(amigo.IDSolicitante.toString()), parseInt(idUsuario))}>Rechazar</button>
                                                     </div>
                                                 </div>
