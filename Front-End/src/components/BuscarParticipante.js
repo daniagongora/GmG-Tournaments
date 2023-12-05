@@ -50,7 +50,7 @@ function BuscarParticipante(props){
 
     const handleVolverAdministrador = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/superadministrador/perfil${idUsuario}/volverAdministrador/${usuario}`, {
+          const response = await fetch(`http://localhost:5000/superadministrador/perfil${idUsuario}/volverAdministrador/${usuario.toString()}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

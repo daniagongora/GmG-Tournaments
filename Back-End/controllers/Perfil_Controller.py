@@ -6,6 +6,7 @@ from model.model_amistar import get_friendships
 from model.model_administrador import edit_administrador
 from model.model_participante import get_participante_by_id, delete_participante, edit_participante, get_participante_by_name
 from model.model_superAdmin import edit_superAdmin
+from alchemyClasses.Administrador import Administrador
 
 # ------------------------------ EDITAR PERFIL ------------------------------
 # ------------------------------ ADMINISTRADOR ------------------------------
@@ -270,18 +271,15 @@ volver_administrador = Blueprint('volver_administrador',  __name__, url_prefix='
 def volver_admin(participante_id, participante):
     try:
         # Obtener el participante por ID
-        usuario_participante = get_participante_by_id(participante_id)
-
-        print("Usuario Participante:", usuario_participante)
+        usuario_participante = get_participante_by_name(participante)
 
         # Verificar si el participante existe y si el nombre coincide
         if usuario_participante:
             # Actualizar el rol del participante
-            usuario_participante.Rol = 'Administrador'
+            usuario_participante
 
             # Crear un nuevo administrador con los datos del participante
             nuevo_administrador = Administrador(
-                IDSuperAdministrador=None,  # Ajusta según tu lógica
                 NombreCompleto=usuario_participante.NombreCompleto,
                 ImagenPerfil=usuario_participante.ImagenPerfil,
                 Contrasenia=usuario_participante.Contrasenia,
@@ -295,7 +293,7 @@ def volver_admin(participante_id, participante):
             db.session.commit()
 
             # Eliminar el participante original y confirmar la eliminación
-            delete_participante(participante_id)
+            delete_participante(usuario_participante.IDParticipante)
             db.session.commit()
 
             return jsonify({'success': True, 'message': 'El participante ahora es Administrador'})
