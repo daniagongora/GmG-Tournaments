@@ -270,13 +270,15 @@ volver_administrador = Blueprint('volver_administrador',  __name__, url_prefix='
 def volver_admin(participante_id, participante):
     try:
         # Obtener el participante por ID
-        usuario_participante = Participante.query.get(participante_id)
+        usuario_participante = get_participante_by_id(participante_id)
 
-        print("Usuario Participante:", usuario_participante)  # Agrega esta línea para imprimir el participante
+        print("Usuario Participante:", usuario_participante)
 
         # Verificar si el participante existe y si el nombre coincide
-        if usuario_participante and usuario_participante.NombreParticipante == participante:
-            
+        if usuario_participante:
+            # Actualizar el rol del participante
+            usuario_participante.Rol = 'Administrador'
+
             # Crear un nuevo administrador con los datos del participante
             nuevo_administrador = Administrador(
                 IDSuperAdministrador=None,  # Ajusta según tu lógica
@@ -288,53 +290,12 @@ def volver_admin(participante_id, participante):
                 Rol='Administrador'
             )
 
-            # Actualizar el rol del participante
-            usuario_participante.Rol = 'Administrador'
-
             # Agregar el nuevo administrador a la sesión y confirmar los cambios
             db.session.add(nuevo_administrador)
             db.session.commit()
 
             # Eliminar el participante original y confirmar la eliminación
-            db.session.delete(usuario_participante)
-            db.session.commit()
-
-            return jsonify({'success': True, 'message': 'El participante ahora es Administrador'})
-        else:
-            return jsonify({'success': False, 'message': 'Error: Participante no encontrado o nombre incorrecto'})
-    except Exception as e:
-        print(e)
-        db.session.rollback()
-        return jsonify({'success': False, 'message': 'Error al actualizar el rol del participante'})def volver_admin(participante_id, participante):
-    try:
-        # Obtener el participante por ID
-        usuario_participante = Participante.query.get(participante_id)
-
-        print("Usuario Participante:", usuario_participante)  # Agrega esta línea para imprimir el participante
-
-        # Verificar si el participante existe y si el nombre coincide
-        if usuario_participante and usuario_participante.NombreParticipante == participante:
-            
-            # Crear un nuevo administrador con los datos del participante
-            nuevo_administrador = Administrador(
-                IDSuperAdministrador=None,  # Ajusta según tu lógica
-                NombreCompleto=usuario_participante.NombreCompleto,
-                ImagenPerfil=usuario_participante.ImagenPerfil,
-                Contrasenia=usuario_participante.Contrasenia,
-                NombreAdministrador=usuario_participante.NombreParticipante,
-                Correo=usuario_participante.Correo,
-                Rol='Administrador'
-            )
-
-            # Actualizar el rol del participante
-            usuario_participante.Rol = 'Administrador'
-
-            # Agregar el nuevo administrador a la sesión y confirmar los cambios
-            db.session.add(nuevo_administrador)
-            db.session.commit()
-
-            # Eliminar el participante original y confirmar la eliminación
-            db.session.delete(usuario_participante)
+            delete_participante(participante_id)
             db.session.commit()
 
             return jsonify({'success': True, 'message': 'El participante ahora es Administrador'})
