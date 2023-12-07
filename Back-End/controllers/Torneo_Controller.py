@@ -69,10 +69,10 @@ def eliminarTorneo(idAdmin, name):
                     listaTorneos.append({
                         'IDTorneo': trnmt.IDTorneo,
                         'NombreTorneo' : trnmt.NombreTorneo,
-                        'Videojuego' : trnmt.Videojuego,
-                        'FechaCreacion' : trnmt.FechaCreacion.strftime("%x"),
                         'FechaInicio' : trnmt.FechaInicio.strftime("%x"),
-                        'Estatus' : trnmt.Estatus
+                        'Videojuego' : trnmt.Videojuego,
+                        'Estatus' : trnmt.Estatus,
+                        'FechaCreacion' : trnmt.FechaCreacion.strftime("%x")
                     })
                 return jsonify({'success': True, 'message': 'Se consultaron los torneos exitosamente', 'torneos': listaTorneos})
             return jsonify({'success': True, 'message': 'No se encontraron torneos creados por este administrador', 'torneos': listaTorneos})

@@ -28,7 +28,7 @@ function MostrarTorneo(props) {
     return torneoImg[props.videojuego];
   }
 
-  return <img class="tournament-img" src={ mostrar() } alt={props.videojuego}/>;
+  return <img class="tournament-img" src={ mostrar() } alt={props.videojuego} />;
 }
 
 export default MostrarTorneo;

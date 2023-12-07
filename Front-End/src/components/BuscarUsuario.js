@@ -38,7 +38,6 @@ function BuscarUsuario(props){
         } else if (rol.toLowerCase() === 'superadministrador') {
             ruta  = `http://localhost:5000/superadministrador/perfil${idUsuario}/${nombreUsuario}/gestionar/buscarUsuario`
         } else {
-            console.error('Rol no reconocido');
             return;
         }
 
@@ -284,14 +283,14 @@ function BuscarUsuario(props){
                         </div>
                     )}
 
-                    {rol === 'Participante' && !amigo === true && !solicitud === false && !mensaje && usuario &&(
+                    {rol === 'Participante' && !amigo === true && !solicitud === false && !mensaje && usuario && (
                         <div class="col-md-3 buttons">
                             <button className="btn btn-participante btn-outline-danger" 
                                     onClick={() => CancelarSolicitud(parseInt(idUsuario), parseInt(idUsuarioBusqueda))}>Cancelar Solicitud</button>
                         </div>
                     )}
 
-                    {rol === 'SuperAdministrador' && !mensaje && usuario &&(
+                    {rol === 'SuperAdministrador' && !mensaje && usuario && (
                         <div class="col-md-4 buttons">
                             <button className="btn btn-superadmin btn-outline-secondary"
                                     onClick={VolverAdministrador}>Asignar Administrador</button>

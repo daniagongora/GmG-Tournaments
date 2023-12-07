@@ -513,9 +513,9 @@ def buscar(id,name):
                             'message': 'Usuario encontrado', 
                             'ID': usuario_participante.IDParticipante,
                             'NombreCompleto': usuario_participante.NombreCompleto, 
+                            'ImagenPerfil': usuario_participante.ImagenPerfil, 
                             'NombreUsuario': usuario_participante.NombreParticipante, 
                             'Correo':usuario_participante.Correo,
-                            'ImagenPerfil': usuario_participante.ImagenPerfil, 
                             'Rol': usuario_participante.Rol,
                             'Amigo' : esAmigo,
                             'solicitud': solicitudEnviada,
@@ -550,24 +550,22 @@ def buscar(id,name):
         usuario = request.form.get('NombreUsuario')
         # Buscamos al usuario en la base de datos
         usuario_participante = get_participante_by_name(usuario)
-
-
         # Si el usuario existe, obtenemos su información
         if usuario_participante:
             session.clear()
             session['NombreCompleto'] = usuario_participante.NombreCompleto
+            session['ImagenPerfil'] = usuario_participante.ImagenPerfil
             session['NombreUsuario'] = usuario_participante.NombreParticipante
             session['Correo'] = usuario_participante.Correo
-            session['ImagenPerfil'] = usuario_participante.ImagenPerfil
             session['Rol'] = usuario_participante.Rol
             session.modified = True
             # Devolvemos la información del usuario encontrado
             return jsonify({'success': True, 
                             'message': 'Usuario encontrado', 
                             'NombreCompleto': usuario_participante.NombreCompleto, 
+                            'ImagenPerfil': usuario_participante.ImagenPerfil,
                             'NombreUsuario': usuario_participante.NombreParticipante, 
-                            'Correo':usuario_participante.Correo,
-                            'ImagenPerfil': usuario_participante.ImagenPerfil, 
+                            'Correo':usuario_participante.Correo, 
                             'Rol': usuario_participante.Rol})
         elif usuario == "":
             return jsonify({'success': False, 'message': 'Escribe un nombre de usuario por favor'})
@@ -585,7 +583,7 @@ volver_administrador = Blueprint('volver_administrador',  __name__, url_prefix='
     Función para cambiar el rol de un participante por administrador.
 
     Args:
-        id (int): El ID del participante.
+        id (int): El ID del superadministrador.
         name (str): El nombre del participante.
 
     Returns:

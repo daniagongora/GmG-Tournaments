@@ -54,7 +54,7 @@ def get_superAdmin_by_email(email):
 
     Args:
         id (int): ID del superadministrador a editar.
-        name (str): Nuevo nombre del superadministrador.
+        name (str): Nombre del superadministrador.
 
     Returns:
         bool: True si se editó exitosamente, False si no se encontró el superadministrador.
@@ -98,7 +98,7 @@ def edit_superAdmin(id, name):
 
     Args:
         id (int): ID del superadministrador a editar.
-        name (str): Nuevo nombre del superadministrador.
+        name (str): Nombre del superadministrador.
 
     Returns:
         bool: True si se editó exitosamente, False si no se encontró el superadministrador.

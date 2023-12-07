@@ -197,6 +197,7 @@ function EditarPerfil(props) {
         Correo: document.getElementById('correo').value,
         Contrasenia: document.getElementById('contrasenia').value,
       };
+
       if (!campos.NombreCompleto || 
           !campos[(rol === 'participante' ? 'NombreParticipante' : rol === 'administrador' ? 'NombreAdministrador' : 'NombreSuperadministrador')] || 
           !campos.Correo ||
@@ -337,7 +338,7 @@ function EditarPerfil(props) {
             </div>
 
             <div class="modal-body">
-              <form onSubmit={EditarDatos}> {children} </form>
+              <form onSubmit={EditarDatos}> { children } </form>
             </div>
           </div>
         </div>

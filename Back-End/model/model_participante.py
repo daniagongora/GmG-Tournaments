@@ -1,10 +1,8 @@
 from alchemyClasses import db
 from alchemyClasses.Administrador import Administrador
 from alchemyClasses.Participante import Participante
-from model.model_administrador import get_administrador_by_name
 from model.model_superAdmin import get_superAdmin_by_id
 from CryptoUtils.CryptoUtils import cipher
-from CryptoUtils.CryptoUtils import decipher
 from flask import request
 from hashlib import sha256
 
@@ -90,7 +88,7 @@ def delete_participante(id):
 
     Args:
         id (int): ID del participante a editar.
-        name (str): Nuevo nombre del participante.
+        name (str): Nombre del participante.
 
     Returns:
         bool: True si se editó exitosamente, False si no se encontró el participante.
@@ -134,7 +132,7 @@ def edit_participante(id, name):
 
     Args:
         id (int): ID del participante a editar.
-        name (str): Nuevo nombre del participante.
+        name (str): Nombre del participante.
 
     Returns:
         bool: True si se editó exitosamente, False si no se encontró el participante.
@@ -191,17 +189,14 @@ def become_admin(id, name):
 
         # Agregamos el nuevo administrador a la sesión y confirmamos los cambios
         db.session.add(nuevo_administrador)
-        
-        nuevo_administrador_tabla = get_administrador_by_name(nombre_admin)
-        if nuevo_administrador_tabla:
-            admin = nuevo_administrador_tabla[0]
-            admin.IDSuperAdministrador = id
-            admin.Contrasenia = participante.Contrasenia
-        
+        # Asignamos el id del superadministrador en el registro del nuevo administrador
+        nuevo_administrador.IDSuperAdministrador = id
+        # Guardamos los cambios en la base de datos
+        db.session.commit()
+
         # Eliminamos el participante original y confirmamos la eliminación
         delete_participante(participante.IDParticipante)
         # Guardamos los cambios en la base de datos
-
         db.session.commit()
 
         return True

@@ -29,7 +29,7 @@ class Torneo(db.Model):
             - Videojuego (str): El nombre del videojuego asociado al torneo.
             - Plataforma (str): La plataforma en la que se llevará a cabo el torneo.
             - Descripcion (str): Una descripción del torneo.
-            - Estatus (int): El estado actual del torneo.
+            - Estatus (bool): El estado actual del torneo.
             - FechaCreacion (str): La fecha de creación del torneo.
     """
     def __init__(self, IDAdministrador, NombreTorneo, FechaInicio, CupoMaximo, Videojuego, Plataforma, Descripcion, Estatus, FechaCreacion):

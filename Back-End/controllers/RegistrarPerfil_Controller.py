@@ -85,7 +85,7 @@ def registro():
         if success:
             return jsonify({'success': success, 
                             'message': 'Registro exitoso',
-                            'ID':nuevo_usuario.IDParticipante, 
+                            'ID': nuevo_usuario.IDParticipante, 
                             'NombreCompleto': nuevo_usuario.NombreCompleto, 
                             'ImagenPerfil': nuevo_usuario.ImagenPerfil,
                             'Contrasenia': nuevo_usuario.Contrasenia, 

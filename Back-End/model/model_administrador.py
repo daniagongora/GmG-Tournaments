@@ -54,7 +54,7 @@ def get_administrador_by_email(email):
 
     Args:
         id (int): ID del administrador a editar.
-        name (str): Nuevo nombre del administrador.
+        name (str): Nombre del administrador.
 
     Returns:
         bool: True si se editó exitosamente, False si no se encontró el administrador.
@@ -98,7 +98,7 @@ def edit_administrador(id, name):
 
     Args:
         id (int): ID del administrador a editar.
-        name (str): Nuevo nombre del administrador.
+        name (str): Nombre del administrador.
 
     Returns:
         bool: True si se editó exitosamente, False si no se encontró el administrador.
