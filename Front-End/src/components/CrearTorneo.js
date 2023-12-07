@@ -9,6 +9,7 @@ import "../statics/css/Alerta.css";
 import "../statics/css/CrearTorneo.css";
 
 function CrearTorneo() {
+
   const history = useHistory();
   const location = useLocation();
   let today = new Date();
@@ -173,6 +174,7 @@ function CrearTorneo() {
   };
 
   return (
+    
     <div>
       <body>
         <Navegacion />

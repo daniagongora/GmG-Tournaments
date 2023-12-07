@@ -50,7 +50,7 @@ function RegistrarPerfil() {
           },
         });
 
-        history.push(`/login`);
+        history.push(`/`);
       } else {
         setMensaje(responseData.message || 'Error desconocido');
       }
