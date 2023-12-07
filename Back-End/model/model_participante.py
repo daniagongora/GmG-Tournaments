@@ -1,10 +1,12 @@
 from alchemyClasses import db
+from alchemyClasses.Administrador import Administrador
 from alchemyClasses.Participante import Participante
+from model.model_superAdmin import get_superAdmin_by_id
 from CryptoUtils.CryptoUtils import cipher
 from flask import request
 from hashlib import sha256
 
-from model.model_amistar import get_friendships
+from model.model_amistar import get_relationships
 
 """
     Función que obtiene todos los participantes de la base de datos.
@@ -61,16 +63,20 @@ def get_participante_by_email(email):
         bool: True si se eliminó exitosamente, False si no se encontró el participante.
 """
 def delete_participante(id):
+    # Obtenemos el participante por su ID
     participante = get_participante_by_id(id)
-        
+    # Verificamos si el participante existe
     if participante:
-        registros_amistar = get_friendships(id)
+        # Obtenemos las relaciones de amistad del participante
+        registros_amistar = get_relationships(id)
 
         try:
+            # Eliminamos todas las relaciones de amistad del participante
             for registro in registros_amistar:
                 db.session.delete(registro)
-        
+            # Eliminamos al participante de la base de datos
             db.session.delete(participante)
+            # Guardamos los cambios en la base de datos
             db.session.commit()
 
             return True
@@ -82,7 +88,7 @@ def delete_participante(id):
 
     Args:
         id (int): ID del participante a editar.
-        name (str): Nuevo nombre del participante.
+        name (str): Nombre del participante.
 
     Returns:
         bool: True si se editó exitosamente, False si no se encontró el participante.
@@ -114,6 +120,82 @@ def edit_participante(id, name):
         # Verificamos si se proporcionó una nueva contraseña
         if contraseniaNueva:
             participante.Contrasenia = sha256(cipher(contraseniaNueva)).hexdigest()
+        # Guardamos los cambios en la base de datos
+        db.session.commit()
+
+        return True
+    else:
+        return False
+    
+"""
+    Función que cambia la imagen de perfil de un participante en la base de datos.
+
+    Args:
+        id (int): ID del participante a editar.
+        name (str): Nombre del participante.
+
+    Returns:
+        bool: True si se editó exitosamente, False si no se encontró el participante.
+"""
+def edit_image_participante(id, name):
+    # Obtenemos el participante por su ID
+    participante = get_participante_by_id(id)
+
+    # Si se encontró un participante válido...
+    if participante:
+        # Obtenemos los campos del formulario JSON
+        campos = request.get_json()
+        # Obtenemos la nueva imagen de perfil del campo del formulario
+        nueva_imagen = campos.get('ImagenPerfil', '')
+        
+        # Verificamos si se proporcionó una nueva imagen de perfil
+        if nueva_imagen:
+            participante.ImagenPerfil = nueva_imagen
+
+        # Guardamos los cambios en la base de datos
+        db.session.commit()
+
+        return True
+    else:
+        return False
+    
+"""
+    Función para cambiar el rol de un participante por administrador.
+
+    Args:
+        id (int): ID del participante.
+        name (str): Nombre del participante.
+
+    Returns:
+        bool: True si se cambió exitosamente, False si no se encontró el participante.
+"""
+def become_admin(id, name):
+    # Obtenemos el participante por su nombre
+    participante = get_participante_by_name(name)
+    superAdmin = get_superAdmin_by_id(id)
+    # Si se encontró un participante válido...
+    if participante and superAdmin:
+        nombre_admin = participante.NombreParticipante
+        contrasenia_admin = participante.Contrasenia
+        # Creamos un nuevo administrador con los datos del participante
+        nuevo_administrador = Administrador(
+            NombreCompleto = participante.NombreCompleto,
+            ImagenPerfil = participante.ImagenPerfil,
+            Contrasenia = participante.Contrasenia,
+            NombreAdministrador = participante.NombreParticipante,
+            Correo = participante.Correo,
+            Rol = 'Administrador'
+        )
+
+        # Agregamos el nuevo administrador a la sesión y confirmamos los cambios
+        db.session.add(nuevo_administrador)
+        # Asignamos el id del superadministrador en el registro del nuevo administrador
+        nuevo_administrador.IDSuperAdministrador = id
+        # Guardamos los cambios en la base de datos
+        db.session.commit()
+
+        # Eliminamos el participante original y confirmamos la eliminación
+        delete_participante(participante.IDParticipante)
         # Guardamos los cambios en la base de datos
         db.session.commit()
 

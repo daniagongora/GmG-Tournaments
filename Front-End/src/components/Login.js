@@ -5,6 +5,7 @@ import '../statics/css/General.css';
 import '../statics/css/Login.css';
 
 function Login() {
+
   const [correo, setCorreo] = useState('');
   const [contrasenia, setContrasenia] = useState('');
   const [mensaje, setMensaje] = useState('');
@@ -12,6 +13,7 @@ function Login() {
   const history = useHistory();
 
   const Login = async (e) => { 
+    
     e.preventDefault(); 
 
     const data = new FormData();
@@ -29,14 +31,11 @@ function Login() {
       const idUsuario = responseData.ID;
 
       if (response.ok && responseData.success) {
-        // Inicio de sesión exitoso, redirige al usuario a la página de bienvenida
         history.push(`/perfil${idUsuario}/${nombreUsuario}`, responseData);
       } else {
-        // Muestra el mensaje de error en el formulario
         setMensaje(responseData.message || 'Error desconocido');
       }
     } catch (error) {
-      console.error('Error al procesar la solicitud:', error);
       setMensaje('Error de red. Inténtalo de nuevo.');
     }
   };
@@ -49,22 +48,24 @@ function Login() {
           <div class="title">   
             <h1>GmG <br></br>Tournaments</h1>
           </div>
+
           <br></br>
+
           <form onSubmit={Login}>
             <label class="form-label">Correo</label>
             <input type="email"
                    placeholder="Ingresa tu correo"
                    value={correo}
                    onChange={(e) => setCorreo(e.target.value)}
-                   class="form-control form-login"
-            />
+                   class="form-control form-login" />
+            
             <label class="form-label">Contraseña</label>
             <input type="password"
                    placeholder="Ingresa tu contraseña "
                    value={contrasenia}
                    onChange={(e) => setContrasenia(e.target.value)}
-                   class="form-control form-login"
-            />
+                   class="form-control form-login" />
+            
             <button type="submit" class="btn btn-login btn-outline-secondary">Ingresar</button>
           </form>
           {mensaje && <p>{mensaje}</p>}

@@ -99,7 +99,6 @@ def add_new_torneo(idAdministrador, nombreTorneo, fechaInicio, cupoMaximo, video
         # Guardamos los cambios en la base de datos
         db.session.commit()
         
-        print("Se agrego el nuevo torneo exitosamente")
         return True
     except Exception:
         return False
@@ -123,6 +122,7 @@ def delete_torneo(idTorneo):
         db.session.delete(torneoAEliminar)
         # Guardamos los cambios en la base de datos
         db.session.commit()
+
         return True
     else:
         return False

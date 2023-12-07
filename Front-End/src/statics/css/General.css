@@ -3257,6 +3257,8 @@ textarea.form-control-lg {
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #3cf281;
   --bs-gradient: none;
+  margin: 10px;
+  font-family: 'Nico-Moji';
 }
 
 .btn-outline-info {

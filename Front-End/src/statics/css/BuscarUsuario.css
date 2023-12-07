@@ -1,0 +1,44 @@
+h2 {
+    text-align: start;
+}
+
+h4 {
+    text-align: start;
+}
+
+.btn-participante {
+    width: 220px;
+}
+
+.btn-superadmin {
+    width: 300px;
+}
+
+.buttons {
+    float: right;
+    margin-top: 10px;
+}
+
+.card.card-result {
+    height: 350px;
+    margin: auto;
+    width: 80%;
+    
+}
+
+.card-user-information {
+    margin-top: 20px;
+}
+
+.form-control.search {
+    width: 250px;
+}
+
+.row-md {
+    margin: auto;
+    width: 80%;
+}
+
+.title {
+    text-align: center;
+}

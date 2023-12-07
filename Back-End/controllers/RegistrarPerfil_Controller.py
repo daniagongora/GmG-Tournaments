@@ -20,51 +20,51 @@ registrar_perfil = Blueprint('registrar_perfil',  __name__, url_prefix='')
 def registro():
     try:
         # Obtenemos los datos del formulario
-        Nombre = request.form.get('NombreCompleto')
-        Usuario = request.form.get('NombreUsuario')
-        Correo = request.form.get('Correo')
-        Contrasenia = request.form.get('Contrasenia')
-        ConfirmarContrasenia = request.form.get('ConfirmarContrasenia')
+        nombre = request.form.get('NombreCompleto')
+        usuario = request.form.get('NombreUsuario')
+        correo = request.form.get('Correo')
+        contrasenia = request.form.get('Contrasenia')
+        confirmarContrasenia = request.form.get('ConfirmarContrasenia')
         
         # Validamos que el campo del Nombre no esté vacío
-        if Nombre == "":
+        if nombre == "":
             return jsonify({'success': False, 'message': 'Por favor, ingresa tu nombre completo.'})
         
         # Verificamos si el nombre de usuario ya está registrado en la BD
-        usuario_admins = get_administrador_by_name(Usuario)
-        usuario_participantes = get_participante_by_name(Usuario)
-        usuario_superadmins = get_superAdmin_by_name(Usuario)
+        usuario_admins = get_administrador_by_name(usuario)
+        usuario_participantes = get_participante_by_name(usuario)
+        usuario_superadmins = get_superAdmin_by_name(usuario)
         
         if usuario_admins or usuario_participantes or usuario_superadmins:
             return jsonify({'success': False, 'message': 'Nombre de usuario no disponible. Por favor ingresa otro.'})
-        elif Usuario == "":
+        elif usuario == "":
             return jsonify({'success': False, 'message': 'Por favor, ingresa un nombre de usuario.'})
         
         # Verificamos si el correo electrónico ya está registrado en la BD
-        correo_admins = get_administrador_by_email(Correo)
-        correo_participantes = get_participante_by_email(Correo)
-        correo_superadmins = get_superAdmin_by_email(Correo)
+        correo_admins = get_administrador_by_email(correo)
+        correo_participantes = get_participante_by_email(correo)
+        correo_superadmins = get_superAdmin_by_email(correo)
         
         if correo_admins or correo_participantes or correo_superadmins:
             return jsonify({'success': False, 'message': 'Correo ya registrado'})
-        elif Correo == "":
+        elif correo == "":
             return jsonify({'success': False, 'message': 'Por favor, ingresa un correo.'})
     
         # Validamos que la contraseña cumpla con los requisitos mínimos
         patron_contrasenia = re.compile(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?¡@$%^&*-]).{8,}$")
 
-        if re.match(patron_contrasenia, Contrasenia) is None:
+        if re.match(patron_contrasenia, contrasenia) is None:
             return jsonify({'success': False, 'message': 'La contraseña debe tener al menos 8 carácteres y debe contener al menos 1 número, 1 letra mayúscula, 1 letra minúscula y 1 caracter especial (# , ? , ¡ , @ , $ , % , ^ , & , * , -)'})
 
         # Validamos que la confirmación de contraseña coincida con la contraseña ingresada
-        if ConfirmarContrasenia == "" or ConfirmarContrasenia != Contrasenia:
+        if confirmarContrasenia == "" or confirmarContrasenia != contrasenia:
             return jsonify({'success': False, 'message': 'La contraseña debe coincidir con la ingresada'})
         
         # Si lo anterior no se cumple, entonces registramos el participante en la BD
-        success = registrar_participante(Nombre, Usuario, Correo, Contrasenia)
+        success = registrar_participante(nombre, usuario, correo, contrasenia)
 
         # Obtenemos el participante recién registrado
-        participantes = get_participante_by_email(Correo)
+        participantes = get_participante_by_email(correo)
         if participantes:
             nuevo_usuario = participantes[0]
 
@@ -84,15 +84,16 @@ def registro():
         # Devolvemos una respuesta JSON indicando el éxito o fracaso del registro
         if success:
             return jsonify({'success': success, 
-                                'message': 'Registro exitoso',
-                                'ID':nuevo_usuario.IDParticipante, 
-                                'NombreCompleto': nuevo_usuario.NombreCompleto, 
-                                'ImagenPerfil': nuevo_usuario.ImagenPerfil,
-                                'Contrasenia': nuevo_usuario.Contrasenia, 
-                                'NombreUsuario': nuevo_usuario.NombreParticipante, 
-                                'Correo': nuevo_usuario.Correo,
-                                'Rol': nuevo_usuario.Rol})
+                            'message': 'Registro exitoso',
+                            'ID': nuevo_usuario.IDParticipante, 
+                            'NombreCompleto': nuevo_usuario.NombreCompleto, 
+                            'ImagenPerfil': nuevo_usuario.ImagenPerfil,
+                            'Contrasenia': nuevo_usuario.Contrasenia, 
+                            'NombreUsuario': nuevo_usuario.NombreParticipante, 
+                            'Correo': nuevo_usuario.Correo,
+                            'Rol': nuevo_usuario.Rol})
         else:
             return jsonify({'success': False, 'message': 'Ocurrió un error al intentar realizar el registro'})
+        
     except KeyError:
         return jsonify({'success': False, 'message': 'Ocurrió un error inesperado'})

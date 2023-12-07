@@ -4,11 +4,22 @@ from flask import Flask, jsonify, render_template, request, flash, session, redi
 from flask_cors import CORS
 
 from controllers.JsonController import json_controller
+from controllers.Perfil_Controller import aceptar_amistad
+from controllers.Perfil_Controller import buscar_usuario_participante
+from controllers.Perfil_Controller import buscar_usuario_superAdmin
+from controllers.Perfil_Controller import editar_datos_administrador
+from controllers.Perfil_Controller import editar_datos_participante
+from controllers.Perfil_Controller import editar_datos_superAdmin
+from controllers.Perfil_Controller import editar_imagen_administrador
+from controllers.Perfil_Controller import editar_imagen_participante
+from controllers.Perfil_Controller import editar_imagen_superAdmin
+from controllers.Perfil_Controller import eliminar_amistad
 from controllers.Perfil_Controller import eliminar_perfil
-from controllers.Perfil_Controller import editar_perfil_administrador
-from controllers.Perfil_Controller import editar_perfil_participante
-from controllers.Perfil_Controller import editar_perfil_superAdmin
+from controllers.Perfil_Controller import enviar_solicitud
+from controllers.Perfil_Controller import rechazar_amistad
 from controllers.Perfil_Controller import ver_amigos
+from controllers.Perfil_Controller import ver_solicitudes
+from controllers.Perfil_Controller import volver_administrador
 from controllers.RegistrarPerfil_Controller import registrar_perfil
 from controllers.Torneo_Controller import crear_torneo
 from controllers.Torneo_Controller import eliminar_torneo
@@ -22,21 +33,32 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.register_blueprint(json_controller)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://root:123456@localhost:3306/proyectois"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://[USERNAME]:[PASSWORD]@localhost:3306/proyectois"
 app.config['JSON_AS_ASCII'] = False
 app.config.from_mapping(
     SECRET_KEY='dev',
 )
 db.init_app(app)
 
-app.register_blueprint(eliminar_perfil)
-app.register_blueprint(editar_perfil_administrador)
-app.register_blueprint(editar_perfil_participante)
-app.register_blueprint(editar_perfil_superAdmin)
-app.register_blueprint(ver_amigos)
-app.register_blueprint(registrar_perfil)
+app.register_blueprint(aceptar_amistad)
+app.register_blueprint(buscar_usuario_participante)
+app.register_blueprint(buscar_usuario_superAdmin)
 app.register_blueprint(crear_torneo)
+app.register_blueprint(editar_datos_administrador)
+app.register_blueprint(editar_datos_participante)
+app.register_blueprint(editar_datos_superAdmin)
+app.register_blueprint(editar_imagen_administrador)
+app.register_blueprint(editar_imagen_participante)
+app.register_blueprint(editar_imagen_superAdmin)
+app.register_blueprint(eliminar_amistad)
+app.register_blueprint(eliminar_perfil)
 app.register_blueprint(eliminar_torneo)
+app.register_blueprint(enviar_solicitud)
+app.register_blueprint(rechazar_amistad)
+app.register_blueprint(registrar_perfil)
+app.register_blueprint(ver_amigos)
+app.register_blueprint(ver_solicitudes)
+app.register_blueprint(volver_administrador)
 
 """
     Ruta principal que redirige a la página de inicio de sesión.

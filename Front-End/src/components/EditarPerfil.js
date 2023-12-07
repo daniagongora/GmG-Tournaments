@@ -24,6 +24,7 @@ import imagen11 from '../statics/icons/spidermiles.jpg';
 import imagen12 from '../statics/icons/tracer.jpg';
 
 function EditarPerfil(props) {
+
   const history = useHistory();
 
   const { idUsuario } = useParams();
@@ -31,7 +32,7 @@ function EditarPerfil(props) {
   const [nombreUsuario, setNombreUsuario] = useState(props.location.state.NombreUsuario.toString());
   const [correo, setCorreo] = useState(props.location.state.Correo.toString());
   const [contrasenia, setContrasenia] = useState('');
-  // const [imagenPerfil, setImagenPerfil] = useState(props.location.state.ImagenPerfil.toString());
+  const [imagenPerfil, setImagenPerfil] = useState(props.location.state.ImagenPerfil.toString());
   const [rol, setRol] = useState(props.location.state.Rol.toLowerCase());
 
   const [mostrarModalDatos, setMostrarModalDatos] = useState(false);
@@ -43,7 +44,10 @@ function EditarPerfil(props) {
     imagen9, imagen10, imagen11, imagen12,
   ]);
 
+  const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
+
   const EliminarPerfil = async () => {
+
     const result = await Swal.fire({
       title: '¿Seguro que deseas eliminar tu perfil?',
       icon: 'warning',
@@ -90,7 +94,6 @@ function EditarPerfil(props) {
           });
         }
       } catch (error) {
-        console.error('Error al procesar la solicitud:', error);
         Swal.fire({
           title: 'Ups! :(',
           text: 'Ocurrió un problema con el servidor por favor intenta más tarde',
@@ -105,11 +108,86 @@ function EditarPerfil(props) {
     }
   };
 
-  const EditarImagen = () => {
-    setMostrarModalImagen(true);
+  const EditarImagen = async (e) => {
+
+    e.preventDefault();
+
+    try {
+      const datos = {
+        NombreUsuario: nombreUsuario,
+        ImagenPerfil: imagenSeleccionada,
+      };
+
+      if (!datos.ImagenPerfil) {
+        Swal.fire({
+          title: 'Error',
+          text: 'Por favor selecciona una imagen de perfil',
+          icon: 'error',
+          customClass: {
+            container: 'custom-alert-container',
+            title: 'custom-alert-title',
+            icon: 'custom-alert-icon',
+          },
+        });
+  
+        return;
+      }
+
+      const nuevaRuta = datos.ImagenPerfil.replace(/^(.*\/[^.]+)\.([^./]+)\.([^./]+)$/, '$1.$3');
+
+      datos.ImagenPerfil = nuevaRuta.replace('/static/media/', '../statics/icons/');
+
+      const response = await fetch(`http://localhost:5000/${rol.toLowerCase()}/perfil${idUsuario}/${nombreUsuario}/editarImagen`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datos),
+      });
+
+      if (response.ok) {
+        Swal.fire({
+          title: 'Imagen actualizada exitosamente',
+          text: 'Por favor, vuelva a iniciar sesión',
+          icon: 'success',
+          customClass: {
+            container: 'custom-alert-container',
+            title: 'custom-alert-title',
+            text: 'custom-alert-text',
+            icon: 'custom-alert-icon',
+          },
+        });
+
+        setImagenPerfil(datos.ImagenPerfil);
+        history.push("/");
+      } else {
+        Swal.fire({
+          title: 'Error',
+          text: 'Ocurrió un error al actualizar la imagen de tu perfil',
+          icon: 'error',
+          customClass: {
+            container: 'custom-alert-container',
+            title: 'custom-alert-title',
+            icon: 'custom-alert-icon',
+          },
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: 'Ups! :(',
+        text: 'Ocurrió un problema con el servidor por favor intenta más tarde',
+        icon: 'error',
+        customClass: {
+          container: 'custom-alert-container',
+          title: 'custom-alert-title',
+          icon: 'custom-alert-icon',
+        },
+      });
+    }
   };
 
   const EditarDatos = async (e) => {
+
     e.preventDefault();
   
     try {
@@ -119,14 +197,14 @@ function EditarPerfil(props) {
         Correo: document.getElementById('correo').value,
         Contrasenia: document.getElementById('contrasenia').value,
       };
-  
+
       if (!campos.NombreCompleto || 
           !campos[(rol === 'participante' ? 'NombreParticipante' : rol === 'administrador' ? 'NombreAdministrador' : 'NombreSuperadministrador')] || 
-          !campos.Correo || 
+          !campos.Correo ||
           !campos.Contrasenia) {
         Swal.fire({
           title: 'Error',
-          text: 'Por favor llena todos los campos del formulario',
+          text: 'Por favor llena todos los campos del formulario correctamente',
           icon: 'error',
           customClass: {
             container: 'custom-alert-container',
@@ -135,6 +213,32 @@ function EditarPerfil(props) {
           },
         });
   
+        return;
+      } else if (!validacionCorreo(campos.Correo)) {
+        Swal.fire({
+          title: 'Error',
+          text: 'Por favor ingresa un correo válido',
+          icon: 'error',
+          customClass: {
+            container: 'custom-alert-container',
+            title: 'custom-alert-title',
+            icon: 'custom-alert-icon',
+          },
+        });
+
+        return;
+      } else if (!validacionContrasenia(campos.Contrasenia)) {
+        Swal.fire({
+          title: 'Error',
+          html: 'Por favor ingresa una contraseña válida.<br><br>La contraseña debe tener al menos 8 caracteres y debe contener al menos 1 número, 1 letra mayúscula, 1 letra minúscula y 1 caracter especial (#, ?, ¡, @, $, %, ^, &, *, -)',
+          icon: 'error',
+          customClass: {
+            container: 'custom-alert-container',
+            title: 'custom-alert-title',
+            icon: 'custom-alert-icon',
+          },
+        });
+
         return;
       }
   
@@ -162,10 +266,7 @@ function EditarPerfil(props) {
         setNombreCompleto(campos.NombreCompleto);
         setNombreUsuario(campos[rol === 'participante' ? 'NombreParticipante' : rol === 'administrador' ? 'NombreAdministrador' : 'NombreSuperadministrador']);
         setCorreo(campos.Correo);
-
-        if (contrasenia !== "************") {
-          setContrasenia(campos.Contrasenia);
-        }
+        setContrasenia(campos.Contrasenia);
   
         setMostrarModalDatos(false);
         history.push('/');
@@ -182,7 +283,6 @@ function EditarPerfil(props) {
         });
       }
     } catch (error) {
-      console.error('Error al procesar la solicitud:', error);
       Swal.fire({
         title: 'Ups! :(',
         text: 'Ocurrió un problema con el servidor por favor intenta más tarde',
@@ -194,13 +294,24 @@ function EditarPerfil(props) {
         },
       });
     }
-  };   
+  };  
+  
+  function validacionCorreo(correo) {
+    const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regexCorreo.test(correo);
+  }
+
+  function validacionContrasenia(contrasenia) {
+    const regexContrasenia = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?¡@$%^&*-]).{8,}$/;
+    return regexContrasenia.test(contrasenia);
+  }
   
   const ModalEditarImagen = ({ onClose, children }) => {
+
     return (
       <div class="modal fade show" style={{ display: 'block' }} id="modalCard">
         <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
+          <div class="modal-content edit-image">
             <div class="modal-header">
               <h2 class="modal-title">Selecciona una Imagen</h2>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
@@ -216,6 +327,7 @@ function EditarPerfil(props) {
   };
 
   const ModalEditarDatos = ({ onClose, children }) => {
+    
     return (
       <div class="modal fade show" style={{ display: 'block' }} id="modalForm">
         <div class="modal-dialog modal-lg" role="document">
@@ -226,7 +338,7 @@ function EditarPerfil(props) {
             </div>
 
             <div class="modal-body">
-              <form onSubmit={EditarDatos}> {children} </form>
+              <form onSubmit={EditarDatos}> { children } </form>
             </div>
           </div>
         </div>
@@ -248,14 +360,16 @@ function EditarPerfil(props) {
           <div class="row">
             <div class="card card-user col-md-4">
               <div class="card card-picture border-secondary mb-2">
-                <MostrarImagenPerfil />
+                <MostrarImagenPerfil imagen={imagenPerfil} />
               </div>
 
               <div class="btns">
-                <button class="btn btn-outline-secondary edit-image" onClick={() => EditarImagen('imagen')}>Editar Imagen</button>   
-                {rol === 'Participante' && (
+                <button class="btn btn-outline-secondary edit-image" onClick={() => setMostrarModalImagen(true)}>Editar Imagen</button>   
+                
+                {rol === 'participante' && (
                   <button class="btn btn-outline-danger delete-profile" onClick={EliminarPerfil}>Eliminar Perfil</button>
                 )}
+                
               </div>
             </div>
               
@@ -269,15 +383,15 @@ function EditarPerfil(props) {
               <div class="table-responsive">
                 <table class="table">
                   <tr>
-                  <td> <h5>Nombre:</h5> </td>
-                  <td> <h3>{nombreCompleto}</h3> </td>
+                    <td> <h5>Nombre:</h5> </td>
+                    <td> <h3>{nombreCompleto}</h3> </td>
                   </tr>
 
                   <br></br>
 
                   <tr>
-                  <td> <h5>Username:</h5> </td>
-                  <td> <h3>{nombreUsuario}</h3> </td>
+                    <td> <h5>Username:</h5> </td>
+                    <td> <h3>{nombreUsuario}</h3> </td>
                   </tr>
 
                   <br></br>
@@ -305,13 +419,13 @@ function EditarPerfil(props) {
                   <div class="col-md">
                     <label class="form-label modal-label" htmlFor="nombre">Nombre:</label>
                     <input class="modal-input" type="text" id="nombre" required
-                            defaultValue={nombreCompleto} />
+                           defaultValue={nombreCompleto} />
                   </div>
 
                   <div class="col-md">
                     <label class="form-label modal-label" htmlFor="username">Username:</label>
                     <input class="modal-input" type="text" id="username" required
-                            defaultValue={nombreUsuario} />
+                           defaultValue={nombreUsuario} />
                   </div>
                 </div>
 
@@ -324,8 +438,7 @@ function EditarPerfil(props) {
 
                   <div class="col-md">
                     <label class="form-label modal-label" htmlFor="contrasenia">Password:</label>
-                    <input class="modal-input" type="password" id="contrasenia" required 
-                           defaultValue={"************"}/>
+                    <input class="modal-input" type="password" id="contrasenia" required />
                   </div>
                 </div>
                 
@@ -336,16 +449,23 @@ function EditarPerfil(props) {
 
           {mostrarModalImagen && (
             <ModalEditarImagen onClose={() => setMostrarModalImagen(false)}>
-              <div class="imagen-container">
+              <div class="image-container">
                 {imagenesDisponibles.map((imagen, index) => (
                   <img
-                    class="album-image"
+                    class={`album-image ${imagen === imagenSeleccionada ? 'selected' : ''}`}
                     key={index}
                     src={imagen}
                     alt={`img${index}`}
+                    onClick={() => setImagenSeleccionada(imagen)}
                   />
                 ))}
               </div>
+
+              <br></br>
+
+              <button class="btn btn-outline-secondary change-image" onClick={EditarImagen}>Cambiar Imagen</button>
+
+              <br></br>
             </ModalEditarImagen>
           )}
         </div>  

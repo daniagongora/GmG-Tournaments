@@ -23,7 +23,7 @@ def get_all_administradores():
         list: Lista de administradores que coinciden con el ID.
 """
 def get_administrador_by_id(id):
-    return Administrador.query.filter(Administrador.IDAdministrador == id).all()
+    return Administrador.query.filter(Administrador.IDAdministrador == id).first()
 
 """
     Función que obtiene un administrador por su nombre.
@@ -54,7 +54,7 @@ def get_administrador_by_email(email):
 
     Args:
         id (int): ID del administrador a editar.
-        name (str): Nuevo nombre del administrador.
+        name (str): Nombre del administrador.
 
     Returns:
         bool: True si se editó exitosamente, False si no se encontró el administrador.
@@ -73,7 +73,7 @@ def edit_administrador(id, name):
         usernameNuevo = campos.get('NombreAdministrador', '')
         correoNuevo = campos.get('Correo', '')
         contraseniaNueva = campos.get('Contrasenia', '')
-
+        
         # Verificamos si se proporcionó un nuevo nombre
         if nombreNuevo:
             administrador.NombreCompleto = nombreNuevo
@@ -89,6 +89,39 @@ def edit_administrador(id, name):
         # Guardamos los cambios en la base de datos
         db.session.commit()
 
+        return True
+    else:
+        return False
+    
+"""
+    Función que cambia la imagen de perfil de un administrador en la base de datos.
+
+    Args:
+        id (int): ID del administrador a editar.
+        name (str): Nombre del administrador.
+
+    Returns:
+        bool: True si se editó exitosamente, False si no se encontró el administrador.
+"""
+def edit_image_administrador(id, name):
+    # Obtenemos el administrador por su ID
+    administrador = get_administrador_by_id(id)
+
+    # Si se encontró un administrador válido...
+    if administrador:
+        # Obtenemos los campos del formulario JSON
+        campos = request.get_json()
+
+        # Obtenemos la nueva imagen de perfil del campo del formulario
+        nueva_imagen = campos.get('ImagenPerfil', '')
+
+        # Verificamos si se proporcionó una nueva imagen de perfil
+        if nueva_imagen:
+            administrador.ImagenPerfil = nueva_imagen
+
+        # Guardamos los cambios en la base de datos
+        db.session.commit()
+        
         return True
     else:
         return False

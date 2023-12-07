@@ -1,6 +1,4 @@
 from alchemyClasses import db
-from CryptoUtils.CryptoUtils import cipher
-from hashlib import sha256
 from sqlalchemy import Column, Integer, String, ForeignKey
 
 """
@@ -32,7 +30,7 @@ class Administrador(db.Model):
     def __init__(self, NombreCompleto, ImagenPerfil, Contrasenia, NombreAdministrador, Correo, Rol):
         self.NombreCompleto = NombreCompleto
         self.ImagenPerfil = ImagenPerfil
-        self.Contrasenia = sha256(cipher(Contrasenia)).hexdigest()
+        self.Contrasenia = Contrasenia
         self.NombreAdministrador = NombreAdministrador
         self.Correo = Correo
         self.Rol = Rol
