@@ -550,11 +550,10 @@ def buscar(id,name):
         usuario = request.form.get('NombreUsuario')
         # Buscamos al usuario en la base de datos
         usuario_participante = get_participante_by_name(usuario)
-        # Obtenemos el participante actual por su ID
-        participante = get_participante_by_id(id)
+
 
         # Si el usuario existe, obtenemos su información
-        if usuario_participante and participante:
+        if usuario_participante:
             session.clear()
             session['NombreCompleto'] = usuario_participante.NombreCompleto
             session['NombreUsuario'] = usuario_participante.NombreParticipante

@@ -1,6 +1,8 @@
 from alchemyClasses import db
 from alchemyClasses.Administrador import Administrador
 from alchemyClasses.Participante import Participante
+from model.model_administrador import get_administrador_by_name
+from model.model_superAdmin import get_superAdmin_by_id
 from CryptoUtils.CryptoUtils import cipher
 from CryptoUtils.CryptoUtils import decipher
 from flask import request
@@ -172,9 +174,11 @@ def edit_image_participante(id, name):
 def become_admin(id, name):
     # Obtenemos el participante por su nombre
     participante = get_participante_by_name(name)
-
+    superAdmin = get_superAdmin_by_id(id)
     # Si se encontró un participante válido...
-    if participante:
+    if participante and superAdmin:
+        nombre_admin = participante.NombreParticipante
+        contrasenia_admin = participante.Contrasenia
         # Creamos un nuevo administrador con los datos del participante
         nuevo_administrador = Administrador(
             NombreCompleto = participante.NombreCompleto,
@@ -187,12 +191,17 @@ def become_admin(id, name):
 
         # Agregamos el nuevo administrador a la sesión y confirmamos los cambios
         db.session.add(nuevo_administrador)
-        # Guardamos los cambios en la base de datos
-        db.session.commit()
-
+        
+        nuevo_administrador_tabla = get_administrador_by_name(nombre_admin)
+        if nuevo_administrador_tabla:
+            admin = nuevo_administrador_tabla[0]
+            admin.IDSuperAdministrador = id
+            admin.Contrasenia = participante.Contrasenia
+        
         # Eliminamos el participante original y confirmamos la eliminación
         delete_participante(participante.IDParticipante)
         # Guardamos los cambios en la base de datos
+
         db.session.commit()
 
         return True
