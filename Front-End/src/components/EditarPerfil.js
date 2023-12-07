@@ -24,6 +24,7 @@ import imagen11 from '../statics/icons/spidermiles.jpg';
 import imagen12 from '../statics/icons/tracer.jpg';
 
 function EditarPerfil(props) {
+
   const history = useHistory();
 
   const { idUsuario } = useParams();
@@ -46,6 +47,7 @@ function EditarPerfil(props) {
   const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
 
   const EliminarPerfil = async () => {
+
     const result = await Swal.fire({
       title: '¿Seguro que deseas eliminar tu perfil?',
       icon: 'warning',
@@ -107,10 +109,10 @@ function EditarPerfil(props) {
   };
 
   const EditarImagen = async (e) => {
+
     e.preventDefault();
 
     try {
-
       const datos = {
         NombreUsuario: nombreUsuario,
         ImagenPerfil: imagenSeleccionada,
@@ -185,10 +187,10 @@ function EditarPerfil(props) {
   };
 
   const EditarDatos = async (e) => {
+
     e.preventDefault();
   
     try {
-      
       const campos = {
         NombreCompleto: document.getElementById('nombre').value,
         [rol === 'participante' ? 'NombreParticipante' : rol === 'administrador' ? 'NombreAdministrador' : 'NombreSuperadministrador']: document.getElementById('username').value,
@@ -197,11 +199,11 @@ function EditarPerfil(props) {
       };
       if (!campos.NombreCompleto || 
           !campos[(rol === 'participante' ? 'NombreParticipante' : rol === 'administrador' ? 'NombreAdministrador' : 'NombreSuperadministrador')] || 
-          !campos.Correo || 
+          !campos.Correo ||
           !campos.Contrasenia) {
         Swal.fire({
           title: 'Error',
-          text: 'Por favor llena todos los campos del formulario',
+          text: 'Por favor llena todos los campos del formulario correctamente',
           icon: 'error',
           customClass: {
             container: 'custom-alert-container',
@@ -210,6 +212,32 @@ function EditarPerfil(props) {
           },
         });
   
+        return;
+      } else if (!validacionCorreo(campos.Correo)) {
+        Swal.fire({
+          title: 'Error',
+          text: 'Por favor ingresa un correo válido',
+          icon: 'error',
+          customClass: {
+            container: 'custom-alert-container',
+            title: 'custom-alert-title',
+            icon: 'custom-alert-icon',
+          },
+        });
+
+        return;
+      } else if (!validacionContrasenia(campos.Contrasenia)) {
+        Swal.fire({
+          title: 'Error',
+          html: 'Por favor ingresa una contraseña válida.<br><br>La contraseña debe tener al menos 8 caracteres y debe contener al menos 1 número, 1 letra mayúscula, 1 letra minúscula y 1 caracter especial (#, ?, ¡, @, $, %, ^, &, *, -)',
+          icon: 'error',
+          customClass: {
+            container: 'custom-alert-container',
+            title: 'custom-alert-title',
+            icon: 'custom-alert-icon',
+          },
+        });
+
         return;
       }
   
@@ -265,9 +293,20 @@ function EditarPerfil(props) {
         },
       });
     }
-  };   
+  };  
+  
+  function validacionCorreo(correo) {
+    const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regexCorreo.test(correo);
+  }
+
+  function validacionContrasenia(contrasenia) {
+    const regexContrasenia = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?¡@$%^&*-]).{8,}$/;
+    return regexContrasenia.test(contrasenia);
+  }
   
   const ModalEditarImagen = ({ onClose, children }) => {
+
     return (
       <div class="modal fade show" style={{ display: 'block' }} id="modalCard">
         <div class="modal-dialog modal-lg" role="document">
@@ -287,6 +326,7 @@ function EditarPerfil(props) {
   };
 
   const ModalEditarDatos = ({ onClose, children }) => {
+    
     return (
       <div class="modal fade show" style={{ display: 'block' }} id="modalForm">
         <div class="modal-dialog modal-lg" role="document">
@@ -342,15 +382,15 @@ function EditarPerfil(props) {
               <div class="table-responsive">
                 <table class="table">
                   <tr>
-                  <td> <h5>Nombre:</h5> </td>
-                  <td> <h3>{nombreCompleto}</h3> </td>
+                    <td> <h5>Nombre:</h5> </td>
+                    <td> <h3>{nombreCompleto}</h3> </td>
                   </tr>
 
                   <br></br>
 
                   <tr>
-                  <td> <h5>Username:</h5> </td>
-                  <td> <h3>{nombreUsuario}</h3> </td>
+                    <td> <h5>Username:</h5> </td>
+                    <td> <h3>{nombreUsuario}</h3> </td>
                   </tr>
 
                   <br></br>
@@ -378,13 +418,13 @@ function EditarPerfil(props) {
                   <div class="col-md">
                     <label class="form-label modal-label" htmlFor="nombre">Nombre:</label>
                     <input class="modal-input" type="text" id="nombre" required
-                            defaultValue={nombreCompleto} />
+                           defaultValue={nombreCompleto} />
                   </div>
 
                   <div class="col-md">
                     <label class="form-label modal-label" htmlFor="username">Username:</label>
                     <input class="modal-input" type="text" id="username" required
-                            defaultValue={nombreUsuario} />
+                           defaultValue={nombreUsuario} />
                   </div>
                 </div>
 

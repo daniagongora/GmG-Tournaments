@@ -21,6 +21,7 @@ function Perfil() {
     const rol = location.state.Rol;
 
     const VerTorneos = () => {
+
         history.push({
             pathname: `/perfil${idUsuario}/${nombreUsuario}/verTorneos`,
             state: {
@@ -35,6 +36,7 @@ function Perfil() {
     };
 
     const CrearTorneo = () => {
+
         history.push({
             pathname: `/perfil${idUsuario}/${nombreUsuario}/misTorneos`,
             state: {
@@ -49,6 +51,7 @@ function Perfil() {
     };
 
     const VerAmigos = () => {
+
         history.push({
             pathname: `/perfil${idUsuario}/${nombreUsuario}/amigos`,
             state: {
@@ -63,6 +66,7 @@ function Perfil() {
     };
 
     const BuscarUsuario = () => {
+
         history.push({
             pathname: `/perfil${idUsuario}/${nombreUsuario}/gestionar/buscarUsuario`,
             state: {
@@ -77,6 +81,7 @@ function Perfil() {
     };
 
     const EditarPerfil = () => {
+        
         history.push({
             pathname: `/perfil${idUsuario}/${nombreUsuario}/editar`,
             state: {

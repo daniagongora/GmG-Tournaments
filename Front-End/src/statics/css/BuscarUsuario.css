@@ -6,39 +6,39 @@ h4 {
     text-align: start;
 }
 
-.btn-participante{
+.btn-participante {
     width: 220px;
 }
 
-.btn-superadmin{
+.btn-superadmin {
     width: 300px;
 }
 
-.buttons{
-    margin-top: 10px;
+.buttons {
     float: right;
+    margin-top: 10px;
 }
 
-.card.card-result{
+.card.card-result {
+    height: 350px;
     margin: auto;
     width: 80%;
-    height: 350px;
     
 }
 
-.card-user-information{
+.card-user-information {
     margin-top: 20px;
 }
 
-.form-control.search{
+.form-control.search {
     width: 250px;
 }
 
-.row-md{
-    width: 80%;
+.row-md {
     margin: auto;
+    width: 80%;
 }
 
-.title{
+.title {
     text-align: center;
 }

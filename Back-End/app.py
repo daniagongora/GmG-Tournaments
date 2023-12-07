@@ -4,18 +4,22 @@ from flask import Flask, jsonify, render_template, request, flash, session, redi
 from flask_cors import CORS
 
 from controllers.JsonController import json_controller
+from controllers.Perfil_Controller import aceptar_amistad
 from controllers.Perfil_Controller import buscar_usuario_participante
 from controllers.Perfil_Controller import buscar_usuario_superAdmin
-from controllers.Perfil_Controller import eliminar_perfil
 from controllers.Perfil_Controller import editar_datos_administrador
 from controllers.Perfil_Controller import editar_datos_participante
 from controllers.Perfil_Controller import editar_datos_superAdmin
 from controllers.Perfil_Controller import editar_imagen_administrador
 from controllers.Perfil_Controller import editar_imagen_participante
 from controllers.Perfil_Controller import editar_imagen_superAdmin
+from controllers.Perfil_Controller import eliminar_amistad
+from controllers.Perfil_Controller import eliminar_perfil
+from controllers.Perfil_Controller import enviar_solicitud
+from controllers.Perfil_Controller import rechazar_amistad
 from controllers.Perfil_Controller import ver_amigos
 from controllers.Perfil_Controller import ver_solicitudes
-from controllers.Perfil_Controller import aceptar_amistad, rechazar_amistad, eliminar_amistad, enviar_solicitud
+from controllers.Perfil_Controller import volver_administrador
 from controllers.RegistrarPerfil_Controller import registrar_perfil
 from controllers.Torneo_Controller import crear_torneo
 from controllers.Torneo_Controller import eliminar_torneo
@@ -54,6 +58,7 @@ app.register_blueprint(rechazar_amistad)
 app.register_blueprint(registrar_perfil)
 app.register_blueprint(ver_amigos)
 app.register_blueprint(ver_solicitudes)
+app.register_blueprint(volver_administrador)
 
 """
     Ruta principal que redirige a la página de inicio de sesión.

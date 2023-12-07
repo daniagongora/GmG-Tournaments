@@ -3,9 +3,6 @@
     width: 250px;
 }
 
-.btn-solicitud{
-}
-
 .card-body {
     width: 100%;
 }
@@ -20,7 +17,7 @@
     margin-top: 20px;
 }
 
-.card.list-image-container{
+.card.list-image-container {
     border-radius: 50%;
     margin: 8px;
     width:  100px;
@@ -31,16 +28,16 @@
     width: 20%;
 }
 
+.list {
+    padding: 30px;
+}
+
 .list-item {
     display: flex;  
 }
 
 .list-name {
     font-size: xx-large;
-}
-
-.list{
-    padding: 30px;
 }
 
 .user {

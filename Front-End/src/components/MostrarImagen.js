@@ -21,6 +21,7 @@ function MostrarImagenPerfil(props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
 
     function mostrarImagenPerfil() {
+        
         if (props.imagen === "../statics/icons/icon.png") {
             return imagen13;
         } else if (props.imagen === "../statics/icons/crash.png") {

@@ -24,23 +24,13 @@ function VerAmigos(props) {
   const [amigos, setAmigos] = useState([]);
   useEffect(() => {
     const obtenerAmigos = async () => {
+
       try {
         const response = await fetch(`http://localhost:5000/participante/perfil${idUsuario}/${nombreUsuario}/amigos`);
         const data = await response.json();
 
         if (data.success) {
           setAmigos(data.amigos);
-        } else {
-          Swal.fire({
-            title: 'Error',
-            text: 'Ocurrió un error al obtener la lista de amigos',
-            icon: 'error',
-            customClass: {
-              container: 'custom-alert-container',
-              title: 'custom-alert-title',
-              icon: 'custom-alert-icon',
-            },
-          });
         }
       } catch (error) {
         Swal.fire({
@@ -60,6 +50,7 @@ function VerAmigos(props) {
   }, [idUsuario, nombreUsuario]);
 
   const EliminarAmigo = async (particpante1, particpante2) => {
+
     try {
         const response = await fetch(`http://localhost:5000/participante/eliminar_amistad/${particpante1}/${particpante2}`, {
         method: 'POST',
@@ -71,9 +62,10 @@ function VerAmigos(props) {
       const data = await response.json();
 
       if (data.success) {
-        Swal.fire({
+        const confirmar = await Swal.fire({
           title: 'Amigo eliminado',
           icon: 'success',
+          confirmButtonText: 'Ok',
           customClass: {
             container: 'custom-alert-container',
             title: 'custom-alert-title',
@@ -81,6 +73,10 @@ function VerAmigos(props) {
             icon: 'custom-alert-icon',
           },
         });
+
+        if (confirmar.isConfirmed){
+          window.location.reload();
+        }
       } else {
         Swal.fire({
           title: 'Error',
@@ -108,6 +104,7 @@ function VerAmigos(props) {
   };
 
   const VerSolicitudes = () => {
+
     history.push({
       pathname: `/perfil${idUsuario}/${nombreUsuario}/solicitudes`,
       state: {
@@ -122,6 +119,7 @@ function VerAmigos(props) {
   };
 
   const BuscarUsuario = () => {
+    
     history.push({
       pathname: `/perfil${idUsuario}/${nombreUsuario}/amigos/buscarUsuario`,
       state: {

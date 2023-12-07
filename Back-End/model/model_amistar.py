@@ -4,6 +4,9 @@ from alchemyClasses.Amistar import Amistar
 """
     Función que obtiene las amistades del usuario de la base de datos.
 
+    Args:
+        id (int): ID del usuario del que queremos obtener sus amistades.
+
     Returns:
         list: Lista de todos los amigos.
 """
@@ -14,6 +17,9 @@ def get_friendships(id):
 
 """
     Función que obtiene las amistades o solicitudes del usuario de la base de datos.
+
+    Args:
+        id (int): ID del usuario del que queremos obtener sus amistades o solicitudes.
     
     Returns:
         list: Lista de todos los amigos o solicitudes en la tabla amistar.
@@ -26,6 +32,9 @@ def get_relationships(id):
 """
     Función que obtiene las solicitudes de amistad del usuario de la base de datos.
 
+    Args:
+        id (int): ID del usuario del cual obtenemos sus solicitudes.
+
     Returns:
         list: Lista de solicitudes que el usuario recibió.
 """
@@ -36,6 +45,10 @@ def get_request_friends(id):
 
 """
     Función que acepta la solicitud de amistad de un usuario.
+
+    Args:
+        solicitante (str): El nombre de usuario del solicitante.
+        receptor (str): El nombre de usuario del receptor.
 
     Returns:
         bool: True si se editó exitosamente, False si no se encontró la solicitud.
@@ -48,12 +61,18 @@ def accept_request(solicitante, receptor):
         solicitud.Estatus = 1
         # Guardamos los cambios en la base de datos
         db.session.commit() 
+
         return True
     else:
         return False
 
 """
     Función que rechaza la solicitud de amistad de un usuario.
+
+    Args:
+        solicitante (str): El nombre de usuario del solicitante.
+        receptor (str): El nombre de usuario del receptor.
+        estatus (int): El estado de la solicitud de amistad a ser rechazada.
 
     Returns:
         bool: True si se eliminó exitosamente, False si no se encontró la solicitud.
@@ -65,12 +84,17 @@ def reject_request(solicitante, receptor, estatus):
         # Eliminamos la solicitud de amistad, es decir, el registro de esa relación
         db.session.delete(solicitud)
         db.session.commit()
+        
         return True
     else:
         return False
 
 """
     Función que elimina la amistad de un usuario.
+
+    Args:
+        solicitante (str): El nombre de usuario de un participante.
+        receptor (str): El nombre de usuario del otro participante.
 
     Returns:
         bool: True si se eliminó exitosamente, False si no se encontró la solicitud.
@@ -87,12 +111,17 @@ def delete_friend(solicitante, receptor):
         # Eliminamos la solicitud de amistad, es decir, el registro de esa relación
         db.session.delete(solicitud)
         db.session.commit()
+
         return True
     else:
         return False
     
 """
     Función que agrega una solicitud de amistad.
+
+    Args:
+        solicitante (str): El nombre de usuario del solicitante.
+        receptor (str): El nombre de usuario del receptor.
 
     Returns:
         bool: True si se agregó correctamente, False si no se agregó correctamente.
@@ -106,6 +135,7 @@ def send_request(solicitante, receptor):
         db.session.add(solicitud)
         # Guardamos los cambios en la base de datos
         db.session.commit()
+        
         return True
     else:
         return False

@@ -1,6 +1,8 @@
 from alchemyClasses import db
+from alchemyClasses.Administrador import Administrador
 from alchemyClasses.Participante import Participante
 from CryptoUtils.CryptoUtils import cipher
+from CryptoUtils.CryptoUtils import decipher
 from flask import request
 from hashlib import sha256
 
@@ -152,6 +154,47 @@ def edit_image_participante(id, name):
 
         # Guardamos los cambios en la base de datos
         db.session.commit()
+
+        return True
+    else:
+        return False
+    
+"""
+    Función para cambiar el rol de un participante por administrador.
+
+    Args:
+        id (int): ID del participante.
+        name (str): Nombre del participante.
+
+    Returns:
+        bool: True si se cambió exitosamente, False si no se encontró el participante.
+"""
+def become_admin(id, name):
+    # Obtenemos el participante por su nombre
+    participante = get_participante_by_name(name)
+
+    # Si se encontró un participante válido...
+    if participante:
+        # Creamos un nuevo administrador con los datos del participante
+        nuevo_administrador = Administrador(
+            NombreCompleto = participante.NombreCompleto,
+            ImagenPerfil = participante.ImagenPerfil,
+            Contrasenia = participante.Contrasenia,
+            NombreAdministrador = participante.NombreParticipante,
+            Correo = participante.Correo,
+            Rol = 'Administrador'
+        )
+
+        # Agregamos el nuevo administrador a la sesión y confirmamos los cambios
+        db.session.add(nuevo_administrador)
+        # Guardamos los cambios en la base de datos
+        db.session.commit()
+
+        # Eliminamos el participante original y confirmamos la eliminación
+        delete_participante(participante.IDParticipante)
+        # Guardamos los cambios en la base de datos
+        db.session.commit()
+
         return True
     else:
         return False

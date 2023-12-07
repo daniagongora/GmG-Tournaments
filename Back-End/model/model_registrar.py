@@ -4,6 +4,12 @@ from alchemyClasses.Participante import Participante
 """
     Función que registra un participante en la base de datos.
 
+    Args:
+        - Nombre (str): El nombre completo del participante.
+        - Usuario (str): El nombre de usuario del participante.
+        - Correo (str): El correo electrónico del participante.
+        - Contrasenia (str): La contraseña del participante.
+
     Returns:
         bool: True si se registró exitosamente, False si no se encontró el participante.
 """
@@ -17,6 +23,7 @@ def registrar_participante(Nombre, Usuario, Correo, Contrasenia):
         db.session.add(participante)
         # Guardamos los cambios en la base de datos
         db.session.commit()
+        
         return True
     else:
         return False

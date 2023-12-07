@@ -9,6 +9,7 @@ import "../statics/css/Alerta.css";
 import "../statics/css/CrearTorneo.css";
 
 function CrearTorneo() {
+
   const history = useHistory();
   const location = useLocation();
   let today = new Date();
@@ -90,6 +91,7 @@ function CrearTorneo() {
   };
 
   const CrearTorneo = async (e) => {
+
     e.preventDefault();
 
     if (
@@ -99,7 +101,6 @@ function CrearTorneo() {
       validPlataforma &&
       validVideojuego
     ) {
-      
       try {
         const data = new FormData();
         data.append("IDAdministrador", idUsuario);
@@ -132,6 +133,7 @@ function CrearTorneo() {
               icon: "custom-alert-icon",
             },
           });
+          
           history.push({
             pathname: `/perfil${idUsuario}/${nombreUsuario}/misTorneos`,
             state: {

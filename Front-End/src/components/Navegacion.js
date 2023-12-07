@@ -18,6 +18,7 @@ function Navegacion() {
     const rol = location.state.Rol
 
     const MiPerfil = () => {
+        
         history.push({
             pathname: `/perfil${idUsuario}/${nombreUsuario}`,
             state: {

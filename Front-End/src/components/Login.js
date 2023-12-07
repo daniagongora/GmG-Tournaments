@@ -5,6 +5,7 @@ import '../statics/css/General.css';
 import '../statics/css/Login.css';
 
 function Login() {
+
   const [correo, setCorreo] = useState('');
   const [contrasenia, setContrasenia] = useState('');
   const [mensaje, setMensaje] = useState('');
@@ -12,6 +13,7 @@ function Login() {
   const history = useHistory();
 
   const Login = async (e) => { 
+    
     e.preventDefault(); 
 
     const data = new FormData();

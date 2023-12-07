@@ -26,6 +26,7 @@ function BuscarUsuario(props){
     const [mismoUsuario, setMismoUsuario] = useState('');
 
     const BuscarUsuario = async (e) => { 
+
         e.preventDefault(); 
 
         const data = new FormData();
@@ -68,6 +69,7 @@ function BuscarUsuario(props){
     };
 
     const MandarSolicitud = async () => {
+
         const result = await Swal.fire({
             title: '¿Deseas enviarle una solicitud de amistad a este usuario?',
             icon: 'warning',
@@ -131,6 +133,7 @@ function BuscarUsuario(props){
     };
 
     const CancelarSolicitud = async (solicitante, receptor) => {
+
         try {
             const response = await fetch(`http://localhost:5000/participante/rechazar_amistad/${solicitante}/${receptor}`, {
                 method: 'POST',
@@ -184,10 +187,82 @@ function BuscarUsuario(props){
         }
     };
 
+    const VolverAdministrador = async () => {
+
+        const result = await Swal.fire({
+            title: '¿Seguro que deseas asignar a este usuario como administrador?',
+            icon: 'warning',
+            text: 'Esta es una acción irreversible',
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                container: 'custom-alert-container',
+                title: 'custom-alert-title',
+            },
+        });
+    
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`http://localhost:5000/superadministrador/perfil${idUsuario}/volverAdministrador/${usuario.toString()}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({}),
+                });
+
+                const responseData = await response.json();
+    
+                if (response.ok && responseData.success) {
+                    const confirmar = await Swal.fire({
+                        title: 'Usuario asignado como administrador',
+                        text: '',
+                        icon: 'success',
+                        confirmButtonText: 'Ok',
+                        customClass: {
+                        container: 'custom-alert-container',
+                            title: 'custom-alert-title',
+                            text: 'custom-alert-text',
+                            icon: 'custom-alert-icon',
+                        },
+                    });
+
+                    if (confirmar.isConfirmed) {
+                        window.location.reload();
+                    }
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Ocurrió un error al asignar como administrador',
+                        icon: 'error',
+                        customClass: {
+                            container: 'custom-alert-container',
+                            title: 'custom-alert-title',
+                            icon: 'custom-alert-icon',
+                        },
+                    });
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: 'Ups! :(',
+                    text: 'Ocurrió un problema con el servidor por favor intenta más tarde',
+                    icon: 'error',
+                    customClass: {
+                        container: 'custom-alert-container',
+                        title: 'custom-alert-title',
+                        icon: 'custom-alert-icon',
+                    },
+                });
+            }
+        }
+    };
+
     return (
 
         <body>
             <Navegacion/>
+
             <div className="card body-content">
                 <div class="row">
                     <h2 class="title">Buscar Usuario</h2>
@@ -196,7 +271,6 @@ function BuscarUsuario(props){
                 <br></br>
                 
                 <div class="row-md mb-4 d-flex flex-md-row flex-column">
-
                     <form onSubmit={BuscarUsuario}>
                         <input class="form-control search col-md-3" type="text" value={usuarioBusqueda} placeholder="Ingresa el username" onChange={(e) => setUsuarioBusqueda(e.target.value)} />
                     </form>
@@ -213,13 +287,14 @@ function BuscarUsuario(props){
                     {rol === 'Participante' && !amigo === true && !solicitud === false && !mensaje && usuario &&(
                         <div class="col-md-3 buttons">
                             <button className="btn btn-participante btn-outline-danger" 
-                                onClick={() => CancelarSolicitud(parseInt(idUsuario), parseInt(idUsuarioBusqueda))}>Cancelar Solicitud</button>
+                                    onClick={() => CancelarSolicitud(parseInt(idUsuario), parseInt(idUsuarioBusqueda))}>Cancelar Solicitud</button>
                         </div>
                     )}
 
                     {rol === 'SuperAdministrador' && !mensaje && usuario &&(
                         <div class="col-md-4 buttons">
-                            <button className="btn btn-superadmin btn-outline-secondary">Asignar Administrador</button>
+                            <button className="btn btn-superadmin btn-outline-secondary"
+                                    onClick={VolverAdministrador}>Asignar Administrador</button>
                         </div>
                     )}
 
@@ -227,14 +302,11 @@ function BuscarUsuario(props){
                 </div>
 
                 {!mensaje && usuario && (
-                    
-
                     <div class="row mt-2">
-
                         <div class="card card-result border-secondary d-flex align-items-center justify-content-center flex-md-row flex-column">
                             <div class="card card-user col-md">
                                 <div class="card card-picture border-secondary mb-4">
-                                        <MostrarImagenPerfil imagen={imagenPerfil} />
+                                    <MostrarImagenPerfil imagen={imagenPerfil} />
                                 </div>
                             </div>
 
@@ -263,10 +335,8 @@ function BuscarUsuario(props){
                                 </div>
                             </div>
                         </div>
-                        
                     </div>           
                 )}
-
             </div>
         </body>
     );

@@ -9,6 +9,7 @@ import "../statics/css/Alerta.css";
 import "../statics/css/EliminarTorneo.css";
 
 function EliminarTorneo() {
+
   const history = useHistory();
   const location = useLocation();
 
@@ -21,6 +22,7 @@ function EliminarTorneo() {
 
   const [listaTorneos, setListaTorneos] = useState([]);
   useEffect(() => {
+
     const obtenerMisTorneos = async () => {
 
       try {
@@ -30,6 +32,7 @@ function EliminarTorneo() {
             method: "GET",
           }
         );
+
         const responseData = await response.json();
 
         setListaTorneos(responseData.torneos);
@@ -51,6 +54,7 @@ function EliminarTorneo() {
   }, [idUsuario, nombreUsuario]);
 
   const EliminarTorneo = async (e) => {
+
     let torneoAEliminar = e.target.value;
     const data = new FormData();
     data.append("IDTorneo", torneoAEliminar);
@@ -63,6 +67,7 @@ function EliminarTorneo() {
           body: data,
         }
       );
+
       const responseData = await response.json();
 
       if (responseData.success) {
@@ -75,6 +80,7 @@ function EliminarTorneo() {
             icon: "custom-alert-icon",
           },
         });
+
         history.push({
           pathname: `/perfil${idUsuario}/${nombreUsuario}`,
           state: {
@@ -102,6 +108,7 @@ function EliminarTorneo() {
   };
 
   const CrearTorneo = () => {
+    
     history.push({
       pathname: `/perfil${idUsuario}/${nombreUsuario}/misTorneos/crearTorneo`,
       state: {

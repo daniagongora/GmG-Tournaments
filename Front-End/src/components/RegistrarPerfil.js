@@ -18,14 +18,16 @@ function RegistrarPerfil() {
   const history = useHistory();
 
   const RegistrarPerfil = async (e) => { 
+    
     e.preventDefault(); 
 
     const data = new FormData();
+
+    data.append('NombreCompleto', nombre);
+    data.append('NombreUsuario', usuario);
     data.append('Correo', correo);
     data.append('Contrasenia', contrasenia);
     data.append('ConfirmarContrasenia', confirmarcontrasenia)
-    data.append('NombreCompleto', nombre);
-    data.append('NombreUsuario', usuario);
 
     try {
       const response = await fetch('http://localhost:5000/registro', {
@@ -108,10 +110,10 @@ function RegistrarPerfil() {
               <div class="col-md-4">
                 <label class="form-label">Contraseña</label>
                 <input type="password"
-                      placeholder="Ingresa tu contraseña "
-                      value={contrasenia}
-                      onChange={(e) => setContrasenia(e.target.value)}
-                      class="form-control form-login" />
+                       placeholder="Ingresa tu contraseña "
+                       value={contrasenia}
+                       onChange={(e) => setContrasenia(e.target.value)}
+                       class="form-control form-login" />
               </div>
 
               <div class="col-md-4">

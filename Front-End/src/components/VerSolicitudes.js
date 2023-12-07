@@ -25,23 +25,13 @@ function VerSolicitudes(props) {
     const [solicitudes, setSolicitudes] = useState([]);
     useEffect(() => {
         const obtenerSolicitudes = async () => {
+
             try {
                 const response = await fetch(`http://localhost:5000/participante/perfil${idUsuario}/${nombreUsuario}/solicitudes`);
                 const data = await response.json();
 
                 if (data.success) {
                     setSolicitudes(data.solicitudes);
-                } else {
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Ocurrió un error al obtener la lista de solicitudes',
-                        icon: 'error',
-                        customClass: {
-                            container: 'custom-alert-container',
-                            title: 'custom-alert-title',
-                            icon: 'custom-alert-icon',
-                        },
-                    });
                 }
             } catch (error) {
                 Swal.fire({
@@ -61,6 +51,7 @@ function VerSolicitudes(props) {
     }, [idUsuario, nombreUsuario]);
 
     const AceptarSolicitud = async (solicitante, receptor) => {
+
         try {
             const response = await fetch(`http://localhost:5000/participante/aceptar_amistad/${solicitante}/${receptor}`, {
                 method: 'POST',
@@ -121,6 +112,7 @@ function VerSolicitudes(props) {
     };
 
     const RechazarSolicitud = async (solicitante, receptor) => {
+
         try {
             const response = await fetch(`http://localhost:5000/participante/rechazar_amistad/${solicitante}/${receptor}`, {
                 method: 'POST',
@@ -187,7 +179,6 @@ function VerSolicitudes(props) {
                 <Navegacion />
 
                 <div className="card body-content">
-
                     <div className="row">
                         <h2 className="title">Solicitudes de Amistad</h2>
                     </div>

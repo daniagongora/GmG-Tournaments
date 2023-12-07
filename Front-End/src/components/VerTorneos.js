@@ -10,15 +10,17 @@ import "../statics/css/Alerta.css";
 import "../statics/css/VerTorneos.css";
 
 function VerTorneos() {
+  
   const location = useLocation();
 
   const idUsuario = location.state.ID;
   const nombreUsuario = location.state.NombreUsuario.toString();
 
   const [torneos, setTorneos] = useState([]);
-
   useEffect(() => {
+
     const obtenerTorneos = async () => {
+      
       try {
         const response = await fetch(`http://localhost:5000/torneo/perfil${idUsuario}/${nombreUsuario}/verTorneos`, {
           method: "GET",
@@ -44,11 +46,8 @@ function VerTorneos() {
     obtenerTorneos();
   }, [idUsuario, nombreUsuario]);
 
-  const MasInformacion = async (e) => {
-    let torneoAEliminar = e.target.value;
-    // Aquí se implementa la lógica para desplegar todos los detalles del torneo
-    console.log(torneoAEliminar);
-    return;
+  const EntrarTorneo = async (e) => {
+    
   };
 
   return (
@@ -76,7 +75,7 @@ function VerTorneos() {
                   <button type="button"
                           class="btn btn-outline-secondary btn-lg"
                           value={torneo.IDTorneo}
-                          onClick={MasInformacion}>Mas informacion</button>
+                          onClick={EntrarTorneo}>Entrar a Torneo</button>
                 </div>
               </div>
             ))}

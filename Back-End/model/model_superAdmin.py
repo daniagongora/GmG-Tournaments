@@ -121,6 +121,7 @@ def edit_image_superAdmin(id, name):
 
         # Guardamos los cambios en la base de datos
         db.session.commit()
+
         return True
     else:
         return False

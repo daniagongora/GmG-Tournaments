@@ -5,6 +5,7 @@ import '../statics/css/General.css';
 import '../statics/css/Principal.css'
 
 function Principal() {
+    
     return (
 
         <div>

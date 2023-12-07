@@ -83,6 +83,7 @@ def eliminarTorneo(idAdmin, name):
             success = delete_torneo(idTorneo)
             # Devolvemos una respuesta JSON indicando el éxito o fracaso de la operación
             return jsonify({'success': success, 'message': 'Se completó la operación en la base de datos'})
+        
     except Exception:
         return jsonify({'success': False, 'message': 'Ocurrió un error inesperado'})
     
@@ -92,6 +93,10 @@ ver_torneos = Blueprint('ver_torneos', __name__, url_prefix='/torneo')
 
 """
     Función para mostrar los torneos existentes.
+
+    Args:
+        id (int): El ID del torneo.
+        name (str): El nombre del torneo.
 
     Returns:
         jsonify: Respuesta JSON indicando el éxito o fracaso de la operación.
@@ -114,5 +119,6 @@ def cosultarTorneos(id, name):
             })
         # Devolvemos una respuesta JSON indicando el éxito o fracaso de la operación
         return jsonify({'success': True, 'message': 'Se consultaron los torneos exitosamente', 'torneos': listaTorneos})
+    
     except Exception:
         return jsonify({'success': False, 'message': 'Ocurrió un error inesperado'})

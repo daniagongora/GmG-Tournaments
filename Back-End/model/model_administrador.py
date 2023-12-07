@@ -73,6 +73,7 @@ def edit_administrador(id, name):
         usernameNuevo = campos.get('NombreAdministrador', '')
         correoNuevo = campos.get('Correo', '')
         contraseniaNueva = campos.get('Contrasenia', '')
+        
         # Verificamos si se proporcionó un nuevo nombre
         if nombreNuevo:
             administrador.NombreCompleto = nombreNuevo
@@ -85,9 +86,9 @@ def edit_administrador(id, name):
         # Verificamos si se proporcionó una nueva contraseña
         if contraseniaNueva:
             administrador.Contrasenia = sha256(cipher(contraseniaNueva)).hexdigest()
-        
         # Guardamos los cambios en la base de datos
         db.session.commit()
+
         return True
     else:
         return False
@@ -120,6 +121,7 @@ def edit_image_administrador(id, name):
 
         # Guardamos los cambios en la base de datos
         db.session.commit()
+        
         return True
     else:
         return False
