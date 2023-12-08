@@ -450,15 +450,28 @@ function EditarPerfil(props) {
           {mostrarModalImagen && (
             <ModalEditarImagen onClose={() => setMostrarModalImagen(false)}>
               <div class="image-container">
-                {imagenesDisponibles.map((imagen, index) => (
-                  <img
-                    class={`album-image ${imagen === imagenSeleccionada ? 'selected' : ''}`}
-                    key={index}
-                    src={imagen}
-                    alt={`img${index}`}
-                    onClick={() => setImagenSeleccionada(imagen)}
-                  />
-                ))}
+                <div class="image-row">
+                  {imagenesDisponibles.slice(0, 6).map((imagen, index) => (
+                    <img
+                      class={`album-image col-md ${imagen === imagenSeleccionada ? 'selected' : ''}`}
+                      key={index}
+                      src={imagen}
+                      alt={`img${index}`}
+                      onClick={() => setImagenSeleccionada(imagen)}
+                    />
+                  ))}
+                </div>
+                <div class="image-row">
+                  {imagenesDisponibles.slice(6, 12).map((imagen, index) => (
+                    <img
+                      class={`album-image col-md ${imagen === imagenSeleccionada ? 'selected' : ''}`}
+                      key={index + 6} 
+                      src={imagen}
+                      alt={`img${index + 6}`}
+                      onClick={() => setImagenSeleccionada(imagen)}
+                    />
+                  ))}
+                </div>
               </div>
 
               <br></br>
