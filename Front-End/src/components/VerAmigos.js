@@ -148,17 +148,14 @@ function VerAmigos(props) {
           
           <div class="row"> 
             <div class="card card-user col-md-4">
-                <div class="card card-picture border-secondary mb-2">
+                <div class="card card-picture border-secondary mb-4">
                   <MostrarImagenPerfil imagen={location.state.ImagenPerfil} />
-                </div>
-
-                <div class="card card-username">
-                    <h2 class="user"> {location.state.NombreUsuario} </h2>                        
                 </div>
 
                 <button class="btn btn-outline-secondary request-btn" onClick={VerSolicitudes}>Ver Solicitudes</button>
 
                 <button className="btn btn-outline-secondary request-btn" onClick={BuscarUsuario}>Buscar Usuario</button>
+                
             </div>
 
             <div class="card card-list col-md-8">

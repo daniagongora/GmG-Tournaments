@@ -191,9 +191,7 @@ function VerSolicitudes(props) {
                                 <MostrarImagenPerfil imagen={location.state.ImagenPerfil}/>
                             </div>
 
-                            <div className="card card-username text-center">
-                                <h2 className="user"> {location.state.NombreUsuario} </h2>
-                            </div>
+                            
                         </div>
 
                         <div className="card card-list col-md-8">
