@@ -43,34 +43,32 @@ function Login() {
   return (
 
     <div>
-      <body>
-        <div class="card body-content">
-          <div class="title">   
-            <h1>GmG <br></br>Tournaments</h1>
-          </div>
-
-          <br></br>
-
-          <form onSubmit={Login}>
-            <label class="form-label">Correo</label>
-            <input type="email"
-                   placeholder="Ingresa tu correo"
-                   value={correo}
-                   onChange={(e) => setCorreo(e.target.value)}
-                   class="form-control form-login" />
-            
-            <label class="form-label">Contraseña</label>
-            <input type="password"
-                   placeholder="Ingresa tu contraseña "
-                   value={contrasenia}
-                   onChange={(e) => setContrasenia(e.target.value)}
-                   class="form-control form-login" />
-            
-            <button type="submit" class="btn btn-login btn-outline-secondary">Ingresar</button>
-          </form>
-          {mensaje && <p>{mensaje}</p>}
+      <div className="card body-content">
+        <div className="title">   
+          <h1>GmG <br></br>Tournaments</h1>
         </div>
-      </body>  
+
+        <br></br>
+
+        <form onSubmit={Login}>
+          <label className="form-label">Correo</label>
+          <input type="email"
+                  placeholder="Ingresa tu correo"
+                  value={correo}
+                  onChange={(e) => setCorreo(e.target.value)}
+                  className="form-control form-login" />
+          
+          <label className="form-label">Contraseña</label>
+          <input type="password"
+                  placeholder="Ingresa tu contraseña "
+                  value={contrasenia}
+                  onChange={(e) => setContrasenia(e.target.value)}
+                  className="form-control form-login" />
+          
+          <button type="submit" className="btn btn-login btn-outline-secondary">Ingresar</button>
+        </form>
+        {mensaje && <p>{mensaje}</p>}
+      </div> 
     </div>
   );
 }

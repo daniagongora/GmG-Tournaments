@@ -1,6 +1,6 @@
 from base64 import b64encode
-from Cryptodome.Util.Padding import pad, unpad
-from Cryptodome.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+from Crypto.Cipher import AES
 from hashlib import sha256
 
 plainkey='RGV2ZWxvcGVyQ29kZTIhQA=='

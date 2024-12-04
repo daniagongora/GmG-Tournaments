@@ -259,39 +259,39 @@ function BuscarUsuario(props){
 
     return (
 
-        <body>
+        <div>
             <Navegacion/>
 
             <div className="card body-content">
-                <div class="row">
-                    <h2 class="title">Buscar Usuario</h2>
+                <div className="row">
+                    <h2 className="title">Buscar Usuario</h2>
                 </div>
 
                 <br></br>
                 
-                <div class="row-md mb-4 d-flex flex-md-row flex-column">
+                <div className="row-md mb-4 d-flex flex-md-row flex-column">
                     <form onSubmit={BuscarUsuario}>
-                        <input class="form-control search col-md-3" type="text" value={usuarioBusqueda} placeholder="Ingresa el username" onChange={(e) => setUsuarioBusqueda(e.target.value)} />
+                        <input className="form-control search col-md-3" type="text" value={usuarioBusqueda} placeholder="Ingresa el username" onChange={(e) => setUsuarioBusqueda(e.target.value)} />
                     </form>
 
-                    <div class="col-md"></div>
+                    <div className="col-md"></div>
                     
                     {rol === 'Participante' && !amigo === true && !solicitud === true && !mensaje && usuario && 
                     !mismoUsuario === true  &&(
-                        <div class="col-md-3 buttons">
+                        <div className="col-md-3 buttons">
                             <button className="btn btn-participante btn-outline-secondary" onClick={MandarSolicitud}>Mandar Solicitud</button>
                         </div>
                     )}
 
                     {rol === 'Participante' && !amigo === true && !solicitud === false && !mensaje && usuario && (
-                        <div class="col-md-3 buttons">
+                        <div className="col-md-3 buttons">
                             <button className="btn btn-participante btn-outline-danger" 
                                     onClick={() => CancelarSolicitud(parseInt(idUsuario), parseInt(idUsuarioBusqueda))}>Cancelar Solicitud</button>
                         </div>
                     )}
 
                     {rol === 'SuperAdministrador' && !mensaje && usuario && (
-                        <div class="col-md-4 buttons">
+                        <div className="col-md-4 buttons">
                             <button className="btn btn-superadmin btn-outline-secondary"
                                     onClick={VolverAdministrador}>Asignar Administrador</button>
                         </div>
@@ -301,34 +301,36 @@ function BuscarUsuario(props){
                 </div>
 
                 {!mensaje && usuario && (
-                    <div class="row mt-2">
-                        <div class="card card-result border-secondary d-flex align-items-center justify-content-center flex-md-row flex-column">
-                            <div class="card card-user col-md">
-                                <div class="card card-picture border-secondary mb-4">
+                    <div className="row mt-2">
+                        <div className="card card-result border-secondary d-flex align-items-center justify-content-center flex-md-row flex-column">
+                            <div className="card card-user col-md">
+                                <div className="card card-picture border-secondary mb-4">
                                     <MostrarImagenPerfil imagen={imagenPerfil} />
                                 </div>
                             </div>
 
-                            <div class="card card-user-information col-md-8">
-                                <div class="container-fluid d-flex align-items-center justify-content-center mt-3">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <tr>
-                                                <td> <h4>Nombre: </h4> </td>
-                                                <td> <h2>{nombre}</h2> </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td> <h4>Username: </h4> </td>
-                                                <td> <h2>{usuario}</h2> </td>
-                                            </tr>
-
-                                            {rol === 'SuperAdministrador' && (
+                            <div className="card card-user-information col-md-8">
+                                <div className="container-fluid d-flex align-items-center justify-content-center mt-3">
+                                    <div className="table-responsive">
+                                        <table className="table">
+                                            <tbody>
                                                 <tr>
-                                                    <td> <h4>Correo: </h4> </td>
-                                                    <td> <h2>{correo}</h2> </td>
-                                                </tr>   
-                                            )} 
+                                                    <td> <h4>Nombre: </h4> </td>
+                                                    <td> <h2>{nombre}</h2> </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td> <h4>Username: </h4> </td>
+                                                    <td> <h2>{usuario}</h2> </td>
+                                                </tr>
+
+                                                {rol === 'SuperAdministrador' && (
+                                                    <tr>
+                                                        <td> <h4>Correo: </h4> </td>
+                                                        <td> <h2>{correo}</h2> </td>
+                                                    </tr>   
+                                                )} 
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -337,7 +339,7 @@ function BuscarUsuario(props){
                     </div>           
                 )}
             </div>
-        </body>
+        </div>
     );
 }
 

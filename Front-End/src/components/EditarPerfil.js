@@ -309,15 +309,15 @@ function EditarPerfil(props) {
   const ModalEditarImagen = ({ onClose, children }) => {
 
     return (
-      <div class="modal fade show" style={{ display: 'block' }} id="modalCard">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content edit-image">
-            <div class="modal-header">
-              <h2 class="modal-title">Selecciona una Imagen</h2>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
+      <div className="modal fade show" style={{ display: 'block' }} id="modalCard">
+        <div className="modal-dialog modal-lg" role="document">
+          <div className="modal-content edit-image">
+            <div className="modal-header">
+              <h2 className="modal-title">Selecciona una Imagen</h2>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
             </div>
             
-            <div class="modal-body">
+            <div className="modal-body">
               { children }
             </div>
           </div>
@@ -329,15 +329,15 @@ function EditarPerfil(props) {
   const ModalEditarDatos = ({ onClose, children }) => {
     
     return (
-      <div class="modal fade show" style={{ display: 'block' }} id="modalForm">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2 class="modal-title">Editar Datos</h2>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
+      <div className="modal fade show" style={{ display: 'block' }} id="modalForm">
+        <div className="modal-dialog modal-lg" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2 className="modal-title">Editar Datos</h2>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
             </div>
 
-            <div class="modal-body">
+            <div className="modal-body">
               <form onSubmit={EditarDatos}> { children } </form>
             </div>
           </div>
@@ -349,39 +349,39 @@ function EditarPerfil(props) {
   return (
 
     <div>
-      <body>
-        <Navegacion/>
+      <Navegacion/>
 
-        <div class="card body-content">
-          <div class="row">
-            <h2 class="title">Editar Perfil</h2>
+      <div className="card body-content">
+        <div className="row">
+          <h2 className="title">Editar Perfil</h2>
+        </div>
+      
+        <div className="row">
+          <div className="card card-user col-md-4">
+            <div className="card card-picture border-secondary mb-2">
+              <MostrarImagenPerfil imagen={imagenPerfil} />
+            </div>
+
+            <div className="btns">
+              <button className="btn btn-outline-secondary edit-image" onClick={() => setMostrarModalImagen(true)}>Editar Imagen</button>   
+              
+              {rol === 'participante' && (
+                <button className="btn btn-outline-danger delete-profile" onClick={EliminarPerfil}>Eliminar Perfil</button>
+              )}
+              
+            </div>
           </div>
-        
-          <div class="row">
-            <div class="card card-user col-md-4">
-              <div class="card card-picture border-secondary mb-2">
-                <MostrarImagenPerfil imagen={imagenPerfil} />
-              </div>
-
-              <div class="btns">
-                <button class="btn btn-outline-secondary edit-image" onClick={() => setMostrarModalImagen(true)}>Editar Imagen</button>   
-                
-                {rol === 'participante' && (
-                  <button class="btn btn-outline-danger delete-profile" onClick={EliminarPerfil}>Eliminar Perfil</button>
-                )}
-                
+            
+          <div className="card text-end card-profile-info col-md-8">
+            <div className="card-header">
+              <div className="ml-auto">
+                <button className="btn btn-outline-secondary edit-data" onClick={() => setMostrarModalDatos(true)}>Editar Datos</button>
               </div>
             </div>
-              
-            <div class="card text-end card-profile-info col-md-8">
-              <div class="card-header">
-                <div class="ml-auto">
-                  <button class="btn btn-outline-secondary edit-data" onClick={() => setMostrarModalDatos(true)}>Editar Datos</button>
-                </div>
-              </div>
 
-              <div class="table-responsive">
-                <table class="table">
+            <div className="table-responsive">
+              <table className="table">
+                <tbody>
                   <tr>
                     <td> <h5>Nombre:</h5> </td>
                     <td> <h3>{nombreCompleto}</h3> </td>
@@ -407,82 +407,82 @@ function EditarPerfil(props) {
                     <td> <h5>Password:</h5></td>
                     <td> <h3>************</h3> </td>
                   </tr>
-                </table>
-              </div>
-            </div> 
-          </div>
+                </tbody>
+              </table>
+            </div>
+          </div> 
+        </div>
 
-          {mostrarModalDatos && (
-            <ModalEditarDatos onClose={() => setMostrarModalDatos(false)}>
-              <form>
-                <div class="row">
-                  <div class="col-md">
-                    <label class="form-label modal-label" htmlFor="nombre">Nombre:</label>
-                    <input class="modal-input" type="text" id="nombre" required
-                           defaultValue={nombreCompleto} />
-                  </div>
-
-                  <div class="col-md">
-                    <label class="form-label modal-label" htmlFor="username">Username:</label>
-                    <input class="modal-input" type="text" id="username" required
-                           defaultValue={nombreUsuario} />
-                  </div>
+        {mostrarModalDatos && (
+          <ModalEditarDatos onClose={() => setMostrarModalDatos(false)}>
+            <form>
+              <div className="row">
+                <div className="col-md">
+                  <label className="form-label modal-label" htmlFor="nombre">Nombre:</label>
+                  <input className="modal-input" type="text" id="nombre" required
+                          defaultValue={nombreCompleto} />
                 </div>
 
-                <div class="row">
-                  <div class="col-md">
-                    <label class="form-label modal-label" htmlFor="correo">Correo:</label>
-                    <input class="modal-input" type="email" id="correo" required 
-                           defaultValue={correo} />
-                  </div>
-
-                  <div class="col-md">
-                    <label class="form-label modal-label" htmlFor="contrasenia">Password:</label>
-                    <input class="modal-input" type="password" id="contrasenia" required />
-                  </div>
-                </div>
-                
-                <button class="btn btn-outline-secondary save-changes" type="submit" onClick={EditarDatos}>Guardar</button>
-              </form>
-            </ModalEditarDatos>
-          )}
-
-          {mostrarModalImagen && (
-            <ModalEditarImagen onClose={() => setMostrarModalImagen(false)}>
-              <div class="image-container">
-                <div class="image-row">
-                  {imagenesDisponibles.slice(0, 6).map((imagen, index) => (
-                    <img
-                      class={`album-image col-md ${imagen === imagenSeleccionada ? 'selected' : ''}`}
-                      key={index}
-                      src={imagen}
-                      alt={`img${index}`}
-                      onClick={() => setImagenSeleccionada(imagen)}
-                    />
-                  ))}
-                </div>
-                <div class="image-row">
-                  {imagenesDisponibles.slice(6, 12).map((imagen, index) => (
-                    <img
-                      class={`album-image col-md ${imagen === imagenSeleccionada ? 'selected' : ''}`}
-                      key={index + 6} 
-                      src={imagen}
-                      alt={`img${index + 6}`}
-                      onClick={() => setImagenSeleccionada(imagen)}
-                    />
-                  ))}
+                <div className="col-md">
+                  <label className="form-label modal-label" htmlFor="username">Username:</label>
+                  <input className="modal-input" type="text" id="username" required
+                          defaultValue={nombreUsuario} />
                 </div>
               </div>
 
-              <br></br>
+              <div className="row">
+                <div className="col-md">
+                  <label className="form-label modal-label" htmlFor="correo">Correo:</label>
+                  <input className="modal-input" type="email" id="correo" required 
+                          defaultValue={correo} />
+                </div>
 
-              <button class="btn btn-outline-secondary change-image" onClick={EditarImagen}>Cambiar Imagen</button>
+                <div className="col-md">
+                  <label className="form-label modal-label" htmlFor="contrasenia">Password:</label>
+                  <input className="modal-input" type="password" id="contrasenia" required />
+                </div>
+              </div>
+              
+              <button className="btn btn-outline-secondary save-changes" type="submit" onClick={EditarDatos}>Guardar</button>
+            </form>
+          </ModalEditarDatos>
+        )}
 
-              <br></br>
-            </ModalEditarImagen>
-          )}
-        </div>  
-      </body>
+        {mostrarModalImagen && (
+          <ModalEditarImagen onClose={() => setMostrarModalImagen(false)}>
+            <div className="image-container">
+              <div className="image-row">
+                {imagenesDisponibles.slice(0, 6).map((imagen, index) => (
+                  <img
+                    className={`album-image col-md ${imagen === imagenSeleccionada ? 'selected' : ''}`}
+                    key={index}
+                    src={imagen}
+                    alt={`img${index}`}
+                    onClick={() => setImagenSeleccionada(imagen)}
+                  />
+                ))}
+              </div>
+              <div className="image-row">
+                {imagenesDisponibles.slice(6, 12).map((imagen, index) => (
+                  <img
+                    className={`album-image col-md ${imagen === imagenSeleccionada ? 'selected' : ''}`}
+                    key={index + 6} 
+                    src={imagen}
+                    alt={`img${index + 6}`}
+                    onClick={() => setImagenSeleccionada(imagen)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <br></br>
+
+            <button className="btn btn-outline-secondary change-image" onClick={EditarImagen}>Cambiar Imagen</button>
+
+            <br></br>
+          </ModalEditarImagen>
+        )}
+      </div>
     </div>
   );
 }

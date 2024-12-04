@@ -98,6 +98,10 @@ VALUES (1, 'Victoria Ramirez', '../statics/icons/spidergwen.png', 'd7f8acca0a63b
 INSERT INTO Administrador (IDAdministrador, IDSuperAdministrador, NombreCompleto, ImagenPerfil, Contrasenia, NombreAdministrador, Correo, Rol)
 VALUES (1, 1, 'Mario Letepichia', '../statics/icons/doge.jpg', 'f4b43cc5fb5dfef20bacc1d17695cf311cb825f7be6f09b0215f7b3704573ec1', 'Marius1141', 'marius@gmail.com', 'Administrador');
 
+-- Población de la tabla Participante
+INSERT INTO Participante (IDParticipante, NombreCompleto, ImagenPerfil, Contrasenia, NombreParticipante, Correo, Rol)
+VALUES (1, 'Juan Lopez', '../statics/icons/crash.png', 'd7f8acca0a63b2e39b378f21ee8f79541ffadc25ed87eaecb56054414ef29e21', 'Juan1012', 'juan@gmail.com', 'Participante');
+
 -- Población de la tabla Torneo
 INSERT INTO Torneo (IDAdministrador, NombreTorneo, FechaInicio, CupoMaximo, Videojuego, Plataforma, Descripcion, Estatus, FechaCreacion)
 VALUES (1, "Primer Torneo", "2023-11-30", 16, "Fall Guys", "Consolas", "Estas en un torneo de prueba", TRUE, "2023-11-17");

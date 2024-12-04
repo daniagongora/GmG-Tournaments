@@ -54,7 +54,7 @@ function MostrarImagenPerfil(props) {
     }
 
     return (
-        <img class="picture" src={ mostrarImagenPerfil() } alt="Imagen de perfil"/>
+        <img className="picture" src={ mostrarImagenPerfil() } alt="Imagen de perfil"/>
     );
 }
 

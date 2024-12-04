@@ -10,8 +10,6 @@ Primer Proyecto de Software
   <img src="PapitasLogo.png" />
 </p>
 
-  
-
 ## Desarrolladores
 
 -  *Colaboración* - [Dania Paula Góngora Ramírez](https://github.com/daniagongora)
@@ -71,15 +69,12 @@ Para poder acceder al sitio web solo necesitamos redirigirnos a la siguiente pá
 #### __Participantes__
 Correo | Contraseña
 --- | ---
-dania1012@ciencias.unam.mx | ola
-bolillo@gmail.com | ola
+juan@gmail.com | ola
 
 #### __Administradores__
 Correo | Contraseña
 --- | ---
-Mar123@yahoo.com | 123
 marius@gmail.com | Nuts-1141
-diego@hotmail.com | ola
 
 #### __Super Administradores__
 Correo | Contraseña

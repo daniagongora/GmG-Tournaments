@@ -136,64 +136,62 @@ function VerAmigos(props) {
   return (
 
     <div>
-      <body>
-        <Navegacion />
+      <Navegacion />
 
-        <div className="card body-content">
-          <div class="row">
-            <h2 class="title">Mis Amigos</h2>
+      <div className="card body-content">
+        <div className="row">
+          <h2 className="title">Mis Amigos</h2>
+        </div>
+
+        <br></br>
+        
+        <div className="row"> 
+          <div className="card card-user col-md-4">
+              <div className="card card-picture border-secondary mb-4">
+                <MostrarImagenPerfil imagen={location.state.ImagenPerfil} />
+              </div>
+
+              <button className="btn btn-outline-secondary request-btn" onClick={VerSolicitudes}>Ver Solicitudes</button>
+
+              <button className="btn btn-outline-secondary request-btn" onClick={BuscarUsuario}>Buscar Usuario</button>
+              
           </div>
 
-          <br></br>
-          
-          <div class="row"> 
-            <div class="card card-user col-md-4">
-                <div class="card card-picture border-secondary mb-4">
-                  <MostrarImagenPerfil imagen={location.state.ImagenPerfil} />
-                </div>
+          <div className="card card-list col-md-8">
+            {amigos.length === 0 ? (
+              <div className="card card-empty container-fluid border-secondary align-items-center justify-content-center">
+                <h2 className= "card-empty-message">Aun no tienes amigos</h2>
+              </div>
+            ) : (
+              <div className="card card-friends container-fluid border-secondary">
+                <ul className="list">
+                  {amigos.map((amigo) => (
+                    <li key={amigo.NombreParticipante} className="list-item">
+                      <div className="row-md users d-flex flex-md-row flex-column">
 
-                <button class="btn btn-outline-secondary request-btn" onClick={VerSolicitudes}>Ver Solicitudes</button>
-
-                <button className="btn btn-outline-secondary request-btn" onClick={BuscarUsuario}>Buscar Usuario</button>
-                
-            </div>
-
-            <div class="card card-list col-md-8">
-              {amigos.length === 0 ? (
-                <div class="card card-empty container-fluid border-secondary align-items-center justify-content-center">
-                  <h2 class= "card-empty-message">Aun no tienes amigos</h2>
-                </div>
-              ) : (
-                <div class="card card-friends container-fluid border-secondary">
-                  <ul class="list">
-                    {amigos.map((amigo) => (
-                      <li key={amigo.NombreParticipante} className="list-item">
-                        <div className="row-md users d-flex flex-md-row flex-column">
-
-                          <div className="col-md-7 d-flex align-items-center">
-                            <div className="card list-image-container border-secondary">
-                              <MostrarImagenPerfil imagen={amigo.ImagenPerfil} />
-                            </div>
-                            <div><h4 className="list-name ms-3">{amigo.NombreParticipante}</h4></div>
+                        <div className="col-md-7 d-flex align-items-center">
+                          <div className="card list-image-container border-secondary">
+                            <MostrarImagenPerfil imagen={amigo.ImagenPerfil} />
                           </div>
-                            
-                          <div className="col-md btn-solicitud d-flex align-items-center justify-content-center">
-                            {/* <button className="btn btn-outline-secondary">Ver Perfil</button> */}
-                            <button className="btn btn-outline-danger" 
-                                    onClick={() => EliminarAmigo(parseInt(amigo.IDAmigo.toString()), parseInt(idUsuario))}>Eliminar
-                            </button>
-                          </div>
-
+                          <div><h4 className="list-name ms-3">{amigo.NombreParticipante}</h4></div>
                         </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
+                          
+                        <div className="col-md btn-solicitud d-flex align-items-center justify-content-center">
+                          {/* <button className="btn btn-outline-secondary">Ver Perfil</button> */}
+                          <button className="btn btn-outline-danger" 
+                                  onClick={() => EliminarAmigo(parseInt(amigo.IDAmigo.toString()), parseInt(idUsuario))}>Eliminar
+                          </button>
+                        </div>
+
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
-      </body>
+      </div>
     </div>
   );
 }

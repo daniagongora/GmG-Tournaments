@@ -53,35 +53,33 @@ function VerTorneos() {
   return (
 
     <div>
-      <body>
-        <Navegacion />
+      <Navegacion />
 
-        <div className="card body-content ">
-          <div class="row">
-            <h2 class="title">Torneos</h2>
-          </div>
-
-          <br></br>
-
-          <div class="row tournaments">
-            {torneos.map((torneo, index) => (
-              <div class="card border-secondary mb-4 tournament-card col-md-4" key={index}>
-                <div class="card-header tournament-header">
-                  <MostrarTorneo videojuego={torneo.Videojuego} />
-                </div>
-
-                <div class="card-body">
-                  <h4 class="card-title text-center">{torneo.NombreTorneo}</h4>
-                  <button type="button"
-                          class="btn btn-outline-secondary btn-lg"
-                          value={torneo.IDTorneo}
-                          onClick={EntrarTorneo}>Entrar a Torneo</button>
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="card body-content ">
+        <div className="row">
+          <h2 className="title">Torneos</h2>
         </div>
-      </body>
+
+        <br></br>
+
+        <div className="row tournaments">
+          {torneos.map((torneo, index) => (
+            <div className="card border-secondary mb-4 tournament-card col-md-4" key={index}>
+              <div className="card-header tournament-header">
+                <MostrarTorneo videojuego={torneo.Videojuego} />
+              </div>
+
+              <div className="card-body">
+                <h4 className="card-title text-center">{torneo.NombreTorneo}</h4>
+                <button type="button"
+                        className="btn btn-outline-secondary btn-lg"
+                        value={torneo.IDTorneo}
+                        onClick={EntrarTorneo}>Entrar a Torneo</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

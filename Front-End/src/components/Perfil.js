@@ -98,45 +98,43 @@ function Perfil() {
     return (
 
         <div>
-            <body>
-                <Navegacion/>   
+            <Navegacion/>   
 
-                <div class="card body-content">
-                    <div class="row"> 
-                        <div class="card card-user col-md">
-                            <div class="card card-picture border-secondary mb-2">
-                                <MostrarImagenPerfil imagen={location.state.ImagenPerfil} />
-                            </div>
-
-                            <div class="card card-username">
-                                <h2 class="username"> {location.state.NombreUsuario} </h2>                          
-                            </div>
+            <div className="card body-content">
+                <div className="row"> 
+                    <div className="card card-user col-md">
+                        <div className="card card-picture border-secondary mb-2">
+                            <MostrarImagenPerfil imagen={location.state.ImagenPerfil} />
                         </div>
-                    </div>
-                    
-                    <div class="row"> 
-                        <div class="card card-menu col-md">
-                            <div class="button-container">
-                                <button class="btn btn-menu btn-outline-secondary" onClick={VerTorneos}>Torneos</button>
 
-                                {location.state.Rol === 'Participante' && (
-                                    <button class="btn btn-menu btn-outline-secondary" onClick={VerAmigos}>Amigos</button>
-                                )}
-
-                                {location.state.Rol === "Administrador" && (
-                                    <button class="btn btn-menu btn-outline-secondary" onClick={CrearTorneo}>Crear Torneo</button>
-                                )}
-
-                                {location.state.Rol === 'SuperAdministrador' && (
-                                    <button class="btn btn-menu btn-outline-secondary" onClick={BuscarUsuario}>Gestionar</button>
-                                )}
-                                
-                                <button class="btn btn-menu btn-outline-secondary" onClick={EditarPerfil}>Editar Perfil</button>
-                            </div>
+                        <div className="card card-username">
+                            <h2 className="username"> {location.state.NombreUsuario} </h2>                          
                         </div>
                     </div>
                 </div>
-            </body>  
+                
+                <div className="row"> 
+                    <div className="card card-menu col-md">
+                        <div className="button-container">
+                            <button className="btn btn-menu btn-outline-secondary" onClick={VerTorneos}>Torneos</button>
+
+                            {location.state.Rol === 'Participante' && (
+                                <button className="btn btn-menu btn-outline-secondary" onClick={VerAmigos}>Amigos</button>
+                            )}
+
+                            {location.state.Rol === "Administrador" && (
+                                <button className="btn btn-menu btn-outline-secondary" onClick={CrearTorneo}>Crear Torneo</button>
+                            )}
+
+                            {location.state.Rol === 'SuperAdministrador' && (
+                                <button className="btn btn-menu btn-outline-secondary" onClick={BuscarUsuario}>Gestionar</button>
+                            )}
+                            
+                            <button className="btn btn-menu btn-outline-secondary" onClick={EditarPerfil}>Editar Perfil</button>
+                        </div>
+                    </div>
+                </div>
+            </div> 
         </div>
     );
 }

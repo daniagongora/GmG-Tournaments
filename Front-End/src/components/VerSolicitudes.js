@@ -175,61 +175,59 @@ function VerSolicitudes(props) {
     return (
 
         <div>
-            <body>
-                <Navegacion />
+            <Navegacion />
 
-                <div className="card body-content">
-                    <div className="row">
-                        <h2 className="title">Solicitudes de Amistad</h2>
+            <div className="card body-content">
+                <div className="row">
+                    <h2 className="title">Solicitudes de Amistad</h2>
+                </div>
+
+                <br></br>
+
+                <div className="row">
+                    <div className="card card-user col-md-4 d-flex align-items-center">
+                        <div className="card card-picture border-secondary mb-2">
+                            <MostrarImagenPerfil imagen={location.state.ImagenPerfil}/>
+                        </div>
+
+                        
                     </div>
 
-                    <br></br>
-
-                    <div className="row">
-                        <div className="card card-user col-md-4 d-flex align-items-center">
-                            <div className="card card-picture border-secondary mb-2">
-                                <MostrarImagenPerfil imagen={location.state.ImagenPerfil}/>
+                    <div className="card card-list col-md-8">
+                        {solicitudes && solicitudes.length === 0 ? (
+                            <div className="card card-empty container-fluid border-secondary d-flex align-items-center justify-content-center">
+                                <h2 className="card-empty-message">Aun no tienes solicitudes</h2>
                             </div>
+                        ) : (
+                            <div className="card card-friends container-fluid border-secondary">
+                                <ul className="list">
+                                    {solicitudes && solicitudes.length > 0 && solicitudes.map((amigo) => (
+                                        <li key={amigo.NombreParticipante} className="list-item">
+                                            <div className="row-md users d-flex flex-md-row flex-column">
 
-                            
-                        </div>
-
-                        <div className="card card-list col-md-8">
-                            {solicitudes && solicitudes.length === 0 ? (
-                                <div className="card card-empty container-fluid border-secondary d-flex align-items-center justify-content-center">
-                                    <h2 className="card-empty-message">Aun no tienes solicitudes</h2>
-                                </div>
-                            ) : (
-                                <div className="card card-friends container-fluid border-secondary">
-                                    <ul className="list">
-                                        {solicitudes && solicitudes.length > 0 && solicitudes.map((amigo) => (
-                                            <li key={amigo.NombreParticipante} className="list-item">
-                                                <div className="row-md users d-flex flex-md-row flex-column">
-
-                                                    <div className="col-md-7 d-flex align-items-center">
-                                                        <div className="card list-image-container border-secondary">
-                                                            <MostrarImagenPerfil imagen={amigo.ImagenPerfil} />
-                                                        </div>
-                                                        <div><h4 className="list-name ms-3">{amigo.NombreParticipante}</h4></div>
+                                                <div className="col-md-7 d-flex align-items-center">
+                                                    <div className="card list-image-container border-secondary">
+                                                        <MostrarImagenPerfil imagen={amigo.ImagenPerfil} />
                                                     </div>
-                                        
-                                                    <div className="col-md btn-solicitud d-flex align-items-center justify-content-center">
-                                                        <button className="btn btn-outline-success" onClick={() => 
-                                                            AceptarSolicitud(parseInt(amigo.IDSolicitante.toString()), parseInt(idUsuario))}>Aceptar</button>
-                                            
-                                                        <button className="btn btn-outline-danger" onClick={() => 
-                                                            RechazarSolicitud(parseInt(amigo.IDSolicitante.toString()), parseInt(idUsuario))}>Rechazar</button>
-                                                    </div>
+                                                    <div><h4 className="list-name ms-3">{amigo.NombreParticipante}</h4></div>
                                                 </div>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
+                                    
+                                                <div className="col-md btn-solicitud d-flex align-items-center justify-content-center">
+                                                    <button className="btn btn-outline-success" onClick={() => 
+                                                        AceptarSolicitud(parseInt(amigo.IDSolicitante.toString()), parseInt(idUsuario))}>Aceptar</button>
+                                        
+                                                    <button className="btn btn-outline-danger" onClick={() => 
+                                                        RechazarSolicitud(parseInt(amigo.IDSolicitante.toString()), parseInt(idUsuario))}>Rechazar</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
                     </div>
                 </div>
-            </body>
+            </div>
         </div>
     );
 }

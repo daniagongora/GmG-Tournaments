@@ -125,61 +125,59 @@ function EliminarTorneo() {
   return (
 
     <div>
-      <body>
-        <Navegacion />
+      <Navegacion />
 
-        <div className="card body-content ">
-          <div class="row">
-            <h2 class="title">Mis Torneos</h2>
-          </div>
-
-          <div class="row">
-            <button class="btn btn-outline-secondary btn-create-tournament" onClick={CrearTorneo}>Nuevo Torneo</button>
-          </div>
-
-          {listaTorneos.length === 0 ? (
-            <div class="card card-empty container-fluid border-secondary d-flex align-items-center justify-content-center">
-              <h2 class= "card-empty-tournaments">Aun no tienes torneos creados</h2>
-            </div>
-          ) : (
-            <div class="card card-table table-responsive border-secondary">
-              <table class="table table-hover">
-                <thead class="table-dark">
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Videojuego</th>
-                    <th scope="col">Creado</th>
-                    <th scope="col">Inicio</th>
-                    <th scope="col">Estatus</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {listaTorneos.map((torneo, index) => (
-                    <tr class="table" key={index}>
-                      <th scope="row">{torneo.IDTorneo}</th>
-                      <td>{torneo.NombreTorneo}</td>
-                      <td>{torneo.Videojuego}</td>
-                      <td>{torneo.FechaCreacion}</td>
-                      <td>{torneo.FechaInicio}</td>
-                      <td>{torneo.Estatus ? "Activo" : "Terminado"}</td>
-                      <td>
-                        <button
-                          type="button"
-                          class="btn btn-outline-danger btn-delete-tournament"
-                          onClick={EliminarTorneo}
-                          value={torneo.IDTorneo}>Eliminar</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+      <div className="card body-content ">
+        <div className="row">
+          <h2 className="title">Mis Torneos</h2>
         </div>
-      </body>
+
+        <div className="row">
+          <button className="btn btn-outline-secondary btn-create-tournament" onClick={CrearTorneo}>Nuevo Torneo</button>
+        </div>
+
+        {listaTorneos.length === 0 ? (
+          <div className="card card-empty container-fluid border-secondary d-flex align-items-center justify-content-center">
+            <h2 className= "card-empty-tournaments">Aun no tienes torneos creados</h2>
+          </div>
+        ) : (
+          <div className="card card-table table-responsive border-secondary">
+            <table className="table table-hover">
+              <thead className="table-dark">
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Videojuego</th>
+                  <th scope="col">Creado</th>
+                  <th scope="col">Inicio</th>
+                  <th scope="col">Estatus</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {listaTorneos.map((torneo, index) => (
+                  <tr className="table" key={index}>
+                    <th scope="row">{torneo.IDTorneo}</th>
+                    <td>{torneo.NombreTorneo}</td>
+                    <td>{torneo.Videojuego}</td>
+                    <td>{torneo.FechaCreacion}</td>
+                    <td>{torneo.FechaInicio}</td>
+                    <td>{torneo.Estatus ? "Activo" : "Terminado"}</td>
+                    <td>
+                      <button
+                        type="button"
+                        className="btn btn-outline-danger btn-delete-tournament"
+                        onClick={EliminarTorneo}
+                        value={torneo.IDTorneo}>Eliminar</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

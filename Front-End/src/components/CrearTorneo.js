@@ -176,193 +176,191 @@ function CrearTorneo() {
   return (
     
     <div>
-      <body>
-        <Navegacion />
+      <Navegacion />
 
-        <div className="card body-content">
-          <div class="row">
-            <h2 class="title">Crear Torneo</h2>
-          </div>
-
-          <br></br>
-
-          <div class="row">
-            <form onSubmit={CrearTorneo}>
-              <div class="table-responsive">
-                <table class="table">
-                  <tbody class="tbody">
-                    <tr>
-                      <td class="col-md-2"></td>
-
-                      <td class="col-md">
-                        <div class="form-group input-instance">
-                          <label
-                            for="inputNombreTorneo"
-                            class="form-label mt-4"
-                          >
-                            Nombre del Torneo
-                          </label>
-                          <input
-                            type="text"
-                            class={
-                              validNombreTorneo
-                                ? "form-control is-valid entry-data"
-                                : "form-control is-invalid entry-data"
-                            }
-                            id="inputNombreTorneo"
-                            aria-describedby="NombreAyuda"
-                            placeholder="Ex. Torneo #666"
-                            value={nombreTorneo}
-                            onChange={checkNombreTorneo}
-                            required
-                          />
-                          {!validNombreTorneo && (
-                            <div class="invalid-feedback prompt-feedback">
-                              El nombre no puede exceder 120 caracteres
-                            </div>
-                          )}
-                        </div>
-
-                        <div class="form-group input-instance">
-                          <label for="inputFechaInicio" class="form-label mt-4">
-                            Fecha de Inicio
-                          </label>
-                          <input
-                            type="date"
-                            class={
-                              validFechaInicio
-                                ? "form-control is-valid entry-data"
-                                : "form-control is-invalid entry-data"
-                            }
-                            id="inputFechaInicio"
-                            aria-describedby="FechaAyuda"
-                            value={fechaInicio}
-                            onChange={checkFechaInicio}
-                          />
-                          {!validFechaInicio && (
-                            <div class="invalid-feedback prompt-feedback">
-                              La fecha de inicio no puede ser anterior al día
-                              actual
-                            </div>
-                          )}
-                        </div>
-
-                        <div class="form-group input-instance">
-                          <label for="inputCupo" class="form-label mt-4">
-                            Cupo máximo de participantes
-                          </label>
-                          <input
-                            type="number"
-                            class={
-                              validCupoMaximo
-                                ? "form-control is-valid entry-data"
-                                : "form-control is-invalid entry-data"
-                            }
-                            id="inputCupo"
-                            aria-describedby="CupoAyuda"
-                            value={cupoMaximo}
-                            onChange={checkCupoMaximo}
-                          />
-                          {!validCupoMaximo && (
-                            <div class="invalid-feedback prompt-feedback">
-                              Solo se aceptan valores que sean potencia de 2
-                            </div>
-                          )}
-                        </div>
-
-                        <div class="form-group input-instance">
-                          <label for="inputVideojuego" class="form-label mt-4">
-                            Videojuego
-                          </label>
-                          <select
-                            class={
-                              validVideojuego
-                                ? "form-control is-valid entry-data"
-                                : "form-control is-invalid entry-data"
-                            }
-                            value={videojuego}
-                            onChange={checkVideojuego}
-                            required
-                            id="inputVideojuego"
-                          >
-                            <option>Selecciona una opción</option>
-
-                            {listaVideojuegos.map((videojuego, index) => (
-                              <option key={index}>{videojuego}</option>
-                            ))}
-                          </select>
-                        </div>
-                      </td>
-
-                      <td class="col-md">
-                        <div class="form-group input-instance">
-                          <label for="inputPlataforma" class="form-label mt-4">
-                            Plataforma
-                          </label>
-                          <input
-                            type="text"
-                            class={
-                              validPlataforma
-                                ? "form-control is-valid entry-data"
-                                : "form-control is-invalid entry-data"
-                            }
-                            id="inputPlataforma"
-                            aria-describedby="PlataformaAyuda"
-                            placeholder="Ex. Consola"
-                            value={plataforma}
-                            onChange={checkPlataforma}
-                            required
-                          />
-                          {!validPlataforma && (
-                            <div class="invalid-feedback prompt-feedback">
-                              Tienes un limite de hasta 100 caracteres
-                            </div>
-                          )}
-                        </div>
-
-                        <div class="form-group input-instance">
-                          <label class="form-label mt-4" for="inputCreador">
-                            Creador
-                          </label>
-                          <input
-                            class="form-control entry-data"
-                            id="Creador"
-                            type="text"
-                            readOnly
-                            value={nombreUsuario}
-                          />
-                        </div>
-
-                        <div class="form-group input-instance">
-                          <label for="inputDescripcion" class="form-label mt-4">
-                            Descripción
-                          </label>
-                          <textarea
-                            class="form-control entry-data description-area"
-                            id="inputDescripcion"
-                            rows="3"
-                            value={descripcion}
-                            onChange={(e) => setDescripcion(e.target.value)}
-                          ></textarea>
-                        </div>
-
-                        <button
-                          type="submit"
-                          class="btn btn-create btn-outline-secondary"
-                        >
-                          Crear Torneo
-                        </button>
-                      </td>
-
-                      <td class="col-md-2"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </form>
-          </div>
+      <div className="card body-content">
+        <div className="row">
+          <h2 className="title">Crear Torneo</h2>
         </div>
-      </body>
+
+        <br></br>
+
+        <div className="row">
+          <form onSubmit={CrearTorneo}>
+            <div className="table-responsive">
+              <table className="table">
+                <tbody className="tbody">
+                  <tr>
+                    <td className="col-md-2"></td>
+
+                    <td className="col-md">
+                      <div className="form-group input-instance">
+                        <label
+                          for="inputNombreTorneo"
+                          className="form-label mt-4"
+                        >
+                          Nombre del Torneo
+                        </label>
+                        <input
+                          type="text"
+                          className={
+                            validNombreTorneo
+                              ? "form-control is-valid entry-data"
+                              : "form-control is-invalid entry-data"
+                          }
+                          id="inputNombreTorneo"
+                          aria-describedby="NombreAyuda"
+                          placeholder="Ex. Torneo #666"
+                          value={nombreTorneo}
+                          onChange={checkNombreTorneo}
+                          required
+                        />
+                        {!validNombreTorneo && (
+                          <div className="invalid-feedback prompt-feedback">
+                            El nombre no puede exceder 120 caracteres
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="form-group input-instance">
+                        <label for="inputFechaInicio" className="form-label mt-4">
+                          Fecha de Inicio
+                        </label>
+                        <input
+                          type="date"
+                          className={
+                            validFechaInicio
+                              ? "form-control is-valid entry-data"
+                              : "form-control is-invalid entry-data"
+                          }
+                          id="inputFechaInicio"
+                          aria-describedby="FechaAyuda"
+                          value={fechaInicio}
+                          onChange={checkFechaInicio}
+                        />
+                        {!validFechaInicio && (
+                          <div className="invalid-feedback prompt-feedback">
+                            La fecha de inicio no puede ser anterior al día
+                            actual
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="form-group input-instance">
+                        <label for="inputCupo" className="form-label mt-4">
+                          Cupo máximo de participantes
+                        </label>
+                        <input
+                          type="number"
+                          className={
+                            validCupoMaximo
+                              ? "form-control is-valid entry-data"
+                              : "form-control is-invalid entry-data"
+                          }
+                          id="inputCupo"
+                          aria-describedby="CupoAyuda"
+                          value={cupoMaximo}
+                          onChange={checkCupoMaximo}
+                        />
+                        {!validCupoMaximo && (
+                          <div className="invalid-feedback prompt-feedback">
+                            Solo se aceptan valores que sean potencia de 2
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="form-group input-instance">
+                        <label for="inputVideojuego" className="form-label mt-4">
+                          Videojuego
+                        </label>
+                        <select
+                          className={
+                            validVideojuego
+                              ? "form-control is-valid entry-data"
+                              : "form-control is-invalid entry-data"
+                          }
+                          value={videojuego}
+                          onChange={checkVideojuego}
+                          required
+                          id="inputVideojuego"
+                        >
+                          <option>Selecciona una opción</option>
+
+                          {listaVideojuegos.map((videojuego, index) => (
+                            <option key={index}>{videojuego}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </td>
+
+                    <td className="col-md">
+                      <div className="form-group input-instance">
+                        <label for="inputPlataforma" className="form-label mt-4">
+                          Plataforma
+                        </label>
+                        <input
+                          type="text"
+                          className={
+                            validPlataforma
+                              ? "form-control is-valid entry-data"
+                              : "form-control is-invalid entry-data"
+                          }
+                          id="inputPlataforma"
+                          aria-describedby="PlataformaAyuda"
+                          placeholder="Ex. Consola"
+                          value={plataforma}
+                          onChange={checkPlataforma}
+                          required
+                        />
+                        {!validPlataforma && (
+                          <div className="invalid-feedback prompt-feedback">
+                            Tienes un limite de hasta 100 caracteres
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="form-group input-instance">
+                        <label className="form-label mt-4" for="inputCreador">
+                          Creador
+                        </label>
+                        <input
+                          className="form-control entry-data"
+                          id="Creador"
+                          type="text"
+                          readOnly
+                          value={nombreUsuario}
+                        />
+                      </div>
+
+                      <div className="form-group input-instance">
+                        <label for="inputDescripcion" className="form-label mt-4">
+                          Descripción
+                        </label>
+                        <textarea
+                          className="form-control entry-data description-area"
+                          id="inputDescripcion"
+                          rows="3"
+                          value={descripcion}
+                          onChange={(e) => setDescripcion(e.target.value)}
+                        ></textarea>
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="btn btn-create btn-outline-secondary"
+                      >
+                        Crear Torneo
+                      </button>
+                    </td>
+
+                    <td className="col-md-2"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

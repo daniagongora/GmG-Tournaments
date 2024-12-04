@@ -35,23 +35,23 @@ function Navegacion() {
     return (
         
         <div>
-            <div class="card body-content">
-                <nav class="navbar navbar-expand-md bg-dark" data-bs-theme="dark">
-                    <div class="navbar-content container-fluid">
+            <div className="card body-content">
+                <nav className="navbar navbar-expand-md bg-dark" data-bs-theme="dark">
+                    <div className="navbar-content container-fluid">
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        <a class="navbar-brand">GmG Tournaments</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                        <a className="navbar-brand">GmG Tournaments</a>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
                         </button>
 
-                        <div class="collapse navbar-collapse" id="navbarColor02">
-                            <ul class="navbar-nav me-auto">
-                                <li class="nav-item">
+                        <div className="collapse navbar-collapse" id="navbarColor02">
+                            <ul className="navbar-nav me-auto">
+                                <li className="nav-item">
                                     <button className="nav-link" onClick={MiPerfil}>Mi Perfil</button>
                                 </li>
                                 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/logout">Cerrar Sesión</a>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/logout">Cerrar Sesión</a>
                                 </li>
                             </ul>
                         </div>
