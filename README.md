@@ -79,4 +79,4 @@ marius@gmail.com | Nuts-1141
 #### __Super Administradores__
 Correo | Contraseña
 --- | ---
-Vichy@gmail.com | ola
+vichy@gmail.com | ola
